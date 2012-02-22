@@ -1,27 +1,72 @@
-<!DOCTYPE HTML>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>A Brand New nanoc Site - <%= @item[:title] %></title>
-    <link rel="stylesheet" type="text/css" href="/style.css" media="screen">
-    <meta name="generator" content="nanoc 3.2.4">
-  </head>
-  <body>
-    <div id="main">
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8"/>
+  <title><%= @item[:title] %></title>
+  
+  <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  
+  <script src="/js/jquery-1.6.4.min.js"></script>
+  <script src="/js/css3-mediaqueries.js"></script>
+  <script src="/js/modernizr.js"></script>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  
+  <link rel="stylesheet" media="all" href="/css/style.css"/>
+  <link rel="stylesheet" media="all" href="/css/lessframework.css"/>
+  <link rel="stylesheet" media="all" href="/css/skin.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>  
+</head>
+
+<body lang="en">
+  <header>
+    <div class="wrapper clearfix">
+      
+      <div id="logo">
+        <a href="index.html"><img  src="/img/logo.png" alt="Simpler"></a>
+      </div>
+      
+      <ul id="nav">
+        <li class="current-menu-item"><a href="index.html">Home</a></li>
+        <li><a href="contact.html">Download</a></li>
+        <li><a href="blog.html">Maps</a></li>
+        <li><a href="page.html">Tutorials</a></li>
+        <li><a href="portfolio.html">Examples</a></li>
+      </ul>
+      
+      <% if @item[:home] %>
+        <div class="clearfix"></div>
+        <div id="slider-holder" class="clearfix">  
+          <div class="flexslider home-slider">
+            <img src="/img/map-demo.png"/>
+          </div>
+        
+          <div class="home-slider-clearfix "></div>
+        
+          <div id="headline">
+            <h4>LOREM LEO DOLOR</h4>
+            <p class="headline-text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, eget, ante. Donec eu libero sit amet quam egestas semper. Aenean .  vitae, ornare sit amet.</p>
+            <p><a href="#" class="read-more">Learn more</a></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </header>
+  
+  <div id="main">  
+    <div class="wrapper clearfix">
       <%= yield %>
     </div>
-    <div id="sidebar">
-      <h2>Documentation</h2>
-      <ul>
-        <li><a href="http://nanoc.stoneship.org/docs/">Documentation</a></li>
-        <li><a href="http://nanoc.stoneship.org/docs/3-getting-started/">Getting Started</a></li>
-      </ul>
-      <h2>Community</h2>
-      <ul>
-        <li><a href="http://groups.google.com/group/nanoc/">Discussion Group</a></li>
-        <li><a href="irc://chat.freenode.net/#nanoc">IRC Channel</a></li>
-        <li><a href="http://projects.stoneship.org/trac/nanoc/">Wiki</a></li>
-      </ul>
+  </div>
+  
+  <footer>
+    <div class="wrapper clearfix">
+      <div class="footer-bottom">
+        <div class="left">&copy; Kirill Lebedev</div>
+      </div>
     </div>
-  </body>
+  </footer>
+</body>
 </html>
