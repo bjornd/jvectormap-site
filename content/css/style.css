@@ -523,13 +523,13 @@ header #logo{
 #posts-list,
 #post-content{
 	position: relative;
-	width: 580px;
+	width: 740px;
 	float: left;
 }
 
 #posts-list article{
 	position: relative;
-	padding-left: 80px;
+	padding-left: 20px;
 	margin-bottom: 55px;
 }
 
@@ -851,7 +851,7 @@ header #logo{
 
 #sidebar{
 	position: relative;
-	width: 320px; 
+	width: 160px; 
 	float: left;
 	margin-left: 60px;
 }

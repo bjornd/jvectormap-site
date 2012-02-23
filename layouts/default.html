@@ -25,15 +25,18 @@
     <div class="wrapper clearfix">
       
       <div id="logo">
-        <a href="index.html"><img  src="/img/logo.png" alt="Simpler"></a>
+        <a href="/"><img  src="/img/logo.png" alt="Simpler"></a>
       </div>
       
+      <% menu = MenuHelper.build_menu(items: @items, current_item: @item) %>
       <ul id="nav">
-        <li class="current-menu-item"><a href="index.html">Home</a></li>
-        <li><a href="contact.html">Download</a></li>
-        <li><a href="blog.html">Maps</a></li>
-        <li><a href="page.html">Tutorials</a></li>
-        <li><a href="portfolio.html">Examples</a></li>
+        <% menu.each do |item| %>
+          <% if item[:current] %>
+            <li class="current-menu-item"><a><%= item[:title] %></a></li>
+          <% else %>
+            <li><%= link_to item[:title], item[:path] %></li>
+          <% end %>
+        <% end %>
       </ul>
       
       <% if @item[:home] %>
