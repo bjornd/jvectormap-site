@@ -13,6 +13,10 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+preprocess do
+  items.each { |i| map_preprocessing(i) if i[:map_params] }
+end
+
 # ===========
 # = compile =
 # ===========
@@ -26,9 +30,7 @@ compile '/js/*' do
 end
 
 compile '*' do
-  if item.binary?
-    # don’t filter binary items
-  else
+  if !item.binary?
     filter :erb
     layout 'default'
   end
