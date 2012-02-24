@@ -45,7 +45,7 @@ route '/css/*' do
 end
 
 route '/js/*' do
-  item.identifier.chop + '.' + item[:extension]
+  item.identifier.chop + '.' + (item[:extension] ? item[:extension] : 'js')
 end
 
 route '*' do

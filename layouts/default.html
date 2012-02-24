@@ -11,7 +11,13 @@
   <script src="/js/css3-mediaqueries.js"></script>
   <script src="/js/modernizr.js"></script>
   <script src="/js/jquery-jvectormap.js"></script>
-  <script src="/js/jquery-jvectormap-world-en.js"></script>
+  
+  <% if @item[:js_assets] %>
+    <% @item[:js_assets].each do |asset| %>
+      <script src="<%= asset %>"></script>
+    <% end %>
+  <% end %>
+  
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
