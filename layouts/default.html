@@ -69,7 +69,26 @@
   
   <div id="main">  
     <div class="wrapper clearfix">
-      <%= yield %>
+      <% if !@item[:home] %>
+        <div class="masthead clearfix">
+          <h1><%= @item[:title] %></h1>
+          <% if @item[:subtitle]%>
+            <span class="subheading"><%= @item[:subtitle] %></span>
+          <% end %>
+        </div>
+        <div class='mh-div'></div>
+      <% end %>
+      
+      <% if @item[:submenu] %>
+        <%= render 'submenu' %>
+        <div id="posts-list" class="clearfix">
+          <%= yield %>
+        </div>
+      <% else %>  
+        <div id="page-content" class="clearfix">
+          <%= yield %>
+        </div>
+      <% end %>
     </div>
   </div>
   

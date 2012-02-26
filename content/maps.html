@@ -1,32 +1,8 @@
 ---
 title: Maps
 order: 3
+submenu: true
 ---
-<div class="masthead clearfix">
-  <h1>Maps</h1><span class="subheading">Columns layout</span>
-</div>
-<div class='mh-div'></div>
-
-<aside id="sidebar">	
-  <% sub_menu = MenuHelper.build_menu(items: @items, current_item: @item, level: 2, depth: 2) %>
-  <ul>
-    <% sub_menu.each do |item| %>
-      <li class="cat-item">
-        <%= link_to item[:title], item[:path] %>
-        <% if item[:children] %>
-          <ul>
-            <% item[:children].each do |item| %>
-              <li class="cat-item"><%= link_to item[:title], item[:path] %></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
-</aside>
-
-<div id="posts-list" class="clearfix">
-  <article class="format-standard">
-    <p>Text, text, text</p>
-  </article>
-</div>
+<article class="format-standard">
+  <p>Text, text, text</p>
+</article>
