@@ -37,13 +37,13 @@
         <a href="/"><img  src="/img/logo.png" alt="Simpler"></a>
       </div>
       
-      <% menu = MenuHelper.build_menu(items: @items, current_item: @item) %>
+      <% menu = MenuHelper.build_menu(items: @items, current_item: @item, level: 1, depth: 1) %>
       <ul id="nav">
         <% menu.each do |item| %>
           <% if item[:current] %>
             <li class="current-menu-item"><a><%= item[:title] %></a></li>
           <% else %>
-            <li><%= link_to item[:title], item[:path] %></li>
+            <li><a href="<%= item[:path] %>"><%= item[:title] %></a></li>
           <% end %>
         <% end %>
       </ul>

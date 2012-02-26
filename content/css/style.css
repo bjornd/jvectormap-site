@@ -853,7 +853,11 @@ header #logo{
 	position: relative;
 	width: 160px; 
 	float: left;
-	margin-left: 60px;
+	margin-left: 20px;
+}
+
+#sidebar ul{ 
+  margin-left: 20px;
 }
 
 #sidebar .block{
