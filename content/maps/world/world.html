@@ -1,5 +1,5 @@
 ---
-title: World map
+title: Whole World
 order: 1
 submenu: true
 map_params:
@@ -7,15 +7,10 @@ map_params:
   country_code_index: 21
   country_name_index: 11
   width: 900
-  where: "ISO_A2 != 'AQ'"
+  where: 'ISO_A2 != "AQ"'
   simplify_tolerance: 1000
   buffer_distance: -5000
   longtitude0: 11.5e
   name: world
 ---
-<script>
-  $(function(){
-    $('.jvectormap').vectorMap({map: 'world_en'});
-  })
-</script>
-<div style="width: 900px; height: 400px; padding: 5px" class="jvectormap"></div>
+<%= render 'map' %>

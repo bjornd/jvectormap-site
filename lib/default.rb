@@ -6,7 +6,7 @@ def map_preprocessing(item)
   data_file = params.delete(:data_file)
   
   converter_params = []
-  params.each { |key, value| converter_params << '--'+key.to_s+' "'+value.to_s+'"' }
+  params.each { |key, value| converter_params << '--'+key.to_s+" '"+value.to_s+"'" }
   
   map_id = Digest::MD5.hexdigest(data_file+converter_params.join)
   map_name = 'jquery-jvectormap-'+params[:name]+'-'+(params[:language] ? params[:language] : 'en')
