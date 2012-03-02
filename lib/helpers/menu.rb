@@ -3,13 +3,13 @@
 module MenuHelper
   def build_menu(params={})
     @params = params
-    selected_items = get_parent_items(params[:current_item])
+    @selected_items = get_parent_items(params[:current_item])
     
-    items = get_children(selected_items[-params[:level]])
+    items = get_children(@selected_items[-params[:level]])
     if params[:level] == 1
       items.unshift ({
-        title: selected_items[-1][:title],
-        path: selected_items[-1].path,
+        title: @selected_items[-1][:title],
+        path: @selected_items[-1].path,
         current: params[:current_item].path == '/'
       })
     end
@@ -25,6 +25,7 @@ module MenuHelper
           title: i[:title],
           path: i.path,
           current: i.path == @params[:current_item].path,
+          selected: @selected_items[-(@params[:level]+depth)] && i.path == @selected_items[-(@params[:level]+depth)].path,
           children: depth < @params[:depth] ? get_children(i, depth+1) : nil
         }
       end

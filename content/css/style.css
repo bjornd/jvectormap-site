@@ -73,7 +73,6 @@ body p{
 }
 
 body a{
-	text-decoration: none;
 	-webkit-transition: color 0.3s ease;
 	-moz-transition: color 0.3s ease;
 	-o-transition: color 0.3s ease;
@@ -174,8 +173,6 @@ header #logo{
 	margin-top: 51px;
 	float: right;
 	text-decoration: none;
-	
-	
 }
 
 #nav>li{
@@ -197,7 +194,7 @@ header #logo{
 	display: block;
 	overflow: hidden;
 	padding: 5px 0px 2px 0px;
-	
+	text-decoration: none;
 }
 
 
@@ -377,6 +374,7 @@ header #logo{
 	-moz-box-shadow: 0px 0px 3px rgba(0,0,0,.3); 
 	-o-box-shadow: 0px 0px 3px rgba(0,0,0,.3);
 	box-shadow: 0px 0px 3px rgba(0,0,0,.3);
+	padding-bottom: 60px;
 }
 
 #main #fold{
@@ -875,6 +873,10 @@ header #logo{
 
 #sidebar li{
 	margin-bottom: 7px;
+}
+
+#sidebar li a.current{
+	;
 }
 
 

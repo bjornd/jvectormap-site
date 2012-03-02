@@ -42,7 +42,9 @@
         <% menu.each do |item| %>
           <% if item[:current] %>
             <li class="current-menu-item"><a><%= item[:title] %></a></li>
-          <% else %>
+          <% elsif item[:selected] %>
+            <li class="current-menu-item"><a href="<%= item[:path] %>"><%= item[:title] %></a></li>
+          <% else%>
             <li><a href="<%= item[:path] %>"><%= item[:title] %></a></li>
           <% end %>
         <% end %>

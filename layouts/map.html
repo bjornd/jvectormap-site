@@ -1,8 +1,16 @@
 <script>
   $(function(){
     $('.jvectormap').vectorMap({
-      map: '<%= @item[:map_params][:name] %>_en'
+      map: '<%= @item[:map_params][:name] %>_en',
+      backgroundColor: 'transparent',
+      color: '#8d8d8d'
     });
   })
 </script>
 <div style="width: 100%; height: <%= (defined?(height) ? height : '400') %>px; padding: 5px" class="jvectormap"></div>
+<ul>
+  <li><a href="">Download</a><li>
+  <li>Data source: <li>
+  <li>Data link: <li>
+  <li>Data license: <li>
+</ul>

@@ -3,11 +3,21 @@
   <ul>
     <% sub_menu.each do |item| %>
       <li class="cat-item">
-        <%= link_to item[:title], item[:path] %>
+        <% if item[:current] %>
+          <%= item[:title] %>
+        <% else %>
+          <a href="<%= item[:path] %>"><%= item[:title] %></a>
+        <% end %>
         <% if item[:children] %>
           <ul>
             <% item[:children].each do |item| %>
-              <li class="cat-item"><%= link_to item[:title], item[:path] %></li>
+              <li class="cat-item">
+                <% if item[:current] %>
+                  <%= item[:title] %>
+                <% else %>
+                  <a href="<%= item[:path] %>"><%= item[:title] %></a>
+                <% end %>
+              </li>
             <% end %>
           </ul>
         <% end %>
