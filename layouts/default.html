@@ -64,12 +64,17 @@
           </div>
         </div>
         <script src="/js/jquery-jvectormap-world-en.js"></script>
+        <script src="/js/gdp-data.js"></script>
         <script>
           $(function(){
             $('.demo-map').vectorMap({
               map: 'world_en',
               backgroundColor: 'transparent',
-              color: 'white'
+              values: gdpData,
+              scaleColors: ['#C8EEFF', '#0071A4'],
+              normalizeFunction: 'polynomial',
+              hoverOpacity: 0.7,
+              hoverColor: false
             });
           });
         </script>
