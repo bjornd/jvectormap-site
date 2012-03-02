@@ -248,8 +248,10 @@ header #logo{
 	margin-top: 50px;
 }
 
-.home-slider{
+.demo-map{
 	float: left;
+	width: 640px;
+	height: 300px;
 }
 
 #slider-holder #headline{
