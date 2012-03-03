@@ -58,9 +58,14 @@
           <div class="home-slider-clearfix "></div>
         
           <div id="headline">
-            <h4>LOREM LEO DOLOR</h4>
-            <p class="headline-text">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, eget, ante. Donec eu libero sit amet quam egestas semper. Aenean .  vitae, ornare sit amet.</p>
-            <p><a href="#" class="read-more">Learn more</a></p>
+            <h4>Why to use jVectorMap?</h4>
+            <ul class="headline-list">
+              <li>Works in all modern browsers (including IE6-8)</li>
+              <li>Looks great on any resolution because of its vector nature</li>
+              <li>Many maps are <a href="/maps/">available</a></li>
+              <li>Custom maps could be created using converter</li>
+            </ul>
+            <p><a href="/js/jquery-jvectormap.js">Download</a></p>
           </div>
         </div>
         <script src="/js/jquery-jvectormap-world-en.js"></script>
@@ -91,18 +96,19 @@
             <span class="subheading"><%= @item[:subtitle] %></span>
           <% end %>
         </div>
-        <div class='mh-div'></div>
-      <% end %>
-      
-      <% if @item[:submenu] %>
-        <%= render 'submenu' %>
-        <div id="posts-list" class="clearfix">
-          <%= yield %>
-        </div>
-      <% else %>  
-        <div id="page-content" class="clearfix">
-          <%= yield %>
-        </div>
+        <div class="mh-div"></div>
+        <% if @item[:submenu] %>
+          <%= render 'submenu' %>
+          <div id="posts-list" class="clearfix">
+            <%= yield %>
+          </div>
+        <% else %>  
+          <div id="page-content" class="clearfix">
+            <%= yield %>
+          </div>
+        <% end %>
+      <% else %>
+        <%= yield %>
       <% end %>
     </div>
   </div>

@@ -86,15 +86,15 @@ h1,h2,h3,h4,h5,h6{
 	font-weight: 700;
 }
 
-h1{ font-size: 42px;}
+h1{ font-size: 32px;}
 
-h2{ font-size: 36px; }
+h2{ font-size: 26px; }
 
-h3{ font-size: 24px; }
+h3{ font-size: 20px; }
 
-h4{ font-size: 21px; }
+h4{ font-size: 18px; }
 
-h5{ font-size: 18px; }
+h5{ font-size: 16px; }
 
 h6{ font-size: 14px; }
 
@@ -137,7 +137,7 @@ header #logo{
 /* HEADINGS ------------------------------------------------------------*/
 
 .masthead{
-	padding: 54px 20px 54px 20px;
+	padding: 44px 20px 44px 20px;
 	line-height: 0em;
 	
 }
@@ -244,25 +244,26 @@ header #logo{
 /* SLIDER-HOLDER ------------------------------------------------------------*/
 
 #slider-holder{
-	padding-bottom: 50px;
-	margin-top: 50px;
+	padding-bottom: 30px;
+	margin-top: 30px;
 }
 
 .demo-map{
 	float: left;
-	width: 640px;
-	height: 300px;
+	width: 710px;
+	height: 340px;
 }
 
 #slider-holder #headline{
 	float: left;
-	margin-left: 40px;
-	width: 300px; 
+	margin-left: 30px;
+	width: 240px; 
 }
 
 #headline h4{
 	margin-bottom: 21px;
 	line-height: 1.3em;
+	font-size: 18px;
 }
 
 #headline .headline-text{
@@ -392,13 +393,12 @@ header #logo{
 
 .home-headline{
 	text-align: center;
-	padding-top: 50px;
-	padding-bottom: 50px;
+	padding-top: 40px;
+	padding-bottom: 40px;
 }
 
 
 .home-block{
-	padding-bottom: 50px;
 	margin-bottom: 0px;
 }
 
@@ -456,6 +456,18 @@ header #logo{
 .home-add{
 	background: url(../img/border-bg-top.png) repeat-x top left;
 	padding-top: 50px;
+}
+
+.home-block li {
+  display: inline-block;
+  width: 300px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  vertical-align: top;
+}
+
+.home-block li h4 {
+  margin-bottom: 5px;
 }
 
 /* PAGE CONTENT ----------------------------------------------------*/
