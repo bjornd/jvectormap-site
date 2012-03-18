@@ -1,16 +1,16 @@
 /* GENERAL ------------------------------------------ */
 
 body{
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 13px;
-	background: #efece8;
-	color: #888;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  background: #efece8;
+  color: ##383f47;
 }
 
 header,
 footer{
-	background-image: url(../img/noise.png) repeat;
-	background-color: #383f47;
+  background-image: url(../img/noise.png) repeat;
+  background-color: #383f47;
 }
 
 body a{ color: #383f47; }
@@ -23,16 +23,22 @@ h1,h2,h3,h4,h5,h6{ color: #383f47; }
 
 /* Selection colours (easy to forget) */
 
-::selection 	 	{background: #fbe471 }
-::-moz-selection 	{background: #fbe471}
-img::selection 		{background: #fbe471}
-img::-moz-selection	{background: #fbe471}
+::selection     {background: #fbe471 }
+::-moz-selection  {background: #fbe471}
+img::selection    {background: #fbe471}
+img::-moz-selection {background: #fbe471}
 body {-webkit-tap-highlight-color: background: #fbe471}
 
 /* HEADINGS ------------------------------------------------------------*/
 
-.masthead{ border-bottom: 1px solid #ccc; }
-	
+.masthead{
+  border-bottom: 1px solid #ccc;
+}
+
+#main .masthead h1{
+  margin: 0;
+}
+
 /* NAVIGATION ------------------------------------------------------------*/
 
 #nav>li { float: left; position: relative; }
@@ -49,8 +55,8 @@ body {-webkit-tap-highlight-color: background: #fbe471}
 #nav>li ul li a{ color: #444; }
 
 #nav>li ul li a:hover{
-	background: #3b424b;
-	color: #fbe471;
+  background: #3b424b;
+  color: #fbe471;
 }
 
 /* CATEGORIES NAVIGATION ------------------------------------------------------------*/
@@ -62,13 +68,13 @@ body {-webkit-tap-highlight-color: background: #fbe471}
 
 #headline h4{ color: #f1f1f1; }
 
-#headline .headline-list{ 
+#headline .headline-list{
   color: #f1f1f1;
   list-style: disc;
   margin: 20px;
 }
 
-#headline .headline-list li{ 
+#headline .headline-list li{
   margin-bottom: 5px;
 }
 
@@ -90,17 +96,17 @@ body {-webkit-tap-highlight-color: background: #fbe471}
 #main .wrapper{  background-color: #f1f1f1; }
 
 .multiplebgs #main .wrapper{
-	background-image: url(../img/border-bg-bottom.png), url(../img/border-bg-top.png);
-	background-repeat: repeat-x, repeat-x;
-	background-position: bottom left, top left;
+  background-image: url(../img/border-bg-bottom.png), url(../img/border-bg-top.png);
+  background-repeat: repeat-x, repeat-x;
+  background-position: bottom left, top left;
 }
 
 .no-multiplebgs #main .wrapper{
-	background: #f1f1f1 url(../img/border-bg-top.png) repeat-x top left;
+  background: #f1f1f1 url(../img/border-bg-top.png) repeat-x top left;
 }
 
 .no-boxshadow #main .wrapper{
-	border: 1px solid #e0e0e0;
+  border: 1px solid #e0e0e0;
 }
 
 /* HOME ------------------------------------------------------------*/
@@ -113,22 +119,22 @@ body {-webkit-tap-highlight-color: background: #fbe471}
 
 #posts-list,
 #post-content{
-	position: relative;
-	float: left;
+  position: relative;
+  float: left;
 }
 
 #posts-list .entry-date,
 #posts-content .entry-date,
 .home-posts .entry-date{
-	background: #3b424b;
-	color: #efe271;
+  background: #3b424b;
+  color: #efe271;
 }
 
 #posts-list .post-heading .meta a{ color: #888;  }
 
 #posts-list .feature-image,
 #post-content .feature-image{
-	background: #fff url(../img/plus.png) no-repeat center center;
+  background: #fff url(../img/plus.png) no-repeat center center;
 }
 
 .portfolio-list figure{ background: #fff; }
@@ -138,13 +144,13 @@ body {-webkit-tap-highlight-color: background: #fbe471}
 /* PAGER ------------------------------------------------------------*/
 
 .pager li a{
-	color: #484848;
-	border: 1px solid #ccc;
+  color: #484848;
+  border: 1px solid #ccc;
 }
 
 .pager li.active a{
-	color: #fff;
-	background: #444;
+  color: #fff;
+  background: #444;
 }
 
 .pager li:hover a{ background: #fae471; }
@@ -152,7 +158,7 @@ body {-webkit-tap-highlight-color: background: #fbe471}
 /* SIDEBAR ------------------------------------------------------------*/
 
 .post-counter{
-	color: #888;
+  color: #888;
 }
 
 

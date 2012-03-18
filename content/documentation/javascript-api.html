@@ -1,0 +1,100 @@
+---
+title: JavaScript API
+order: 1
+submenu: true
+---
+<article class="format-standard">
+  <h3>Parameters</h3>
+  <p>While initializing map you can provide parameters to change its initial look and feel:</p>
+  <dl>
+    <dt>color <span>#ffffff</span></dt>
+    <dd>Default color of map regions.</dd>
+
+    <dt>hoverColor <span>black</span></dt>
+    <dd>Color of the region when mouse pointer is over it. </dd>
+
+    <dt>hoverOpacity<span>1</span></dt>
+    <dd>Opacity of the region when mouse pointer is over it. </dd>
+
+    <dt>backgroundColor <span>#505050</span></dt>
+    <dd>Background color of map container in any CSS compatible format.</dd>
+
+    <dt>colors <span> </span></dt>
+    <dd>Colors of individual map regions. Keys of the <code>colors</code> objects are country codes according to <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2"> ISO 3166-1 alpha-2</a> standard. Keys of <code>colors</code> must be in upper case. </dd>
+
+    <dt>scaleColors <span>['#b6d6ff', '#005ace']</span></dt>
+    <dd>This option defines colors, with which regions will be painted when you set option <code>values</code>. Array <code>scaleColors</code> can have more then two elements. Elements should be strings representing colors in RGB hex format. </dd>
+
+    <dt>normalizeFunction <span>'linear'</span></dt>
+    <dd>This function can be used to improve results of visualizations for data with non-linear nature. Function gets raw value as the first parameter and should return value which will be used in calculations of color, with which particular region will be painted. </dd>
+
+    <dt>onLabelShow</dt>
+    <dd>Callback function which will be called before label is shown. Label DOM object and country code will be passed to the callback as arguments. </dd>
+
+    <dt>onRegionOver</dt>
+    <dd>Callback function which will be called when the mouse cursor enters the region path. Country code will be passed to the callback as argument. </dd>
+
+    <dt>onRegionOut</dt>
+    <dd>Callback function which will be called when the mouse cursor leaves the region path. Country code will be passed to the callback as argument. </dd>
+
+    <dt>onRegionClick</dt>
+    <dd>Callback function which will be called when the user clicks the region path. Country code will be passed to the callback as argument. </dd>
+  </dl>
+
+
+  <h3>Methods</h3>
+  <dl>
+    <dt>set <span>option, value</span></dt>
+    <dd>
+      This method could be to used to change any option except the callbacks after map initialization.
+      <pre>$('#map').vectorMap('set', 'colors', {us: '#0000ff'});</pre>
+    </dd>
+
+    <dt>addMap <span>name, data</span></dt>
+    <dd>This method is used to register new maps loaded.</dd>
+  </dl>
+
+  <h3>Events</h3>
+  <p>You can define callback function when you initialize jVectorMap:</p>
+  <pre>
+$('#map-events').vectorMap({
+  onLabelShow: function(event, label, code){},
+  onRegionOver: function(event, code){},
+  onRegionOut: function(event, code){},
+  onRegionClick: function(event, code){}
+});
+  </pre>
+
+  <p>Or later using standard jQuery mechanism:</p>
+  <pre>
+$('#map-events').bind('labelShow.jvectormap', function(event, label, code){})
+$('#map-events').bind('regionMouseOver.jvectormap', function(){event, code})
+$('#map-events').bind('regionMouseOut.jvectormap', function(){event, code})
+$('#map-events').bind('regionClick.jvectormap', function(){event, code})
+  </pre>
+
+  <p>Consider that fact that you can use standart features of jQuery events like
+  <code>event.preventDefault()</code> or returning false from the callback to
+  prevent default behavior of jVectorMap (showing label or changing country color
+  on hover). In the following example, when user moves mouse cursor over Canada
+  label won't be shown and color of country won't be changed. At the same label
+  for Russia will have custom text.</p>
+
+<pre>
+$('#map-events').vectorMap({
+  onLabelShow: function(event, label, code){
+    if (code == 'ca') {
+      event.preventDefault();
+    } else if (code == 'ru') {
+      label.text('Bears, vodka, balalaika');
+    }
+  },
+  onRegionOver: function(event, code){
+    if (code == 'ca') {
+      event.preventDefault();
+    }
+  }
+});
+</pre>
+
+</article>
