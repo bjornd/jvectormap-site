@@ -47,7 +47,7 @@ submenu: true
     <dt>set <span>option, value</span></dt>
     <dd>
       This method could be to used to change any option except the callbacks after map initialization.
-      <pre>$('#map').vectorMap('set', 'colors', {us: '#0000ff'});</pre>
+      <pre class="syntax"><code class="language-javascript">$('#map').vectorMap('set', 'colors', {us: '#0000ff'});</code></pre>
     </dd>
 
     <dt>addMap <span>name, data</span></dt>
@@ -56,22 +56,22 @@ submenu: true
 
   <h3>Events</h3>
   <p>You can define callback function when you initialize jVectorMap:</p>
-  <pre>
+  <pre class="syntax"><code class="language-javascript">
 $('#map-events').vectorMap({
   onLabelShow: function(event, label, code){},
   onRegionOver: function(event, code){},
   onRegionOut: function(event, code){},
   onRegionClick: function(event, code){}
 });
-  </pre>
+  </code></pre>
 
   <p>Or later using standard jQuery mechanism:</p>
-  <pre>
+  <pre class="syntax"><code class="language-javascript">
 $('#map-events').bind('labelShow.jvectormap', function(event, label, code){})
 $('#map-events').bind('regionMouseOver.jvectormap', function(){event, code})
 $('#map-events').bind('regionMouseOut.jvectormap', function(){event, code})
 $('#map-events').bind('regionClick.jvectormap', function(){event, code})
-  </pre>
+  </code></pre>
 
   <p>Consider that fact that you can use standart features of jQuery events like
   <code>event.preventDefault()</code> or returning false from the callback to
@@ -80,7 +80,7 @@ $('#map-events').bind('regionClick.jvectormap', function(){event, code})
   label won't be shown and color of country won't be changed. At the same label
   for Russia will have custom text.</p>
 
-<pre>
+  <pre class="syntax"><code class="language-javascript">
 $('#map-events').vectorMap({
   onLabelShow: function(event, label, code){
     if (code == 'ca') {
@@ -95,6 +95,6 @@ $('#map-events').vectorMap({
     }
   }
 });
-</pre>
+  </code></pre>
 
 </article>

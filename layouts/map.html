@@ -10,9 +10,9 @@
 <div style="width: 100%; height: <%= (defined?(height) ? height : '400') %>px; padding: 5px" class="jvectormap"></div>
 <p><a href="<%= @item[:map_params][:download_link] %>">Download</a> (<%= numer_to_human_size(@item[:map_params][:file_size]) %>)</p>
 <p>To render the map use the following code:</p>
-<pre>
+<pre class="syntax"><code class="language-javascript">
 $('#map').vectorMap({map: '<%= @item[:map_params][:name] %>_en'});
-</pre>
+</code></pre>
 <% if @item[:data_params] %>
   <p>
     This map is based on data available at <a href="<%= @item[:data_params][:source] %>"><%= @item[:data_params][:source] %></a>.

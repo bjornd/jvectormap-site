@@ -72,7 +72,8 @@ footer{
 }
 
 body p{
-  margin-bottom: 21px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 body a{
@@ -141,6 +142,8 @@ dl dd {
 
 pre {
   font-family: monospace;
+  padding: 10px;
+  border: 1px solid;
 }
 
 /* HEADER ------------------------------------------------------------*/

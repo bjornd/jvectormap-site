@@ -3,40 +3,41 @@
 <head>
   <meta charset="utf-8"/>
   <title><%= @item[:title] %></title>
-  
+
   <!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  
+
   <script src="/js/jquery-1.6.4.min.js"></script>
   <script src="/js/css3-mediaqueries.js"></script>
   <script src="/js/modernizr.js"></script>
   <script src="/js/jquery-jvectormap.js"></script>
-  
+
   <% if @item[:js_assets] %>
     <% @item[:js_assets].each do |asset| %>
       <script src="<%= asset %>"></script>
     <% end %>
   <% end %>
-  
+
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  
+
   <link rel="stylesheet" media="all" href="/css/style.css"/>
   <link rel="stylesheet" media="all" href="/css/lessframework.css"/>
   <link rel="stylesheet" media="all" href="/css/skin.css"/>
   <link rel="stylesheet" media="all" href="/css/jquery-jvectormap.css"/>
-  <link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>  
+  <link rel="stylesheet" media="all" href="/css/syntax.css"/>
+  <link href='http://fonts.googleapis.com/css?family=Arvo:400,700' rel='stylesheet' type='text/css'>
 </head>
 
 <body lang="en">
   <header>
     <div class="wrapper clearfix">
-      
+
       <div id="logo">
         <a href="/"><img  src="/img/logo.png" alt="Simpler"></a>
       </div>
-      
+
       <% menu = MenuHelper.build_menu(items: @items, current_item: @item, level: 1, depth: 1) %>
       <ul id="nav">
         <% menu.each do |item| %>
@@ -49,14 +50,14 @@
           <% end %>
         <% end %>
       </ul>
-      
+
       <% if @item[:home] %>
         <div class="clearfix"></div>
-        <div id="slider-holder" class="clearfix">  
+        <div id="slider-holder" class="clearfix">
           <div class="demo-map"></div>
-        
+
           <div class="home-slider-clearfix "></div>
-        
+
           <div id="headline">
             <h4>Why to use jVectorMap?</h4>
             <ul class="headline-list">
@@ -86,8 +87,8 @@
       <% end %>
     </div>
   </header>
-  
-  <div id="main">  
+
+  <div id="main">
     <div class="wrapper clearfix">
       <% if !@item[:home] %>
         <div class="masthead clearfix">
@@ -102,7 +103,7 @@
           <div id="posts-list" class="clearfix">
             <%= yield %>
           </div>
-        <% else %>  
+        <% else %>
           <div id="page-content" class="clearfix">
             <%= yield %>
           </div>
@@ -112,7 +113,7 @@
       <% end %>
     </div>
   </div>
-  
+
   <footer>
     <div class="wrapper clearfix">
       <div class="footer-bottom">
