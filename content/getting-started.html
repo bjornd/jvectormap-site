@@ -1,0 +1,81 @@
+---
+title: Getting started
+order: 5
+js_assets:
+  - /js/jquery-jvectormap-world-en.js
+  - /js/gdp-data.js
+---
+<article class="format-standard">
+  <p>Once you get the code of jVectorMap from <a href="/download/">the download page</a> you can start experimenting with various features it provides. First of all let's create just a simple map with a world map with default parameters. Create an html containing the following:</p>
+  <ul>
+    <li>all JavaScript and CSS resources necessary to render the world map,</li>
+    <li>initialization code, which tells the browser where to put the map and what parameters to use to render it,</li>
+    <li><code>&lt;div&gt;</code> element which will be a container for the map (note that map will be fitted according to the size of the container, that's why the container should have some non-zero width and height).</li>
+  </ul>
+  <pre class="syntax"><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;jVectorMap demo&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; href=&quot;jquery.jvectormap.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot;/&gt;
+  &lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;jquery.jvectormap.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;jquery-jvectormap-world-en.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div style=&quot;width: 600px; height: 400px&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+  </code></pre>
+  <p>If you open created page in a web-browser you should see something similar to this:</p>
+  <figure>
+    <div id="world-map" style="width: 600px; height: 400px"></div>
+    <script>
+      $(function(){
+        $('#world-map').vectorMap();
+      });
+    </script>
+  </figure>
+  <p>Now when you created simple test map you can provide additional parameters to change the look and behavior of the map. The supported parameters could be found on the <a href="/documentation/javascript-api/">JavaScript API page</a>. As an example let's create a <a href="http://en.wikipedia.org/wiki/Choropleth_map">choropleth map</a>. We will visualize information about GDP in 2010 for every country. At first we need some data. Let it be <a href="http://www.imf.org/external/pubs/ft/weo/2011/01/weodata/index.aspx"> site</a> of International Monetary Fond. There we can get information in xsl format, which can be easily converted first to csv with any spreadsheet software and then to json with any scripting language. Now we have file <code>gdp-data.js</code> with such a content:</p>
+  <pre class="syntax"><code class="language-javascript">
+var gdpData = {
+  "AF": 16.63,
+  "AL": 11.58,
+  "DZ": 158.97,
+  ...
+};
+  </code></pre>
+  <p>Now if we connect this file to our page and pass the <code>gdpData</code> variable to the map initialization code we will get nice and informative map:</p>
+  <figure>
+    <div id="world-map-gdp" style="width: 600px; height: 400px"></div>
+    <script>
+      $(function(){
+        $('#world-map-gdp').vectorMap({
+          map: 'world_en',
+          values: gdpData,
+          scaleColors: ['#C8EEFF', '#0071A4'],
+          normalizeFunction: 'polynomial',
+          hoverOpacity: 0.7,
+          hoverColor: false,
+          onLabelShow: function(e, el, code){
+            el.html(el.html()+' (GDP - '+gdpData[code]+')');
+          }
+        });
+      });
+    </script>
+  </figure>
+  <p>Here is the code, which was used to initialize the map above (description of every parameter could be found on the <a href="/documentation/javascript-api/">JavaScript API page</a>):</p>
+  <pre class="syntax"><code class="language-javascript">
+$('#world-map-gdp').vectorMap({
+  map: 'world_en',
+  values: gdpData,
+  scaleColors: ['#C8EEFF', '#0071A4'],
+  normalizeFunction: 'polynomial',
+  hoverOpacity: 0.7,
+  hoverColor: false,
+  onLabelShow: function(e, el, code){
+    el.html(el.html()+' (GDP - '+gdpData[code]+')');
+  }
+});
+  </code></pre>
+</article>

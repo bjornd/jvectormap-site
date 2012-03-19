@@ -9,7 +9,7 @@
 
 /* GENERAL ------------------------------------------------------------*/
 
-article, aside, canvas, figure, figure img, figcaption, hgroup,
+article, aside, canvas, figure, figure img, figure div, figcaption, hgroup,
 footer, header, nav, section, audio, video {
   display: block;
 }
@@ -144,6 +144,10 @@ pre {
   font-family: monospace;
   padding: 10px;
   border: 1px solid;
+}
+
+figure div {
+  margin: auto;
 }
 
 /* HEADER ------------------------------------------------------------*/
@@ -501,9 +505,8 @@ header #logo{
 /* PAGE CONTENT ----------------------------------------------------*/
 
 #page-content{
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 60px;
+  margin: auto;
+  width: 720px;
 }
 
 /* COLUMNS LAYOUT----------------------------------------------------------*/
