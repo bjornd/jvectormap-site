@@ -1,0 +1,19 @@
+---
+title: Argentina
+order: 2
+submenu: true
+map_params:
+  data_file: /Users/BjornD/Maps/10m-admin-1-states-provinces-shp/ne_10m_admin_1_states_provinces_shp.shp
+  country_name_index: 4
+  width: 900
+  where: 'ISO = "ARG"'
+  codes_file: /Users/BjornD/Maps/codes/arg.tsv
+  simplify_tolerance: 1000
+  buffer_distance: -1500
+  name: ar
+data_params:
+  source: http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/
+  license: public domain
+  license_link: http://www.naturalearthdata.com/about/terms-of-use/
+---
+<%= render 'map' %>
