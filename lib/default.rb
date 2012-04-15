@@ -3,9 +3,12 @@
 
 def map_preprocessing(item)
   params = item[:map_params]
-  data_file = params.delete(:data_file)
+  data_file = @config[:maps_path]+'/'+params.delete(:data_file)
 
   converter_params = []
+  if params[:codes_file]
+    params[:codes_file] = @config[:maps_path] + '/codes/' + params[:codes_file]
+  end
   params.each { |key, value| converter_params << '--'+key.to_s+" '"+value.to_s+"'" }
 
   map_id = Digest::MD5.hexdigest(data_file+converter_params.join)
@@ -19,7 +22,6 @@ def map_preprocessing(item)
         data_file+' '+
         output_file_path+' '+
         converter_params.join(' ')
-
     system(converter_command)
   end
 

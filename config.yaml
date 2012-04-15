@@ -57,5 +57,6 @@ watcher:
   # When to send notifications (using Growl or notify-send).
   notify_on_compilation_success: true
   notify_on_compilation_failure: true
-  
+
 jvectormap_path: /Users/BjornD/workspace/js/jvectormap-new
+maps_path: /Users/BjornD/Maps
