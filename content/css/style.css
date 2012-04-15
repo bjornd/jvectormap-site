@@ -919,10 +919,9 @@ header #logo{
   margin-bottom: 7px;
 }
 
-#sidebar li a.current{
-  ;
+#sidebar li li {
+  margin-bottom: 0;
 }
-
 
 /* WIDGET COLS ------------------------------------------------------------*/
 
