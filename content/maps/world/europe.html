@@ -1,0 +1,21 @@
+---
+title: Europe
+order: 1
+submenu: true
+map_params:
+  data_file: 50m-admin-0-countries/ne_50m_admin_0_countries.shp
+  country_code_index: 26
+  country_name_index: 11
+  width: 900
+  where: 'ISO_A3 != "GRL"'
+  viewport: '-26 72.5 40.5 28'
+  buffer_distance: -1600
+  simplify_tolerance: 1000
+  longtitude0: 11.5
+  name: europe
+data_params:
+  source: http://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/
+  license: public domain
+  license_link: http://www.naturalearthdata.com/about/terms-of-use/
+---
+<%= render 'map', height: 600 %>
