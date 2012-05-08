@@ -1,0 +1,18 @@
+---
+title: Australia
+submenu: true
+map_params:
+  data_file: 10m-admin-1-states-provinces-shp/ne_10m_admin_1_states_provinces_shp.shp
+  country_name_index: 4
+  width: 900
+  where: 'ISO = "AUS" AND NAME_1 != "Jervis Bay Territory"'
+  codes_file: au.tsv
+  simplify_tolerance: 2000
+  buffer_distance: -3000
+  name: au
+data_params:
+  source: http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/
+  license: public domain
+  license_link: http://www.naturalearthdata.com/about/terms-of-use/
+---
+<%= render 'map', height: 600 %>
