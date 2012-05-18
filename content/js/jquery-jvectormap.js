@@ -1,7 +1,7 @@
-/*!
- * jVectorMap version 0.1
+/**
+ * jVectorMap version 0.2.1
  *
- * Copyright 2011, Kirill Lebedev
+ * Copyright 2011-2012, Kirill Lebedev
  * Licensed under the MIT license.
  *
  */
@@ -17,7 +17,11 @@
         onLabelShow: 'labelShow',
         onRegionOver: 'regionOver',
         onRegionOut: 'regionOut',
-        onRegionClick: 'regionClick'
+        onRegionClick: 'regionClick',
+        onMarkerLabelShow: 'markerLabelShow',
+        onMarkerOver: 'markerOver',
+        onMarkerOut: 'markerOut',
+        onMarkerClick: 'markerClick'
       };
 
   $.fn.vectorMap = function(options) {
@@ -161,6 +165,36 @@
       return node;
     },
 
+    createCircle: function(config) {
+      var node;
+      if (this.mode == 'svg') {
+        node = this.createSvgNode('circle');
+        node.setAttribute('cx', config.x);
+        node.setAttribute('cy', config.y);
+        node.setAttribute('r', config.r);
+        node.setAttribute('fill', config.fill);
+        node.setAttribute('stroke', config.stroke);
+        node.setPosition = function(point){
+          node.setAttribute('cx', point.x);
+          node.setAttribute('cy', point.y);
+        }
+      } else {
+        node = this.createVmlNode('oval');
+        node.style.width = config.r*2+'px';
+        node.style.height = config.r*2+'px';
+        node.style.left = config.x-config.r+'px';
+        node.style.top = config.y-config.r+'px';
+        node.fillcolor = config.fill;
+        node.stroke = true;
+        node.strokecolor = config.stroke;
+        node.setPosition = function(point){
+          node.style.left = point.x-config.r+'px';
+          node.style.top = point.y-config.r+'px';
+        }
+      }
+      return node;
+    },
+
     createGroup: function(isRoot) {
       var node;
       if (this.mode == 'svg') {
@@ -184,7 +218,7 @@
       if (this.mode == 'svg') {
         this.rootGroup.setAttribute('transform', 'scale('+scale+') translate('+transX+', '+transY+')');
       } else {
-        this.rootGroup.coordorigin = (this.width-transX)+','+(this.height-transY);
+        this.rootGroup.coordorigin = (this.width-transX-this.width/100)+','+(this.height-transY-this.height/100);
         this.rootGroup.coordsize = this.width/scale+','+this.height/scale;
       }
     }
@@ -194,11 +228,7 @@
     var result = '',
       cx = 0, cy = 0, ctrlx, ctrly;
 
-    path = path.replace(/(-?\d+)e(-?\d+)/g, function(s){
-      return 0;
-      //var p = s.split('e');
-      //return p[0]*Math.pow(10, p[1]);
-    });
+    path = path.replace(/(-?\d+)e(-?\d+)/g, '0');
     return path.replace(/([MmLlHhVvCcSs])\s*((?:-?\d*(?:\.\d+)?\s*,?\s*)+)/g, function(segment, letter, coords, index){
       coords = coords.replace(/(\d)-/g, '$1,-').replace(/\s+/g, ',').split(',');
       if (!coords[0]) coords.shift();
@@ -284,6 +314,8 @@
     var map = this;
     var mapData = WorldMap.maps[params.map];
 
+    this.params = params;
+
     this.container = params.container;
 
     this.defaultWidth = mapData.width;
@@ -321,12 +353,17 @@
     for(var key in mapData.paths) {
       var path = this.canvas.createPath({path: mapData.paths[key].path});
       path.setFill(this.color);
+      if (this.canvas.mode == 'svg') {
+        path.setAttribute('class', 'jvectormap-region');
+      } else {
+        $(path).addClass('jvectormap-region');
+      }
       path.id = 'jvectormap'+map.index+'_'+key;
       map.countries[key] = path;
       $(this.rootGroup).append(path);
     }
 
-    $(params.container).delegate(this.canvas.mode == 'svg' ? 'path' : 'shape', 'mouseover mouseout', function(e){
+    $(params.container).delegate('.jvectormap-region', 'mouseover mouseout', function(e){
       var path = e.target,
         code = e.target.id.substr(e.target.id.indexOf('_')+1),
         labelShowEvent = $.Event('labelShow.jvectormap'),
@@ -361,7 +398,7 @@
       }
     });
 
-    $(params.container).delegate(this.canvas.mode == 'svg' ? 'path' : 'shape', 'click', function(e){
+    $(params.container).delegate('.jvectormap-region', 'click', function(e){
       var path = e.target;
       var code = e.target.id.split('_').pop();
       $(params.container).trigger('regionClick.jvectormap', [code]);
@@ -379,6 +416,35 @@
     this.setColors(params.colors);
 
     this.canvas.canvas.appendChild(this.rootGroup);
+
+    if (params.markers) {
+      this.createMarkers(params.markers);
+      $(params.container).delegate('.jvectormap-marker', 'mouseover mouseout', function(e){
+        var marker = e.target,
+            index = marker.getAttribute('data-index'),
+            labelShowEvent = $.Event('markerLabelShow.jvectormap'),
+            markerOverEvent = $.Event('markerOver.jvectormap');
+
+        if (e.type == 'mouseover') {
+          $(params.container).trigger(markerOverEvent, [index]);
+          $(params.container).trigger(labelShowEvent, [map.label, index]);
+          if (!labelShowEvent.isDefaultPrevented()) {
+            map.label.text(map.markers[index].config.name || '');
+            map.label.show();
+            map.labelWidth = map.label.width();
+            map.labelHeight = map.label.height();
+          }
+        } else {
+          map.label.hide();
+          $(params.container).trigger('markerOut.jvectormap', [index]);
+        }
+      });
+      $(params.container).delegate('.jvectormap-marker', 'click', function(e){
+        var marker = e.target;
+        var index = marker.getAttribute('data-index');
+        $(params.container).trigger('markerClick.jvectormap', [index]);
+      });
+    }
 
     this.applyTransform();
 
@@ -522,6 +588,10 @@
       }
 
       this.canvas.applyTransformParams(this.scale, this.transX, this.transY);
+
+      if (this.markers) {
+        this.repositionMarkers();
+      }
     },
 
     makeDraggable: function(){
@@ -589,12 +659,94 @@
 
     getCountryPath: function(cc) {
       return $('#'+cc)[0];
+    },
+
+    createMarkers: function(markers) {
+      var group = this.canvas.createGroup(),
+          i,
+          marker,
+          point,
+          markerConfig,
+          defaultConfig = {latLng: [0, 0], r: 5, fill: 'white', stroke: '#505050'};
+
+      this.markers = [];
+
+      for (i = 0; i < markers.length; i++) {
+        markerConfig = markers[i] instanceof Array ? {latLng: markers[i]} : markers[i];
+        markerConfig = $.extend({}, defaultConfig, this.params.markerDefaults, markerConfig);
+        point = this.latLngToPoint.apply(this, markerConfig.latLng);
+        $.extend(markerConfig, point);
+        marker = this.canvas.createCircle(markerConfig);
+        if (this.canvas.mode == 'svg') {
+          marker.setAttribute('class', 'jvectormap-marker');
+          marker.setAttribute('data-index', i);
+        } else {
+          $(marker).addClass('jvectormap-marker').attr('data-index', i);
+        }
+        this.markers.push({element: marker, config: markerConfig});
+        $(group).append(marker);
+      }
+
+      this.canvas.canvas.appendChild(group);
+    },
+
+    repositionMarkers: function() {
+      var i,
+          point;
+
+      for (i = 0; i < this.markers.length; i++) {
+        point = this.latLngToPoint.apply(this, this.markers[i].config.latLng);
+        this.markers[i].element.setPosition(point);
+      }
+    },
+
+    latLngToPoint: function(lat, lng) {
+      var x,
+          y,
+          centralMeridian = WorldMap.maps[this.params.map].projection.centralMeridian,
+          width = this.width - this.baseTransX * 2 * this.baseScale,
+          height = this.height - this.baseTransY * 2 * this.baseScale,
+          inset,
+          bbox,
+          scaleFactor = this.scale / this.baseScale;
+
+      if (lng < (-180 + centralMeridian)) {
+        lng += 360;
+      }
+
+      x = (lng - centralMeridian) / 360 * WorldMap.circumference,
+      y = (180 / Math.PI * (5 / 4) * Math.log(Math.tan(Math.PI / 4 + (4 / 5) * lat * Math.PI / 360))) / 360 * WorldMap.circumference;
+
+      inset = this.getInsetForPoint(x, y);
+      bbox = inset.bbox;
+
+      x = (x - bbox[0].x) / (bbox[1].x - bbox[0].x) * inset.width * this.scale;
+      y = (y - bbox[0].y) / (bbox[1].y - bbox[0].y) * inset.height * this.scale;
+
+      return {
+        x: x + this.transX*this.scale + inset.left*this.scale,
+        y: y + this.transY*this.scale + inset.top*this.scale
+      };
+    },
+
+    getInsetForPoint: function(x, y){
+      var insets = WorldMap.maps[this.params.map].insets,
+          i,
+          bbox;
+
+      for (i = 0; i < insets.length; i++) {
+        bbox = insets[i].bbox;
+        if (x > bbox[0].x && x < bbox[1].x && y > bbox[0].y && y < bbox[1].y) {
+          return insets[i];
+        }
+      }
     }
-  }
+  },
 
   WorldMap.xlink = "http://www.w3.org/1999/xlink";
   WorldMap.mapIndex = 1;
   WorldMap.maps = {};
+  WorldMap.circumference = 40075017;
 
   var ColorScale = function(colors, normalizeFunction, minValue, maxValue) {
     if (colors) this.setColors(colors);
