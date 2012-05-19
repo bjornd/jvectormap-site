@@ -140,6 +140,10 @@ dl dd {
   margin-bottom: 1em;
 }
 
+dl dl {
+  margin-left: 30px;
+}
+
 pre {
   font-family: monospace;
   padding: 10px;

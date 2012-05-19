@@ -28,6 +28,26 @@ submenu: true
     <dt>normalizeFunction <span>'linear'</span></dt>
     <dd>This function can be used to improve results of visualizations for data with non-linear nature. Function gets raw value as the first parameter and should return value which will be used in calculations of color, with which particular region will be painted. </dd>
 
+    <dt>markers <span>[]</span></dt>
+    <dd>This parameters defines circular markers which will be plotted in the certain place of the map. Every marker is an object with the following attributes:
+      <dl>
+        <dt>latLng <span>[0, 0]</span></dt>
+        <dd>Array consisting of two elements: latitude and longtitude of the marker.</dd>
+
+        <dt>r <span>5</span></dt>
+        <dd>Radius of the marker in pixels.</dd>
+
+        <dt>fill <span>'white'</span></dt>
+        <dd>Fill color of the marker.</dd>
+
+        <dt>stroke <span>'#505050'</span></dt>
+        <dd>Stroke color of the marker.</dd>
+      </dl>
+    </dd>
+
+    <dt>markerDefaults <span>{}</span></dt>
+    <dd>This is an object defining default parameters for all markers. Any of the attributes described for the markers parameter could be used here.</dd>
+
     <dt>onLabelShow</dt>
     <dd>Callback function which will be called before label is shown. Label DOM object and country code will be passed to the callback as arguments. </dd>
 
