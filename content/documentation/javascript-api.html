@@ -49,16 +49,28 @@ submenu: true
     <dd>This is an object defining default parameters for all markers. Any of the attributes described for the markers parameter could be used here.</dd>
 
     <dt>onLabelShow</dt>
-    <dd>Callback function which will be called before label is shown. Label DOM object and country code will be passed to the callback as arguments. </dd>
+    <dd>Callback function which will be called before label is shown. Label's DOM object and region code will be passed to the callback as arguments. </dd>
 
     <dt>onRegionOver</dt>
-    <dd>Callback function which will be called when the mouse cursor enters the region path. Country code will be passed to the callback as argument. </dd>
+    <dd>Callback function which will be called when the mouse cursor enters the region path. Region code will be passed to the callback as argument. </dd>
 
     <dt>onRegionOut</dt>
-    <dd>Callback function which will be called when the mouse cursor leaves the region path. Country code will be passed to the callback as argument. </dd>
+    <dd>Callback function which will be called when the mouse cursor leaves the region path. Region code will be passed to the callback as argument. </dd>
 
     <dt>onRegionClick</dt>
-    <dd>Callback function which will be called when the user clicks the region path. Country code will be passed to the callback as argument. </dd>
+    <dd>Callback function which will be called when the user clicks the region path. Region code will be passed to the callback as argument. </dd>
+
+    <dt>onMarkerLabelShow</dt>
+    <dd>Callback function which will be called before label for the marker is shown. Label's DOM object and marker index will be passed to the callback as arguments. </dd>
+
+    <dt>onMarkerOver</dt>
+    <dd>Callback function which will be called when the mouse cursor enters the marker circle. Marker index will be passed to the callback as argument. </dd>
+
+    <dt>onMarkerOut</dt>
+    <dd>Callback function which will be called when the mouse cursor leaves the marker circle. Marker index will be passed to the callback as argument. </dd>
+
+    <dt>onMarkerClick</dt>
+    <dd>Callback function which will be called when the user clicks the marker circle. Marker index will be passed to the callback as argument. </dd>
   </dl>
 
 
@@ -81,16 +93,26 @@ $('#map-events').vectorMap({
   onLabelShow: function(event, label, code){},
   onRegionOver: function(event, code){},
   onRegionOut: function(event, code){},
-  onRegionClick: function(event, code){}
+  onRegionClick: function(event, code){},
+
+  onMarkerLabelShow: function(event, label, index){},
+  onMarkerOver: function(event, index){},
+  onMarkerOut: function(event, index){},
+  onMarkerClick: function(event, index){}
 });
   </code></pre>
 
   <p>Or later using standard jQuery mechanism:</p>
   <pre class="syntax"><code class="language-javascript">
-$('#map-events').bind('labelShow.jvectormap', function(event, label, code){})
-$('#map-events').bind('regionMouseOver.jvectormap', function(){event, code})
-$('#map-events').bind('regionMouseOut.jvectormap', function(){event, code})
-$('#map-events').bind('regionClick.jvectormap', function(){event, code})
+$('#map-events').bind('labelShow.jvectormap', function(event, label, code){});
+$('#map-events').bind('regionOver.jvectormap', function(event, code){});
+$('#map-events').bind('regionOut.jvectormap', function(event, code){});
+$('#map-events').bind('regionClick.jvectormap', function(event, code){});
+
+$('#map-events').bind('markerLabelShow.jvectormap', function(event, label, index){});
+$('#map-events').bind('markerOver.jvectormap', function(event, index){});
+$('#map-events').bind('markerOut.jvectormap', function(event, index){});
+$('#map-events').bind('markerClick.jvectormap', function(event, index){});
   </code></pre>
 
   <p>Consider that fact that you can use standart features of jQuery events like
