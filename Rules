@@ -32,7 +32,7 @@ end
 compile '*' do
   if !item.binary?
     filter :erb
-    if item[:extension] == 'html'
+    if !@config[:no_syntax_highlight] && item[:extension] == 'html'
       filter :colorize_syntax, default_colorizer: :pygmentize
     end
     layout 'default'
