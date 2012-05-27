@@ -61,3 +61,4 @@ watcher:
 jvectormap_path: /Users/BjornD/workspace/js/jvectormap-new
 maps_path: /Users/BjornD/Maps
 syntax_highlight: on
+ga_code: false
