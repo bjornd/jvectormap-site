@@ -125,14 +125,14 @@ $('#map-events').bind('markerClick.jvectormap', function(event, index){});
   <pre class="syntax"><code class="language-javascript">
 $('#map-events').vectorMap({
   onLabelShow: function(event, label, code){
-    if (code == 'ca') {
+    if (code == 'CA') {
       event.preventDefault();
-    } else if (code == 'ru') {
+    } else if (code == 'RU') {
       label.text('Bears, vodka, balalaika');
     }
   },
   onRegionOver: function(event, code){
-    if (code == 'ca') {
+    if (code == 'CA') {
       event.preventDefault();
     }
   }
