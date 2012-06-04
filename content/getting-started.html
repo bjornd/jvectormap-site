@@ -2,7 +2,7 @@
 title: Getting started
 order: 5
 js_assets:
-  - /js/jquery-jvectormap-world-en.js
+  - /js/jquery-jvectormap-world-mill-en.js
   - /js/gdp-data.js
 ---
 <article class="format-standard">
@@ -20,7 +20,7 @@ js_assets:
   &lt;link rel=&quot;stylesheet&quot; href=&quot;jquery.jvectormap.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot;/&gt;
   &lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
   &lt;script src=&quot;jquery.jvectormap.js&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;jquery-jvectormap-world-en.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;jquery-jvectormap-world-mill-en.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;div style=&quot;width: 600px; height: 400px&quot;&gt;&lt;/div&gt;
@@ -51,7 +51,7 @@ var gdpData = {
     <script>
       $(function(){
         $('#world-map-gdp').vectorMap({
-          map: 'world_en',
+          map: 'world_mill_en',
           values: gdpData,
           scaleColors: ['#C8EEFF', '#0071A4'],
           normalizeFunction: 'polynomial',
@@ -67,7 +67,7 @@ var gdpData = {
   <p>Here is the code, which was used to initialize the map above (description of every parameter could be found on the <a href="/documentation/javascript-api/">JavaScript API page</a>):</p>
   <pre class="syntax"><code class="language-javascript">
 $('#world-map-gdp').vectorMap({
-  map: 'world_en',
+  map: 'world_mill_en',
   values: gdpData,
   scaleColors: ['#C8EEFF', '#0071A4'],
   normalizeFunction: 'polynomial',

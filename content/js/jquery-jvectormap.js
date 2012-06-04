@@ -26,7 +26,7 @@
 
   $.fn.vectorMap = function(options) {
     var defaultParams = {
-          map: 'world_en',
+          map: 'world_mill_en',
           backgroundColor: '#505050',
           color: '#ffffff',
           hoverColor: 'black',

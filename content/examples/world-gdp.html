@@ -3,7 +3,7 @@ title: GDP by country visualization
 order: 1
 submenu: true
 js_assets:
-  - /js/jquery-jvectormap-world-en.js
+  - /js/jquery-jvectormap-world-mill-en.js
   - /js/gdp-data.js
 ---
 <article class="format-standard">
@@ -12,7 +12,7 @@ js_assets:
     <script>
       $(function(){
         $('#world-map-gdp').vectorMap({
-          map: 'world_en',
+          map: 'world_mill_en',
           values: gdpData,
           scaleColors: ['#C8EEFF', '#0071A4'],
           normalizeFunction: 'polynomial',
