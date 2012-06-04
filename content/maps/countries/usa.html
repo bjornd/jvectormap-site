@@ -7,12 +7,22 @@ map_params:
   width: 900
   where: 'ISO = "USA"'
   codes_file: us.tsv
-  insets: '[{"codes": ["US-AK"], "width": 200, "left": 10, "top": 370}, {"codes": ["US-HI"], "width": 100, "left": 220, "top": 400}]'
+  insets: '[{"codes": ["US-AK"], "width": 220, "left": 0, "top": 440},{"codes": ["US-HI"], "width": 80, "left": 245, "top": 460}]'
   simplify_tolerance: 1000
   minimal_area: 4000000
-  buffer_distance: -1500
-  longtitude0: -10
+  buffer_distance: -1700
+  projection: aea
+  longtitude0: -100
   name: us
+map_params_variants:
+  -
+    projection: mill
+    longtitude0: -10
+    insets: '[{"codes": ["US-AK"], "width": 200, "left": 10, "top": 370}, {"codes": ["US-HI"], "width": 100, "left": 220, "top": 400}]'
+  -
+    projection: aea
+    longtitude0: -100
+    insets: '[{"codes": ["US-AK"], "width": 220, "left": 0, "top": 440},{"codes": ["US-HI"], "width": 80, "left": 245, "top": 460}]'
 data_params:
   source: http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/
   license: public domain
