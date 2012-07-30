@@ -4,3 +4,6 @@
 [submodule "external/jsdoc"]
 	path = external/jsdoc
 	url = https://github.com/jsdoc3/jsdoc.git
+[submodule "external/uglifyjs"]
+	path = external/uglifyjs
+	url = https://github.com/mishoo/UglifyJS.git

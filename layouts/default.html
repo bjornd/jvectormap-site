@@ -95,9 +95,13 @@
             $('.demo-map').vectorMap({
               map: 'world_mill_en',
               backgroundColor: 'transparent',
-              values: gdpData,
-              scaleColors: ['#C8EEFF', '#0071A4'],
-              normalizeFunction: 'polynomial',
+              series: {
+                regions: [{
+                  values: gdpData,
+                  scaleColors: ['#C8EEFF', '#0071A4'],
+                  normalizeFunction: 'polynomial'
+                }]
+              },
               hoverOpacity: 0.7,
               hoverColor: false
             });

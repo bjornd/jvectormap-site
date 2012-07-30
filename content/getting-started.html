@@ -52,9 +52,13 @@ var gdpData = {
       $(function(){
         $('#world-map-gdp').vectorMap({
           map: 'world_mill_en',
-          values: gdpData,
-          scaleColors: ['#C8EEFF', '#0071A4'],
-          normalizeFunction: 'polynomial',
+          series: {
+            regions: [{
+              values: gdpData,
+              scaleColors: ['#C8EEFF', '#0071A4'],
+              normalizeFunction: 'polynomial'
+            }]
+          },
           hoverOpacity: 0.7,
           hoverColor: false,
           onLabelShow: function(e, el, code){

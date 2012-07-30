@@ -19,7 +19,11 @@
         $('.jvectormap-<%= map_params[:projection] %>').vectorMap({
           map: '<%= map_params[:name] %>',
           backgroundColor: 'transparent',
-          color: '#8d8d8d'
+          regionStyle: {
+            initial: {
+              fill: '#8d8d8d'
+            }
+          }
         });
       })
     </script>

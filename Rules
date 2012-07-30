@@ -15,6 +15,7 @@
 
 preprocess do
   items.each { |i| map_preprocessing(i) if i[:map_params] }
+  jvectormap_init
 end
 
 # ===========

@@ -48,6 +48,11 @@ def map_preprocessing(item)
   end
 end
 
+def jvectormap_init
+  `cd external/jvectormap; git checkout develop`
+  `external/jvectormap/build.sh content/js/jquery-jvectormap.js`
+end
+
 #converts number of bytes to human-readable format, code is from
 #http://www.ruby-forum.com/topic/92075
 def numer_to_human_size(size)
