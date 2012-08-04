@@ -48,9 +48,45 @@ def map_preprocessing(item)
   end
 end
 
-def jvectormap_init
-  `cd external/jvectormap; git checkout develop`
-  `external/jvectormap/build.sh content/js/jquery-jvectormap.js`
+def generate_doc
+  hash = get_jvectormap_commit_hash
+  FileUtils.mkpath('tmp/doc') if !File.exists?('tmp/doc')
+  tmpDir = 'tmp/doc/'+hash+'/'
+  if !File.exists?(tmpDir)
+    `external/jsdoc/jsdoc -t ../jsdoc_template/ -d #{tmpDir} external/jvectormap/lib/`
+  end
+
+  Dir.foreach(tmpDir) do |fname|
+    next if fname == '.' or fname == '..'
+    itemTile, itemText = File.open(tmpDir + fname, "rb").read.split("\n", 2)
+
+    @items << Nanoc3::Item.new(
+      itemText,
+      {title: itemTile, submenu: true},
+      "/documentation/javascript-api-v1/"+fname+"/"
+    )
+  end
+end
+
+def build_jvectormap
+  hash = get_jvectormap_commit_hash
+  FileUtils.mkpath('tmp/jvectormap') if !File.exists?('tmp/jvectormap')
+  tmpFile = 'tmp/jvectormap/'+hash
+  `external/jvectormap/build.sh #{tmpFile}`
+  @items << Nanoc3::Item.new(
+    File.open(tmpFile, "rb").read,
+    {},
+    "/js/jquery-jvectormap/"
+  )
+  @items << Nanoc3::Item.new(
+    File.open('external/jvectormap/jquery-jvectormap.css', "rb").read,
+    {},
+    "/css/jquery-jvectormap/"
+  )
+end
+
+def get_jvectormap_commit_hash
+  return `git submodule | grep jvectormap`.strip.split(' ').shift
 end
 
 #converts number of bytes to human-readable format, code is from

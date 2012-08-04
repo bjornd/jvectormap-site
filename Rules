@@ -15,7 +15,8 @@
 
 preprocess do
   items.each { |i| map_preprocessing(i) if i[:map_params] }
-  jvectormap_init
+  build_jvectormap
+  generate_doc
 end
 
 # ===========
@@ -45,7 +46,7 @@ end
 # ==========
 
 route '/css/*' do
-  item.identifier.chop + '.' + item[:extension]
+  item.identifier.chop + '.' + (item[:extension] ? item[:extension] : 'css')
 end
 
 route '/js/*' do

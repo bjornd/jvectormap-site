@@ -570,7 +570,7 @@ header #logo{
 #posts-list,
 #post-content{
   position: relative;
-  width: 740px;
+  width: 700px;
   float: left;
 }
 
@@ -897,7 +897,7 @@ header #logo{
 
 #sidebar{
   position: relative;
-  width: 160px;
+  width: 200px;
   float: left;
   margin-left: 20px;
 }
