@@ -27,7 +27,7 @@ def map_preprocessing(item)
     if !File.exists? output_file_path
       converter_command =
           'python '+
-          @config[:jvectormap_path]+'/converter/converter.py '+
+          'external/jvectormap/converter/converter.py '+
           data_file+' '+
           output_file_path+' '+
           converter_params.join(' ')

@@ -60,5 +60,9 @@ watcher:
 
 jvectormap_path: /Users/BjornD/workspace/js/jvectormap-new
 maps_path: /Users/BjornD/Maps
-syntax_highlight: on
+no_syntax_highlight: true
 ga_code: false
+projection_names:
+  mill: Miller
+  aea: Albers
+  merc: Mercator
