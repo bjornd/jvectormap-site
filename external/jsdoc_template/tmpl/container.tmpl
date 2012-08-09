@@ -11,7 +11,7 @@
     <div class="class-description"><?js= doc.classdesc ?></div>
 <?js } ?>
 
-<article>
+<article class="jsdoc">
     <div class="container-overview">
     <?js if (doc.kind === 'module' && doc.module) { ?>
         <?js= self.partial('method.tmpl', doc.module) ?>

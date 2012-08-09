@@ -31,7 +31,7 @@ a:active {
   font-weight: lighter;
 }
 
-h1
+.jsdoc h1
 {
   font-size: 200%;
   font-weight: bold;
@@ -39,7 +39,7 @@ h1
   margin: 6px 0 9px 0;
 }
 
-h2
+.jsdoc h2
 {
   font-size: 170%;
   font-weight: bold;
@@ -47,7 +47,7 @@ h2
   margin: 6px 0 3px 0;
 }
 
-h3
+.jsdoc h3
 {
   font-size: 150%;
   font-weight: bold;
@@ -56,7 +56,7 @@ h3
   margin: 6px 0 3px 0;
 }
 
-h4
+.jsdoc h4
 {
   font-size: 130%;
   font-weight: bold;
@@ -66,7 +66,7 @@ h4
   color: #A35A00;
 }
 
-h5, .container-overview .subsection-title
+.jsdoc h5, .container-overview .subsection-title
 {
   font-size: 120%;
   font-weight: bold;
@@ -74,7 +74,7 @@ h5, .container-overview .subsection-title
   margin: 8px 0 3px;
 }
 
-h6
+jsdoc. h6
 {
   font-size: 100%;
   letter-spacing: -0.01em;
