@@ -31,6 +31,10 @@ compile '/js/*' do
   # don’t filter or layout
 end
 
+compile '/data/*' do
+  # don’t filter or layout
+end
+
 compile '*' do
   if !item.binary?
     filter :erb
@@ -51,6 +55,10 @@ end
 
 route '/js/*' do
   item.identifier.chop + '.' + (item[:extension] ? item[:extension] : 'js')
+end
+
+route '/data/*' do
+  item.identifier.chop + '.' + (item[:extension] ? item[:extension] : 'json')
 end
 
 route '*' do
