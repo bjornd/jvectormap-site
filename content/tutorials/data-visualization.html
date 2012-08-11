@@ -1,0 +1,117 @@
+---
+title: Data Visualization
+order: 2
+submenu: true
+js_assets:
+  - /js/jquery-jvectormap-world-mill-en.js
+---
+<article class="format-standard">
+  <p>In this tutorial I want to describe the process of data visualization with jVectorMap. At the moment data could be visualized with jVectorMap in several ways. You can use color, opacity or marker size to represent some values on the map. I want to demonstrate jVectorMap abilities in data visualization on the example, which shows dynamic of unemployment rate in the USA from 2005 to 2009. The <a href="/examples/usa-unemployment/">final result</a> is available in the examples section.</p>
+  <p>To build our map we will use three sets of data: unemployment statistic by metropolitan areas and states and population statistic by metropolitan area. While the unemployment statistic will be presented using the color gradients, the population will be visualized using the size of markers representing metro areas. All the data used in the this tutorial is available on the site of U.S. Census Bureau with their powerful <a href="http://factfinder2.census.gov/">FactFinder service</a>.</p>
+  <p>To collect all the data and convert it to a suitable format I use simple script written in Ruby language which I like for neat syntax and endless set of libraries for any purpose. The full source code of the project is available from the <a href="%todo%">GitHub repository</a>.</p>
+  <p>So once all the data is packed in one JSON file and ready to use we can start to build the visualization. First we need some html stub with all the scripts and CSS files connected. The stub will have only two elements on the page: container of the map and container for the slider which will be used to switch the </p>
+  <pre class="syntax"><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;/&gt;
+  &lt;title&gt;Maps&lt;/title&gt;
+  &lt;link rel=&quot;stylesheet&quot; media=&quot;all&quot; href=&quot;../jvectormap/jquery-jvectormap.css&quot;/&gt;
+  &lt;link rel=&quot;stylesheet&quot; media=&quot;all&quot; href=&quot;css/jquery-ui-1.8.21.custom.css&quot;/&gt;
+  &lt;script src=&quot;../jvectormap/tests/assets/jquery-1.7.2.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;../jvectormap.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;../jvectormap/tests/assets/jquery-jvectormap-us-aea-en.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;jquery-ui-1.8.21.custom.min.js&quot;&gt;&lt;/script&gt;
+  &lt;script&gt;
+    $(function(){
+      // here we will place the code to initialize the map
+    })
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;map&quot; style=&quot;width: 800px; height: 600px&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;slider&quot; style=&quot;width: 280px; margin: 10px&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+  </code></pre>
+  <p>The data in our example is received via AJAX request and once the it is loaded the map could be initialized.</p>
+  <pre class="syntax"><code class="language-javascript">
+$.getJSON('data.json', function(data){
+  //...
+}
+  </code></pre>
+  <p>Now the map is ready to be created:</p>
+  <pre class="syntax"><code class="language-javascript">
+$('.map').vectorMap({
+  map: 'us_aea_en',
+  markers: data.metro.coords,
+  series: {
+    markers: [{
+      attribute: 'fill',
+      scale: ['#FEE5D9', '#A50F15'],
+      values: data.metro.unemployment[val],
+      min: jvm.min(metroUnemplValues),
+      max: jvm.max(metroUnemplValues)
+    },{
+      attribute: 'r',
+      scale: [5, 20],
+      values: data.metro.population[val],
+      min: jvm.min(metroPopValues),
+      max: jvm.max(metroPopValues)
+    }],
+    regions: [{
+      scale: ['#DEEBF7', '#08519C'],
+      attribute: 'fill',
+      values: data.states[val],
+      min: jvm.min(statesValues),
+      max: jvm.max(statesValues)
+    }]
+  }
+  //...
+});
+  </code></pre>
+  <p>While map is created the following configuration parameters are passed to the constructor:</p>
+  <ul>
+    <li><code>map</code> - the name of the map. In this example we use Albers projection of the US map,</li>
+    <li><code>markers</code> - this is just an array containing the coordinates of metropolitan areas,</li>
+    <li>
+      <code>series</code> - this parameters describes how the data will be presented visually on the map; there are two sections: regions and markers, each of which is an array of objects with the following parameters:
+      <ul>
+        <li><code>attribute</code> - parameter which will be used to visualize data, this could be: <code>fill</code> for the fill color of the marker or region, <code>stroke</code> for color of stroke or <code>r</code> for the radius of the marker,<li>
+        <li><code>values</code> - this is default set of the values to apply,<li>
+        <li><code>scale</code> - this parameter is used to define the minimum and maximum value which could be assigned to the attribute (<code>[5, 20]</code> for the <code>r</code> parameter means that radius of the marker will be set to 5 for the minimum input value and 20 for maximum)<li>
+        <li><code>min</code> and <code>max</code> - these parameters could be just omitted in the most of the cases and calculated automatically, though in our example we need to provide them to visualize the difference between several years.</li>
+      </ul>
+    </li>
+  </ul>
+  <p>You can read more about these and other parameters in the <a href="/documentation/javascript-api-v1/jvm-worldmap/">documentation</a>.</p>
+  <p>Now let's make make the labels which are shown when mouse cursor is over region or label more readable. To achieve this we need to set callbacks for the hover events and modify labels inside of them:</p>
+  <pre class="syntax"><code class="language-javascript">
+onMarkerLabelShow: function(event, label, index){
+  label.html(
+    &#x27;&lt;b&gt;&#x27;+data.metro.names[index]+&#x27;&lt;/b&gt;&lt;br/&gt;&#x27;+&#x27;&lt;b&gt;Population:&lt;/b&gt;&#x27;+data.metro.population[val][index]+&#x27;&lt;/br&gt;&#x27;+&#x27;&lt;b&gt;Unemployment rate: &lt;/b&gt;&#x27;+data.metro.unemployment[val][index]+&#x27;%&#x27;
+  );
+},
+onRegionLabelShow: function(event, label, code){
+  label.html(
+    &#x27;&lt;b&gt;&#x27;+label.html()+&#x27;&lt;/b&gt;&lt;/br&gt;&#x27;+&#x27;&lt;b&gt;Unemployment rate: &lt;/b&gt;&#x27;+data.states[val][code]+&#x27;%&#x27;
+  );
+}
+  </code></pre>
+  <p>Now the last step is to define action on the slider movement. Slider used in this example is a standard component from the <a href="http://jqueryui.com/">jQuery UI framework</a>. By default we visualize data for the last year in the report. If slider is moved we need to update data according to the date chosen. <code>DataSeries</code> class have <code>setValues</code> method for that:</p>
+  <pre class="syntax"><code class="language-javascript">
+var mapObject = $('.map').vectorMap('get', 'mapObject');
+$(".slider").slider({
+  value: val,
+  min: 2005,
+  max: 2009,
+  step: 1,
+  slide: function( event, ui ) {
+    val = ui.value;
+    mapObject.series.regions[0].setValues(data.states[ui.value]);
+    mapObject.series.markers[0].setValues(data.metro.unemployment[ui.value]);
+    mapObject.series.markers[1].setValues(data.metro.population[ui.value]);
+  }
+});
+  </code></pre>
+</article>
