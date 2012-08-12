@@ -32,7 +32,8 @@
 .lists-plus ul,
 .lists-star ul,
 .lists-heart ul,
-#page-content ul {
+#page-content ul,
+#posts-list ul {
   margin-bottom: 30px;
   margin-left: 20px;
   list-style: disc;
@@ -411,3 +412,6 @@ ul.tabs li.current a {
 }
 
 
+code {
+  font-family: monospace ;
+}

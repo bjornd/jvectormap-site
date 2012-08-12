@@ -1,25 +1,49 @@
 <script>
   $(function(){
-    $('.jvectormap').vectorMap({
-      map: '<%= @item[:map_params][:name] %>_en',
-      backgroundColor: 'transparent',
-      color: '#8d8d8d'
-    });
-  })
+    $(".tabs").tabs("div.panes > div");
+  });
 </script>
-<div style="width: 100%; height: <%= (defined?(height) ? height : '400') %>px; padding: 5px" class="jvectormap"></div>
-<p><a href="<%= @item[:map_params][:download_link] %>">Download</a> (<%= numer_to_human_size(@item[:map_params][:file_size]) %>)</p>
-<p>To render the map use the following code:</p>
+<ul class="tabs">
+  <% @item[:map_params_variants].each do |map_params| %>
+    <li>
+      <a href="#<%= map_params[:projection] %>">
+        <span><%= @config[:projection_names][map_params[:projection].to_sym] %></span>
+      </a>
+    </li>
+  <% end %>
+</ul>
+<div class="panes">
+  <% @item[:map_params_variants].each do |map_params| %>
+    <script>
+      $(function(){
+        $('.jvectormap-<%= map_params[:projection] %>').vectorMap({
+          map: '<%= map_params[:name] %>',
+          backgroundColor: 'transparent',
+          regionStyle: {
+            initial: {
+              fill: '#8d8d8d'
+            }
+          }
+        });
+      })
+    </script>
+    <div>
+      <div style="width: 708px; height: <%= (defined?(height) ? height : '400') %>px" class="jvectormap-<%= map_params[:projection] %>"></div>
+      <p><a href="<%= map_params[:download_link] %>">Download</a> (<%= numer_to_human_size(map_params[:file_size]) %>)</p>
+      <p>To render the map use the following code:</p>
 <pre class="syntax"><code class="language-javascript">
-$('#map').vectorMap({map: '<%= @item[:map_params][:name] %>_en'});
+$('#map').vectorMap({map: '<%= map_params[:name] %>'});
 </code></pre>
-<% if @item[:data_params] %>
-  <p>
-    This map is based on data available at <a href="<%= @item[:data_params][:source] %>"><%= @item[:data_params][:source] %></a>.
-    <% if @item[:data_params][:license] == 'public domain' %>
-      Data is in <a href="<%= @item[:data_params][:license_link] %>">public domain</a>.
-    <% else %>
-      Data is licensed under the terms of <a href="<%= @item[:data_params][:license_link] %>"><%= @item[:data_params][:license] %></a>.
-    <% end %>
-  <p>
-<% end %>
+      <% if @item[:data_params] %>
+        <p>
+          This map is based on data available at <a href="<%= @item[:data_params][:source] %>"><%= @item[:data_params][:source] %></a>.
+          <% if @item[:data_params][:license] == 'public domain' %>
+            Data is in <a href="<%= @item[:data_params][:license_link] %>">public domain</a>.
+          <% else %>
+            Data is licensed under the terms of <a href="<%= @item[:data_params][:license_link] %>"><%= @item[:data_params][:license] %></a>.
+          <% end %>
+        <p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

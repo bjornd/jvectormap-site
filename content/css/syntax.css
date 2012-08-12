@@ -1,5 +1,5 @@
 .syntax .hll { background-color: #404040 }
-.syntax  { background: #202020; color: #d0d0d0 }
+.syntax  { background: #202020; color: #d0d0d0; overflow: auto }
 .syntax .c { color: #999999; font-style: italic } /* Comment */
 .syntax .err { color: #a61717; background-color: #e3d2d2 } /* Error */
 .syntax .g { color: #d0d0d0 } /* Generic */

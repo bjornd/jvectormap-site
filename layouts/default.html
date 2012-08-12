@@ -10,7 +10,8 @@
   <script src="/js/jquery-1.7.2.min.js"></script>
   <script src="/js/css3-mediaqueries.js"></script>
   <script src="/js/modernizr.js"></script>
-  <script src="/js/jquery-jvectormap.js"></script>
+  <script src="/js/jquery-jvectormap-<%= @config[:jvectormap_version] %>.min.js"></script>
+  <script src="/js/tabs.js"></script>
 
   <% if @item[:js_assets] %>
     <% @item[:js_assets].each do |asset| %>
@@ -25,11 +26,10 @@
   <link rel="stylesheet" media="all" href="/css/style.css"/>
   <link rel="stylesheet" media="all" href="/css/lessframework.css"/>
   <link rel="stylesheet" media="all" href="/css/skin.css"/>
-  <link rel="stylesheet" media="all" href="/css/jquery-jvectormap.css"/>
+  <link rel="stylesheet" media="all" href="/css/jquery-jvectormap-<%= @config[:jvectormap_version] %>.css"/>
   <link rel="stylesheet" media="all" href="/css/syntax.css"/>
-  <style>
-    @import url('http://fonts.googleapis.com/css?family=Arvo:400,700');
-  </style>
+  <link rel="stylesheet" media="all" href="/css/jsdoc.css"/>
+  <link rel="stylesheet" media="all" href="/css/jquery-ui-1.8.22.custom.css"/>
 </head>
 
 <% if @config[:ga_code] %>
@@ -87,16 +87,20 @@
             <p><a href="/download">Download</a></p>
           </div>
         </div>
-        <script src="/js/jquery-jvectormap-world-en.js"></script>
+        <script src="/js/jquery-jvectormap-world-mill-en.js"></script>
         <script src="/js/gdp-data.js"></script>
         <script>
           $(function(){
             $('.demo-map').vectorMap({
-              map: 'world_en',
+              map: 'world_mill_en',
               backgroundColor: 'transparent',
-              values: gdpData,
-              scaleColors: ['#C8EEFF', '#0071A4'],
-              normalizeFunction: 'polynomial',
+              series: {
+                regions: [{
+                  values: gdpData,
+                  scaleColors: ['#C8EEFF', '#0071A4'],
+                  normalizeFunction: 'polynomial'
+                }]
+              },
               hoverOpacity: 0.7,
               hoverColor: false
             });
