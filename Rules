@@ -35,6 +35,11 @@ compile '/data/*' do
   # don’t filter or layout
 end
 
+compile '/binary/*' do
+  # don’t filter or layout
+end
+
+
 compile '*' do
   if !item.binary?
     filter :erb
@@ -48,6 +53,10 @@ end
 # ==========
 # = routes =
 # ==========
+
+route '/binary/*' do
+  item.identifier.chop + '.' + (item[:extension] ? item[:extension] : 'zip')
+end
 
 route '/css/*' do
   item.identifier.chop + '.' + (item[:extension] ? item[:extension] : 'css')

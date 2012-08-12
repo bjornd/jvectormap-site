@@ -72,16 +72,30 @@ def build_jvectormap
   hash = get_jvectormap_commit_hash
   FileUtils.mkpath('tmp/jvectormap') if !File.exists?('tmp/jvectormap')
   tmpFile = 'tmp/jvectormap/'+hash
-  `external/jvectormap/build.sh #{tmpFile}`
+  if !File.exists?(tmpFile)
+    `external/jvectormap/build.sh #{tmpFile}`
+  end
+  js_file_name = "jquery-jvectormap-#{@config[:jvectormap_version]}.min"
   @items << Nanoc3::Item.new(
     File.open(tmpFile, "rb").read,
     {},
-    "/js/jquery-jvectormap/"
+    "/js/#{js_file_name}/"
   )
+  css_file_name = "jquery-jvectormap-#{@config[:jvectormap_version]}"
   @items << Nanoc3::Item.new(
-    File.open('external/jvectormap/jquery-jvectormap.css', "rb").read,
+    File.open("external/jvectormap/jquery-jvectormap.css", "rb").read,
     {},
-    "/css/jquery-jvectormap/"
+    "/css/#{css_file_name}/"
+  )
+
+  FileUtils.mkpath('tmp/jvectormap-zip') if !File.exists?('tmp/jvectormap-zip')
+  FileUtils.copy_file(tmpFile, "tmp/jvectormap-zip/#{js_file_name}.js")
+  FileUtils.copy_file('external/jvectormap/jquery-jvectormap.css', "tmp/jvectormap-zip/#{css_file_name}.css")
+  `cd tmp/jvectormap-zip; zip jquery-jvectormap-#{@config[:jvectormap_version]}.zip *.css *.js`
+  @items << Nanoc3::Item.new(
+    File.open("tmp/jvectormap-zip/jquery-jvectormap-#{@config[:jvectormap_version]}.zip", "rb").read,
+    {},
+    "/binary/jquery-jvectormap-#{@config[:jvectormap_version]}/"
   )
 end
 
