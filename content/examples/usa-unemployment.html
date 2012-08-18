@@ -24,14 +24,12 @@ js_assets:
             markers: data.metro.coords,
             series: {
               markers: [{
-                type: 'markers',
                 attribute: 'fill',
                 scale: ['#FEE5D9', '#A50F15'],
                 values: data.metro.unemployment[val],
                 min: jvm.min(metroUnemplValues),
                 max: jvm.max(metroUnemplValues)
               },{
-                type: 'markers',
                 attribute: 'r',
                 scale: [5, 20],
                 values: data.metro.population[val],
