@@ -6,6 +6,7 @@ js_assets:
   - /js/jquery-jvectormap-de-merc-en.js
 ---
 <article class="format-standard">
+  <p>The following example demonstrates the feature of jVectorMap that allows selection of regions and/or markers by user or programmatically. Specific styles could be assigned for the selected items .</p>
   <figure>
     <div id="map" style="width: 720px; height: 600px"></div>
     <script>
@@ -44,7 +45,18 @@ js_assets:
           markers: markers,
           markerStyle: {
             initial: {
-              fill: 'green'
+              fill: '#4DAC26'
+            },
+            selected: {
+              fill: '#CA0020'
+            }
+          },
+          regionStyle: {
+            initial: {
+              fill: '#B8E186'
+            },
+            selected: {
+              fill: '#F4A582'
             }
           },
           series: {
