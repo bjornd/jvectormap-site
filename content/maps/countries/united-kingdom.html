@@ -1,0 +1,19 @@
+---
+title: United Kingdom
+submenu: true
+map_params:
+  data_file: 10m-uk-regions-fixed/10m-uk-regions-fixed.shp
+  country_name_index: 0
+  width: 900
+  codes_file: uk.tsv
+  simplify_tolerance: 500
+  name: uk
+map_params_variants:
+  - projection: mill
+  - projection: merc
+data_params:
+  source: http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/
+  license: public domain
+  license_link: http://www.naturalearthdata.com/about/terms-of-use/
+---
+<%= render 'map', height: 800 %>
