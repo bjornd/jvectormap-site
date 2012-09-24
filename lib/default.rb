@@ -19,6 +19,9 @@ def map_preprocessing(item)
       variant_params[:codes_file] = @config[:maps_path] + '/codes/' + variant_params[:codes_file]
     end
     variant_params.each { |key, value| converter_params << '--'+key.to_s+" '"+value.to_s+"'" }
+    if @config[:maps_default_encoding]
+      converter_params << '--input_file_encoding ' + @config[:maps_default_encoding]
+    end
 
     map_id = Digest::MD5.hexdigest(data_file+converter_params.join)
     map_name = 'jquery-jvectormap-'+variant_params[:name]+'-'+variant_params[:projection]+'-'+variant_params[:language]
