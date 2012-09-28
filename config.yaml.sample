@@ -66,3 +66,4 @@ projection_names:
   mill: Miller
   aea: Albers
   merc: Mercator
+  lcc: Lambert
