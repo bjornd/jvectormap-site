@@ -19,7 +19,7 @@ def map_preprocessing(item)
       variant_params[:codes_file] = @config[:maps_path] + '/codes/' + variant_params[:codes_file]
     end
     variant_params.each { |key, value| converter_params << '--'+key.to_s+" '"+value.to_s+"'" }
-    if @config[:maps_default_encoding]
+    if @config[:maps_default_encoding] && !variant_params[:input_file_encoding]
       converter_params << '--input_file_encoding ' + @config[:maps_default_encoding]
     end
 
