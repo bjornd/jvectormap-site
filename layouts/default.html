@@ -94,10 +94,11 @@
             $('.demo-map').vectorMap({
               map: 'world_mill_en',
               backgroundColor: 'transparent',
+
               series: {
                 regions: [{
                   values: gdpData,
-                  scaleColors: ['#C8EEFF', '#0071A4'],
+                  scale: ['#C8EEFF', '#0071A4'],
                   normalizeFunction: 'polynomial'
                 }]
               },
