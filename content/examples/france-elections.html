@@ -1,0 +1,67 @@
+---
+title: France elections
+order: 5
+submenu: true
+js_assets:
+  - /js/jquery-jvectormap-fr-merc-en.js
+---
+<article class="format-standard">
+  <figure>
+    <p>The following demo demonstrates how to colorize deffirent regions in different colors using <code>OrdinalScale</code>. First you describe classes with which values of attributes should be set for elements (regions or markers). Then you apply this classes to the regions or markers. The code in Ruby used to convert data could be found in <a href="https://github.com/bjornd/jvectormap-examples/tree/master/france-elections">this repository</a>.</p>
+    <h4>French presidential election, 2007</h4>
+    <p>
+      <div id="map2007" style="width: 720px; height: 600px"></div>
+      <div class="jvm-legend">
+        <span class="jvm-legend-item jvm-legend-item-ump"></span>
+        <span> - Nicolas Sarkozy</span>
+        <span class="jvm-legend-item jvm-legend-item-ps"></span>
+        <span> - Ségolène Royal</span>
+      </div>
+    </p>
+    <h4>French presidential election, 2012</h4>
+    <p>
+      <div id="map2012" style="width: 720px; height: 600px"></div>
+      <div class="jvm-legend">
+        <span class="jvm-legend-item jvm-legend-item-ps"></span>
+        <span> - François Hollande</span>
+        <span class="jvm-legend-item jvm-legend-item-ump"></span>
+        <span> - Nicolas Sarkozy</span>
+      </div>
+    </p>
+    <script>
+      $(function(){
+        $.getJSON('/data/france-elections.json', function(data){
+          new jvm.WorldMap({
+            map: 'fr_merc_en',
+            container: $('#map2007'),
+            series: {
+              regions: [{
+                scale: {
+                  '1': '#4169E1',
+                  '2': '#FF69B4'
+                },
+                attribute: 'fill',
+                values: data['year2007'].results
+              }]
+            }
+          });
+
+          new jvm.WorldMap({
+            map: 'fr_merc_en',
+            container: $('#map2012'),
+            series: {
+              regions: [{
+                scale: {
+                  '1': '#FF69B4',
+                  '2': '#4169E1'
+                },
+                attribute: 'fill',
+                values: data['year2012'].results
+              }]
+            }
+          });
+        });
+      })
+    </script>
+  </figure>
+</article>
