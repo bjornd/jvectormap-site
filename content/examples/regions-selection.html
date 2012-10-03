@@ -83,8 +83,8 @@ js_assets:
             }
           }
         });
-        map.setSelectedRegions( JSON.parse( window.localStorage.getItem('jvectormap-selected-regions') || '[]' ) );
-        map.setSelectedMarkers( JSON.parse( window.localStorage.getItem('jvectormap-selected-markers') || '[]' ) );
+        map.setSelectedRegions( JSON ? JSON.parse( window.localStorage.getItem('jvectormap-selected-regions') || '[]' ) : [] );
+        map.setSelectedMarkers( JSON ? JSON.parse( window.localStorage.getItem('jvectormap-selected-markers') || '[]' ) : [] );
       });
     </script>
   </figure>
