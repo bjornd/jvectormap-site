@@ -60,7 +60,7 @@ def generate_doc
   end
 
   Dir.foreach(tmpDir) do |fname|
-    next if fname == '.' or fname == '..'
+    next if !['jvm-dataseries.html', 'jvm-worldmap.html', 'jvm-proj.html'].index(fname)
     itemTile, itemText = File.open(tmpDir + fname, "rb").read.split("\n", 2)
 
     @items << Nanoc3::Item.new(
