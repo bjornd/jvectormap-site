@@ -4,6 +4,7 @@ order: 4
 submenu: true
 js_assets:
   - /js/jquery-jvectormap-de-merc-en.js
+  - /js/json2.js
 ---
 <article class="format-standard">
   <p>The following example demonstrates the feature of jVectorMap that allows selection of regions and/or markers by user or programmatically. Specific styles could be assigned for the selected items . User selection is saved between page reloads in the local storage.</p>
@@ -83,8 +84,8 @@ js_assets:
             }
           }
         });
-        map.setSelectedRegions( JSON ? JSON.parse( window.localStorage.getItem('jvectormap-selected-regions') || '[]' ) : [] );
-        map.setSelectedMarkers( JSON ? JSON.parse( window.localStorage.getItem('jvectormap-selected-markers') || '[]' ) : [] );
+        map.setSelectedRegions( JSON.parse( window.localStorage.getItem('jvectormap-selected-regions') || '[]' ) );
+        map.setSelectedMarkers( JSON.parse( window.localStorage.getItem('jvectormap-selected-markers') || '[]' ) );
       });
     </script>
   </figure>
