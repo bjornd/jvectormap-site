@@ -1,6 +1,12 @@
 <script>
   $(function(){
-    $(".tabs").tabs("div.panes > div");
+    $(".tabs").tabs("div.panes > div", {
+      onClick: function(e, index){
+        if (index) {
+          $('div.panes .jvectormap:nth('+index+')').vectorMap('get', 'mapObject').setSize();
+        }
+      }
+    });
   });
 </script>
 <ul class="tabs">
@@ -28,7 +34,7 @@
       })
     </script>
     <div>
-      <div style="width: 708px; height: <%= (defined?(height) ? height : '400') %>px" class="jvectormap-<%= map_params[:projection] %>"></div>
+      <div style="width: 708px; height: <%= (defined?(height) ? height : '400') %>px" class="jvectormap jvectormap-<%= map_params[:projection] %>" data-class="jvectormap-<%= map_params[:projection] %>"></div>
       <p><a href="<%= map_params[:download_link] %>">Download</a> (<%= numer_to_human_size(map_params[:file_size]) %>)</p>
       <p>To render the map use the following code:</p>
 <pre class="syntax"><code class="language-javascript">
