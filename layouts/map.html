@@ -2,8 +2,18 @@
   $(function(){
     $(".tabs").tabs("div.panes > div", {
       onClick: function(e, index){
-        if (index) {
-          $('div.panes .jvectormap:nth('+index+')').vectorMap('get', 'mapObject').setSize();
+        var cont = $('div.panes .jvectormap:nth('+index+')');
+
+        if (!cont.children('.jvectormap-container').data('mapObject')) {
+          $('.jvectormap-'+cont.attr('data-projection')).vectorMap({
+            map: cont.attr('data-name'),
+            backgroundColor: 'transparent',
+            regionStyle: {
+              initial: {
+                fill: '#8d8d8d'
+              }
+            }
+          });
         }
       }
     });
@@ -20,21 +30,8 @@
 </ul>
 <div class="panes">
   <% @item[:map_params_variants].each do |map_params| %>
-    <script>
-      $(function(){
-        $('.jvectormap-<%= map_params[:projection] %>').vectorMap({
-          map: '<%= map_params[:name] %>',
-          backgroundColor: 'transparent',
-          regionStyle: {
-            initial: {
-              fill: '#8d8d8d'
-            }
-          }
-        });
-      })
-    </script>
     <div>
-      <div style="width: 708px; height: <%= (defined?(height) ? height : '400') %>px" class="jvectormap jvectormap-<%= map_params[:projection] %>" data-class="jvectormap-<%= map_params[:projection] %>"></div>
+      <div style="width: 708px; height: <%= (defined?(height) ? height : '400') %>px" class="jvectormap jvectormap-<%= map_params[:projection] %>" data-projection="<%= map_params[:projection] %>" data-name="<%= map_params[:name] %>"></div>
       <p><a href="<%= map_params[:download_link] %>">Download</a> (<%= numer_to_human_size(map_params[:file_size]) %>)</p>
       <p>To render the map use the following code:</p>
 <pre class="syntax"><code class="language-javascript">
