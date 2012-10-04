@@ -1,14 +1,16 @@
 ---
-title: Germany
+title: Portugal
 submenu: true
 map_params:
   data_file: 10m-admin-1-states-provinces-lakes-shp/ne_10m_admin_1_states_provinces_lakes_shp.shp
   country_name_index: 4
   width: 900
-  where: 'ISO = "DEU"'
-  codes_file: de.tsv
-  simplify_tolerance: 300
-  name: de
+  where: 'ISO = "PRT"'
+  insets: '[{"codes": ["PT-20"], "width": 400, "left": 800, "top": 1100}, {"codes": ["PT-30"], "width": 400, "left": 800, "top": 1400}]'
+  codes_file: pt.tsv
+  simplify_tolerance: 100
+  minimal_area: 4000000
+  name: pt
   input_file_encoding: iso-8859-1
 map_params_variants:
   - projection: mill

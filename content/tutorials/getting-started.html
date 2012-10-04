@@ -24,7 +24,7 @@ js_assets:
   &lt;script src=&quot;jquery-jvectormap-world-mill-en.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-  &lt;div style=&quot;width: 600px; height: 400px&quot;&gt;&lt;/div&gt;
+  &lt;div id=&quot;world-map&quot; style=&quot;width: 600px; height: 400px&quot;&gt;&lt;/div&gt;
   &lt;script&gt;
     $(function(){
       $('#world-map').vectorMap();
@@ -61,12 +61,10 @@ var gdpData = {
           series: {
             regions: [{
               values: gdpData,
-              scaleColors: ['#C8EEFF', '#0071A4'],
+              scale: ['#C8EEFF', '#0071A4'],
               normalizeFunction: 'polynomial'
             }]
           },
-          hoverOpacity: 0.7,
-          hoverColor: false,
           onLabelShow: function(e, el, code){
             el.html(el.html()+' (GDP - '+gdpData[code]+')');
           }
@@ -78,11 +76,13 @@ var gdpData = {
   <pre class="syntax"><code class="language-javascript">
 $('#world-map-gdp').vectorMap({
   map: 'world_mill_en',
-  values: gdpData,
-  scaleColors: ['#C8EEFF', '#0071A4'],
-  normalizeFunction: 'polynomial',
-  hoverOpacity: 0.7,
-  hoverColor: false,
+  series: {
+    regions: [{
+      values: gdpData,
+      scale: ['#C8EEFF', '#0071A4'],
+      normalizeFunction: 'polynomial'
+    }]
+  },
   onLabelShow: function(e, el, code){
     el.html(el.html()+' (GDP - '+gdpData[code]+')');
   }

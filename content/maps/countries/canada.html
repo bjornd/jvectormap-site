@@ -1,21 +1,26 @@
 ---
-title: Germany
+title: Canada
 submenu: true
 map_params:
   data_file: 10m-admin-1-states-provinces-lakes-shp/ne_10m_admin_1_states_provinces_lakes_shp.shp
   country_name_index: 4
   width: 900
-  where: 'ISO = "DEU"'
-  codes_file: de.tsv
-  simplify_tolerance: 300
-  name: de
+  where: 'ISO = "CAN"'
+  codes_file: ca.tsv
+  simplify_tolerance: 3000
+  name: ca
   input_file_encoding: iso-8859-1
 map_params_variants:
-  - projection: mill
-  - projection: merc
+  -
+    projection: lcc
+    longitude0: -90
+  -
+    projection: mill
+  -
+    projection: merc
 data_params:
   source: http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/
   license: public domain
   license_link: http://www.naturalearthdata.com/about/terms-of-use/
 ---
-<%= render 'map' %>
+<%= render 'map', height: 600 %>

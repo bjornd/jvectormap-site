@@ -16,13 +16,10 @@ js_assets:
           series: {
             regions: [{
               values: gdpData,
-              scaleColors: ['#C8EEFF', '#0071A4'],
+              scale: ['#C8EEFF', '#0071A4'],
               normalizeFunction: 'polynomial'
             }]
           },
-          hoverOpacity: 0.7,
-          hoverColor: false,
-          backgroundColor: '#383f47',
           onLabelShow: function(e, el, code){
             el.html(el.html()+' (GDP - '+gdpData[code]+')');
           }

@@ -1,15 +1,14 @@
 ---
-title: Germany
+title: New Zealand
 submenu: true
 map_params:
   data_file: 10m-admin-1-states-provinces-lakes-shp/ne_10m_admin_1_states_provinces_lakes_shp.shp
   country_name_index: 4
+  where: 'ISO = "NZL"'
   width: 900
-  where: 'ISO = "DEU"'
-  codes_file: de.tsv
-  simplify_tolerance: 300
-  name: de
-  input_file_encoding: iso-8859-1
+  codes_file: nz.tsv
+  simplify_tolerance: 1000
+  name: nz
 map_params_variants:
   - projection: mill
   - projection: merc
@@ -18,4 +17,4 @@ data_params:
   license: public domain
   license_link: http://www.naturalearthdata.com/about/terms-of-use/
 ---
-<%= render 'map' %>
+<%= render 'map', height: 600 %>

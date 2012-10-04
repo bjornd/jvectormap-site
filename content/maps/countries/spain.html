@@ -1,14 +1,14 @@
 ---
-title: Germany
+title: Spain
 submenu: true
 map_params:
   data_file: 10m-admin-1-states-provinces-lakes-shp/ne_10m_admin_1_states_provinces_lakes_shp.shp
   country_name_index: 4
   width: 900
-  where: 'ISO = "DEU"'
-  codes_file: de.tsv
+  where: 'ISO = "ESP" AND NAME_1 NOT IN ("Canillo", "Ceuta", "Melilla")'
+  codes_file: es.tsv
   simplify_tolerance: 300
-  name: de
+  name: es
   input_file_encoding: iso-8859-1
 map_params_variants:
   - projection: mill
