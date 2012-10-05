@@ -10,6 +10,7 @@ js_assets:
   <figure>
     <div id="world-map-gdp" style="width: 720px; height: 400px"></div>
     <script>
+      //@code_start
       $(function(){
         $('#world-map-gdp').vectorMap({
           map: 'world_mill_en',
@@ -25,6 +26,9 @@ js_assets:
           }
         });
       });
+      //@code_end
     </script>
   </figure>
+  <p>Full code of an example:</p>
+  <pre class="syntax"><code class="language-javascript"><%= import_code('@code') %></code></pre>
 </article>

@@ -11,6 +11,7 @@ js_assets:
     <p><a class="link-button" id="update-colors-button" href="">Update colors</a></p>
     <div id="map" style="width: 720px; height: 600px"></div>
     <script>
+      //@code_start
       $(function(){
         var palette = ['#66C2A5', '#FC8D62', '#8DA0CB', '#E78AC3', '#A6D854'];
             generateColors = function(){
@@ -39,6 +40,9 @@ js_assets:
           map.series.regions[0].setValues(generateColors());
         });
       })
+      //@code_end
     </script>
   </figure>
+  <p>Full code of an example:</p>
+  <pre class="syntax"><code class="language-javascript"><%= import_code('@code') %></code></pre>
 </article>

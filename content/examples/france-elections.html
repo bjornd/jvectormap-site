@@ -29,6 +29,7 @@ js_assets:
       </div>
     </p>
     <script>
+      //@code_start
       $(function(){
         $.getJSON('/data/france-elections.json', function(data){
           new jvm.WorldMap({
@@ -61,7 +62,10 @@ js_assets:
             }
           });
         });
-      })
+      });
+      //@code_end
     </script>
   </figure>
+  <p>Full code of an example:</p>
+  <pre class="syntax"><code class="language-javascript"><%= import_code('@code') %></code></pre>
 </article>

@@ -106,6 +106,17 @@ def get_jvectormap_commit_hash
   return `git submodule | grep jvectormap`.strip.split(' ').shift
 end
 
+#Import several lines from another file.
+def import_code(link)
+  from_label = '//'+link+'_start'
+  to_label = '//'+link+'_end'
+  from = @item.raw_content.index(from_label)+from_label.length
+  to = @item.raw_content.index(to_label)-1
+  result = @item.raw_content[from..to]
+  indent_length = result.match(/^\n +/m)[0].length-1
+  return result.gsub(/\n {#{indent_length}}/, "\n")[1..-1]
+end
+
 #converts number of bytes to human-readable format, code is from
 #http://www.ruby-forum.com/topic/92075
 def numer_to_human_size(size)

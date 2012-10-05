@@ -12,6 +12,7 @@ js_assets:
     <div id="world-map-gdp" style="width: 720px; height: 400px"></div>
     <div id="slider" style="width: 280px; margin: 10px"></div>
     <script>
+      //@code_start
       $(function(){
         $.getJSON('/data/us-unemployment.json', function(data){
           var val = 2009;
@@ -75,6 +76,7 @@ js_assets:
           });
         });
       });
+      //@code_end
     </script>
   </figure>
 </article>

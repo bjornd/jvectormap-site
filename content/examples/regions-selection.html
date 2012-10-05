@@ -7,10 +7,11 @@ js_assets:
   - /js/json2.js
 ---
 <article class="format-standard">
-  <p>The following example demonstrates the feature of jVectorMap that allows selection of regions and/or markers by user or programmatically. Specific styles could be assigned for the selected items . User selection is saved between page reloads in the local storage.</p>
+  <p>The following example demonstrates the feature of jVectorMap that allows selection of regions and/or markers by user or programmatically. Specific styles could be assigned for the selected items. User selection is saved between page reloads in the local storage.</p>
   <figure>
     <div id="map" style="width: 720px; height: 600px"></div>
     <script>
+      //@code_start
       $(function(){
         var map,
             markers = [
@@ -87,6 +88,9 @@ js_assets:
         map.setSelectedRegions( JSON.parse( window.localStorage.getItem('jvectormap-selected-regions') || '[]' ) );
         map.setSelectedMarkers( JSON.parse( window.localStorage.getItem('jvectormap-selected-markers') || '[]' ) );
       });
+      //@code_end
     </script>
   </figure>
+  <p>Full code of an example:</p>
+  <pre class="syntax"><code class="language-javascript"><%= import_code('@code') %></code></pre>
 </article>
