@@ -1,0 +1,44 @@
+---
+title: Random colors
+order: 6
+submenu: true
+js_assets:
+  - /js/jquery-jvectormap-es-merc-en.js
+---
+<article class="format-standard">
+  <figure>
+    <p>The following example demonstrates how to set colors directly for the map. The map is painted to the random colors upon loading. You can click "Update colors" to generate new colors for the map.</p>
+    <p><a class="link-button" id="update-colors-button" href="">Update colors</a></p>
+    <div id="map" style="width: 720px; height: 600px"></div>
+    <script>
+      $(function(){
+        var palette = ['#66C2A5', '#FC8D62', '#8DA0CB', '#E78AC3', '#A6D854'];
+            generateColors = function(){
+              var colors = {},
+                  key;
+
+              for (key in map.regions) {
+                colors[key] = palette[Math.floor(Math.random()*palette.length)];
+              }
+              return colors;
+            },
+            map;
+
+        map = new jvm.WorldMap({
+          map: 'es_merc_en',
+          container: $('#map'),
+          series: {
+            regions: [{
+              attribute: 'fill'
+            }]
+          }
+        });
+        map.series.regions[0].setValues(generateColors());
+        $('#update-colors-button').click(function(e){
+          e.preventDefault();
+          map.series.regions[0].setValues(generateColors());
+        });
+      })
+    </script>
+  </figure>
+</article>
