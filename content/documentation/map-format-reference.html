@@ -1,0 +1,64 @@
+---
+title: Map format reference
+order: 4
+submenu: true
+---
+<article class="format-standard">
+    <dl>
+        <dt>width / height</dt>
+        <dd>Both parameters are required. These parameters describe the native dimensions of the map in pixels. All the coordinates used in paths are considerate to be inside of the bounding box described with the provided width and height.</dd>
+        <dt>paths</dt>
+        <dd>This required parameter describes the regions of which the map consists using SVG paths. This is a JS object which keys are region codes and values are also objects which contain two string parameters: <code>name</code> and <code>path</code>. The latter uses <a href="http://www.w3.org/TR/SVG/paths.html#PathData">SVG path data</a> syntax to describe the shape of the region. Here is an example of US map:
+<pre class="syntax"><code class="language-javascript">
+paths: {
+    US-AK: {
+        name: "Alaska",
+        path: "M89.36,517.03l0.84,0.08l0.09,0.36l-0.3..."
+    },
+    US-AL: {
+        name: "Alabama",
+        path: "M608.66,337.47l25.17,-2.91l19.4..."
+    },
+    US-AR: {
+        name: "Arkansas",
+        path: "M498.73,376.99l-1.42,-38.01l-4.48,-23.98l37.68..."
+    },
+    ...
+}
+</pre></code>
+    </dd>
+    <dt>projection</dt>
+    <dd>
+        This parameter is required in case you want to plot the markers on the map by latitude and longitude. This is an object which has two parameters:
+        <ul>
+            <li><code>centralMeridian</code> - number expressed in degrees. Non-zero value is used to generate some maps where regions crosses the standard zero meridian.</li>
+            <li><code>type</code> - type of the projection used to generate the map. At the moment the following projection are supported by the client side: <a href="http://en.wikipedia.org/wiki/Miller_cylindrical_projection">Miller Cylindrical projection</a>, <a href="http://en.wikipedia.org/wiki/Mercator_projection">Mercator projection</a>, <a href="http://mathworld.wolfram.com/AlbersEqual-AreaConicProjection.html">Albers Equal-Area Conic projection</a> and <a href="http://mathworld.wolfram.com/LambertConformalConicProjection.html">Lambert Conformal Conic projection</a>. </li>
+        </ul>
+        Here is an example of projection parameter for the US map:
+<pre class="syntax"><code class="language-javascript">
+projection: {
+    centralMeridian: -100,
+    type: "aea"
+}
+</pre></code>
+        </dd>
+        <dt>insets</dt>
+        <dd>Insets are used to present some distant territories without big increase of the map scale. For instance Alaska and Hawaii are usually places on the map of US in corners or bellow the mainland. This parameter is also optional and used only when it's necessary to plot markers on the map based on the latitude and longitude of the point. Actually each item of <code>insets</code> array just translates a rectangle on the map to the real projected coordinates expressed in meters. Here is an example of inset for Alaska on the US map:
+<pre class="syntax"><code class="language-javascript">
+insets: [{
+    "left": 0
+    "top": 440,
+    "width": 220,
+    "height": 147
+    "bbox":[{
+        "y": -8441281.712315228,
+        "x": -5263934.893342895
+    },{
+        "y": -6227992.545028123,
+        "x": -1949631.2950683108
+    }
+}]
+</pre></code>
+        </dd>
+    </dl>
+</article>
