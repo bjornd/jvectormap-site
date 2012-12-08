@@ -26,15 +26,15 @@ paths: {
     ...
 }
 </pre></code>
-    </dd>
-    <dt>projection</dt>
-    <dd>
-        This parameter is required in case you want to plot the markers on the map by latitude and longitude. This is an object which has two parameters:
-        <ul>
-            <li><code>centralMeridian</code> - number expressed in degrees. Non-zero value is used to generate some maps where regions crosses the standard zero meridian.</li>
-            <li><code>type</code> - type of the projection used to generate the map. At the moment the following projection are supported by the client side: <a href="http://en.wikipedia.org/wiki/Miller_cylindrical_projection">Miller Cylindrical projection</a>, <a href="http://en.wikipedia.org/wiki/Mercator_projection">Mercator projection</a>, <a href="http://mathworld.wolfram.com/AlbersEqual-AreaConicProjection.html">Albers Equal-Area Conic projection</a> and <a href="http://mathworld.wolfram.com/LambertConformalConicProjection.html">Lambert Conformal Conic projection</a>. </li>
-        </ul>
-        Here is an example of projection parameter for the US map:
+        </dd>
+        <dt>projection</dt>
+        <dd>
+            This parameter is required in case you want to plot the markers on the map by latitude and longitude. This is an object which has two parameters:
+            <ul>
+                <li><code>centralMeridian</code> - number expressed in degrees. Non-zero value is used to generate some maps where regions crosses the standard zero meridian.</li>
+                <li><code>type</code> - type of the projection used to generate the map. At the moment the following projection are supported by the client side: <a href="http://en.wikipedia.org/wiki/Miller_cylindrical_projection">Miller Cylindrical projection</a>, <a href="http://en.wikipedia.org/wiki/Mercator_projection">Mercator projection</a>, <a href="http://mathworld.wolfram.com/AlbersEqual-AreaConicProjection.html">Albers Equal-Area Conic projection</a> and <a href="http://mathworld.wolfram.com/LambertConformalConicProjection.html">Lambert Conformal Conic projection</a>. </li>
+            </ul>
+            Here is an example of projection parameter for the US map:
 <pre class="syntax"><code class="language-javascript">
 projection: {
     centralMeridian: -100,
