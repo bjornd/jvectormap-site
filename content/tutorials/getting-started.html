@@ -65,7 +65,7 @@ var gdpData = {
               normalizeFunction: 'polynomial'
             }]
           },
-          onLabelShow: function(e, el, code){
+          onRegionLabelShow: function(e, el, code){
             el.html(el.html()+' (GDP - '+gdpData[code]+')');
           }
         });
@@ -83,7 +83,7 @@ $('#world-map-gdp').vectorMap({
       normalizeFunction: 'polynomial'
     }]
   },
-  onLabelShow: function(e, el, code){
+  onRegionLabelShow: function(e, el, code){
     el.html(el.html()+' (GDP - '+gdpData[code]+')');
   }
 });
