@@ -6,7 +6,7 @@ js_assets:
   - /js/mall-map.js
 ---
 <article class="format-standard">
-  <p>Example of custom map created from SVG using converter available <a href="">here</a>.</p>
+  <p>Example of custom map created from SVG using converter available <a href="">here</a>. Please note that if you use map generated from SVG you need to position markers by pixel coordinates, not by latitude and longitude as in case of map generated from GIS data.</p>
   <figure>
     <div id="mall-map" style="width: 720px; height: 300px"></div>
     <script>
@@ -15,6 +15,23 @@ js_assets:
         $('#mall-map').vectorMap({
           map: 'mall',
           backgroundColor: 'transparent',
+          markers: [{
+            coords: [60, 110],
+            name: 'Escalator 1',
+            style: {fill: 'yellow'}
+          },{
+            coords: [260, 95],
+            name: 'Escalator 2',
+            style: {fill: 'yellow'}
+          },{
+            coords: [434, 95],
+            name: 'Escalator 3',
+            style: {fill: 'yellow'}
+          },{
+            coords: [634, 110],
+            name: 'Escalator 4',
+            style: {fill: 'yellow'}
+          }],
           series: {
             regions: [{
               values: {
