@@ -4,156 +4,80 @@ order: 3
 submenu: true
 ---
 <article class="format-standard">
-    <h2>Where to download public map data</h2>
-
+  <h3>Requirements</h3>
+  <p>In order to run the converter you need python version 2.7 or later and the following python packages:</p>
+  <ul>
+    <li><a href="http://pypi.python.org/pypi/GDAL/">GDAL<a></li>
+    <li><a href="http://pypi.python.org/pypi/Shapely/1.2.16">Shapely</a></li>
+  </ul>
+  <h3>General usage</h3>
+    <p>Program synopsis is <code>converter.py [option]... &lt;input_file&gt; &lt;output_file&gt;</code>, also run <code>converter.py --help</code> for details</p>
+    <p>Available options are:</p>
     <ul>
-    <li><a href="http://jvectormap.com/maps/">jVectorData ready-to-go maps</a></li>
-    <li><a href="http://www.naturalearthdata.com/downloads/">Natural Earth map data</a></li>
-    </ul><h2>Required packages for converter.py</h2>
-
-    <p><strong>Note:</strong> Following list uses package names for a gentoo linux system.</p>
-
-    <ul>
-    <li>dev-lang/python &lt;= 2.x</li>
-    <li>sci-libs/gdal  <code>USE="python geos"</code>
-
-    <ul>
-    <li>sci-libs/geos  <code>USE="python"</code>
-    </li>
+      <li><code>input_file</code><br>
+        The input file, usually an <code>*.shp</code> or other vector GIS format supported by GDAL.</li>
+      <li><code>output_file</code><br>
+        The resulting jVectorMap file.</li>
+      <li><code>--country_code_index</code> (int, 0)<br>
+        Field (index is zero-based) of layer-feature that will be used as <em>code</em> to uniquely identify a region in jVectorMap. You can determine the index with tools like <code>ogrinfo</code>. Beware that the field <strong>must</strong> be unique for all features, otherwise the map will have missing regions. </li>
+      <li><code>--country_name_index</code> (int, 1)<br>
+        Field (index is zero-based) of layer-feature that will be used as <em>label</em> for a region in jVectorMap. You can determine the index with tools like <code>ogrinfo</code>. Again, beware that even this field <strong>must</strong> be unique for all features (due to implementation details of <code>converter.py</code>), otherwise the map will have missing regions.</li>
+      <li><code>--codes_file</code> (str, "")<br>
+        Use country codes from a <a href="http://en.wikipedia.org/wiki/Tab-separated_values">tab-separated values file</a> (UTF-8 encoded) with a code/name mapping. The mapping is specified per line using the format <code>&lt;code&gt;&lt;TAB&gt;&lt;name&gt;</code>, e.g. <code>DE  Germany</code>. Beware that for each feature there must be a matching code/name mapping.</li>
+      <li><code>--where</code> (str, "")<br>
+        Optional select criteria, e.g. "ISO = 'DEU'" for only selecting data of Germany.</li>
+      <li><code>--width</code> (float)<br>
+        Specify the width affecting the scale of the resulting SVG.</li>
+      <li><code>--insets</code> (str)<br>
+        Allows to specify insets as JSON. Each inset needs to contain an array <code>codes</code>, which defines the features to use. See more information in jVectorMap <a href="/documentation/map-format-reference/">file format description</a>.</li>
+      <li><code>--minimal_area</code> (float, 0)<br>
+        Area in square meters. This option allows to filter out polygons or the whole regions whose size is smaller than this value.</li>
+      <li><code>--buffer_distance</code> (float, -0.4)<br>
+        Distance in pixels. This option allows to make a visual borders between regions by cutting out their edges.</li>
+      <li><code>--simplify_tolerance</code> (float)<br>
+        To what degree the vector paths may be simplified. Greater values result in less information/details but smaller file size. If this option is not specified or zero, simplification is not being applied.</li>
+      <li><code>--viewport</code> (str)<br>
+        Use specified rectangle for area clipping. The format is <code>--viewport "&lt;lng1&gt; &lt;lat1&gt; &lt;lng2&gt; &lt;lat2&gt;"</code>, e.g. <code>--viewport "9.6 48.1 11.3 51.4"</code>.</li>
+      <li><code>--longitude0</code> (str, "0")<br>
+        The longitude of the horizontal center of a coordinate system (also called <em>central meridian</em>).</li>
+      <li><code>--projection</code> (str, "mill")<br>
+        The <a href="http://en.wikipedia.org/wiki/Map_projection">map projection</a> to use. Projection names are compatible to those of <a href="http://svn.osgeo.org/metacrs/proj/trunk/proj/src/pj_list.h">PROJ.4</a>. Currently implemented projections are
+        <code>merc</code> (Mercator), <code>mill</code> (Miller Cylindrical), <code>aea</code> (Albers Equal Area), <code>lcc</code> (Lambert Conformal Conic)
+      </li>
+      <li><code>--name</code> (str, "world")<br>
+        Name of the map, e.g. "de". This value will be stored in JSON for informational purpose.</li>
+      <li><code>--language</code> (str, "en")<br>
+        Two-letter language code, e.g. "it". This value will be stored in JSON for informational purpose.</li>
+      <li><code>--input_file_encoding</code> (str, "iso-8859-1")<br>
+        In which encoding the input data is stored, e.g. "utf-8".</li>
+      <li><code>--precision</code> (int, 2)<br>
+        Number of decimal digits after the point. Higher values are recommended if you need a high resolution map.</li>
     </ul>
-    </li>
-    <li>dev-python/anyjson</li>
-    <li>
-    <p>Manual install: <a href="http://pypi.python.org/pypi/Shapely">Shapely</a>  </p>
-
-    <pre><code> $ tar xf Shapely-*.tar.gz &amp;&amp; cd Shapely-*
-     $ python2 setup.py build
-     # python2 setup.py install
+    <h3>Generating maps (examples)</h3>
+    <pre class="syntax"><code class="language-bash">
+$ python2 converter.py --width 900 --longitude0 11.5 --name world --projection mill --language en public_map_data.shp map_world_mill_en.js
     </code></pre>
-    </li>
-    </ul><h2>General usage of <code>converter.py</code>
-    </h2>
-
-    <ul>
-    <li>
-    <a href="https://github.com/bjornd/jvectormap/blob/master/README.md">README.md</a>, which includes a conversion example</li>
-    <li>Program synopsis is <code>converter.py [option]... &lt;input_file&gt; &lt;output_file&gt;</code> , also run <code>converter.py --help</code> for details</li>
-    <li>The default values of all command line options can be looked up in the <code>converter.py</code> source code, e.g. <code>parser.add_argument('--name', type=str, default='world')</code>
-    </li>
-    </ul><h3>
-    <code>converter.py</code> arguments</h3>
-
-    <ul>
-    <li>
-    <code>input_file</code><br>
-    The input file, usually a <code>*.shp</code>.</li>
-    <li>
-    <code>output_file</code><br>
-    The resulting jVectorMap file (SVG-path as JSON) <code>*.js</code>.</li>
-    <li>
-    <code>--scale</code>                  (float)<br><strong>Note</strong>: This option seems to be unused in the converter script! See option <code>--width</code>.</li>
-    <li>
-    <code>--country_code_index</code>     (int, 0)<br>
-    Field (index is zero-based) of layer-feature that will be used as <em>code</em> to uniquely identify a region in jVectorMap. You can determine the index with tools like <code>ogrinfo</code>. Beware that the field <strong>must</strong> be unique for all features, otherwise the map will have missing regions. </li>
-    <li>
-    <code>--country_name_index</code>     (int, 1)<br>
-    Field (index is zero-based) of layer-feature that will be used as <em>label</em> for a region in jVectorMap. You can determine the index with tools like <code>ogrinfo</code>. Again, beware that even this field <strong>must</strong> be unique for all features (due to implementation details of <code>converter.py</code>), otherwise the map will have missing regions.</li>
-    <li>
-    <code>--codes_file</code>             (str, "")<br>
-    Use country codes from a <a href="http://en.wikipedia.org/wiki/Tab-separated_values">tab-separated values file</a> (UTF-8 encoded) with a code/name mapping. The mapping is specified per line using the format <code>&lt;code&gt;&lt;TAB&gt;&lt;name&gt;</code>, e.g. <code>DE  Germany</code>. Beware that for each feature there must be a matching code/name mapping.</li>
-    <li>
-    <code>--where</code>                  (str, "")<br>
-    Optional select criteria, e.g. "ISO = 'DEU'" for only selecting data of Germany.</li>
-    <li>
-    <code>--width</code>                  (float)<br>
-    Specify the width affecting the scale of the resulting SVG.</li>
-    <li>
-    <code>--insets</code>                 (str)<br><strong>FIXME</strong>: Yet untested, clarification from the author needed!<br>
-    Allows to specify additional insets as JSON. Each inset needs to contain an array <code>codes</code>, which defines the features to use.</li>
-    <li>
-    <code>--minimal_area</code>           (float)<br><strong>FIXME</strong>: No clue what this option is for!</li>
-    <li>
-    <code>--buffer_distance</code>        (float, -0.4)<br><strong>FIXME</strong>: No clue what this option is for!</li>
-    <li>
-    <code>--simplify_tolerance</code>     (float)<br>
-    To what degree the vector paths may be simplified. Greater values result in less information/details but smaller file size. If this option is not specified or zero, simplification is not being applied.</li>
-    <li>
-    <code>--viewport</code>               (str)<br>
-    Use specified rectangle for area clipping. The format is <code>--viewport "&lt;lng1&gt; &lt;lat1&gt; &lt;lng2&gt; &lt;lat2&gt;"</code>, e.g. <code>--viewport "9.6 48.1 11.3 51.4"</code>.</li>
-    <li>
-    <code>--longitude0</code>             (str, "0")<br>
-    The longitude of the horizontal center of a coordinate system (also called <em>central meridian</em>).<br><strong>Note</strong>: The <a href="https://github.com/bjornd/jvectormap/blob/88d4d9080db02028560aa1b6bcdac19ac7bbbbc6/README.md">README.md@88d4d9</a> incorrectly states that the longitude can be given as string ("10W") while its type is <code>float</code>. There is already <a href="https://github.com/datag/jvectormap/commit/212da268fe7476bbe4caee9bcb76fe0bc5cef2a8">a pull request on this commit</a>.</li>
-    <li>
-    <code>--projection</code>             (str, "mill")<br>
-    The <a href="http://en.wikipedia.org/wiki/Map_projection">map projection</a> to use. Projection names are compatible to those of <a href="http://svn.osgeo.org/metacrs/proj/trunk/proj/src/pj_list.h">PROJ.4</a>. Currently implemented projections are
-
-    <ul>
-    <li>
-    <code>merc</code> (Mercator)</li>
-    <li>
-    <code>mill</code> (Miller Cylindrical)</li>
-    <li>
-    <code>aea</code> (Albers Equal Area)</li>
-    <li>
-    <code>lcc</code> (Lambert Conformal Conic)</li>
-    </ul>
-    </li>
-    <li>
-    <code>--name</code>                   (str, "world")<br>
-    Name of the map, e.g. "Germany". This value will be stored in JSON for informational purpose.</li>
-    <li>
-    <code>--language</code>               (str, "en")<br>
-    Two-letter language code, e.g. "de". This value will be stored in JSON for informational purpose.</li>
-    <li>
-    <code>--input_file_encoding</code>    (str, "iso-8859-1")<br>
-    In which encoding the input data is stored, e.g. "utf-8".</li>
-    <li>
-    <code>--precision</code>              (int, 2)</li>
-    </ul><h2>Generating maps (examples)</h2>
-
-    <pre><code>$ python2 converter.py --width 900 --longitude0 11.5 --name world --projection mill --language en public_map_data.shp map_world_mill_en.js
-    </code></pre>
-
+    <p></p>
+    <p></p>
     <h3>Generate a map of Germany</h3>
-
-    <pre><code>$ python2 converter.py \
-      --width 1000 \
-      --country_name_index 4 \
-      --country_code_index 30 \
-      --longitude0 10.71 \
-      --where "ISO = 'DEU'" \
-      --projection aea \
-      --name datag_germany \
-      --language en \
-      10m-admin-1-states-provinces-shp/ne_10m_admin_1_states_provinces_shp.shp \
-      ../tests/assets/jquery-jvectormap-data-germany-aea-en.js
+    <pre class="syntax"><code class="language-bash">
+$ python2 converter.py \
+--width 1000 \
+--country_name_index 4 \
+--country_code_index 30 \
+--longitude0 10.71 \
+--where "ISO = 'DEU'" \
+--projection aea \
+--name datag_germany \
+--language en \
+10m-admin-1-states-provinces-shp/ne_10m_admin_1_states_provinces_shp.shp \
+../tests/assets/jquery-jvectormap-data-germany-aea-en.js
     </code></pre>
-
-    <h2>Acquiring map data manually</h2>
-
+    <p></p>
+    <p></p>
+    <h3>Where to download public map data</h3>
     <ul>
-    <li><a href="http://en.wikipedia.org/wiki/Shapefile">Shapefile format</a></li>
-    <li><p>Tool <a href="http://www.gdal.org/ogrinfo.html">ogrinfo</a> (which makes use of <a href="http://en.wikipedia.org/wiki/GDAL">GDAL</a>)</p></li>
-    <li>
-    <p>Support-test and list layers</p>
-
-    <pre><code>$ ogrinfo ne_10m_admin_1_states_provinces_shp.shp
-    INFO: Open of `ne_10m_admin_1_states_provinces_shp.shp'
-          using driver `ESRI Shapefile' successful.
-    1: ne_10m_admin_1_states_provinces_shp (Polygon)
-    </code></pre>
-    </li>
-    <li>
-    <p>Get all data of layer by layer name</p>
-
-    <pre><code>$ ogrinfo -ro ne_10m_admin_1_states_provinces_shp.shp ne_10m_admin_1_states_provinces_shp
-    </code></pre>
-    </li>
-    <li>
-    <p>Limiting results with provided <code>WHERE</code>-Clause using argument <code>-where &lt;condition&gt;</code>. In this example, only list rows where field <code>ISO</code> is <code>DEU</code> (Germany).</p>
-
-    <pre><code>$ ogrinfo -ro -where "ISO = 'DEU'" ne_10m_admin_1_states_provinces_shp.shp ne_10m_admin_1_states_provinces_shp
-    </code></pre>
-    </li>
+      <li><a href="http://www.naturalearthdata.com/downloads/">Natural Earth</a></li>
+      <li><a href="http://www.gadm.org/country">Global Administrative Areas</a></li>
     </ul>
 </article>
