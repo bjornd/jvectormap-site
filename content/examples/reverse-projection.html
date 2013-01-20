@@ -1,0 +1,52 @@
+---
+title: Reverse projection
+order: 8
+submenu: true
+js_assets:
+  - /js/jquery-jvectormap-us-lcc-en.js
+---
+<article class="format-standard">
+  <p>This example demonstrates the ability to convert pixel coordinates on map to the repsective latitude and longitude coordinates. Click on the map adds marker to the clicked point, click on the added marker removes it.</p>
+  <figure>
+    <div id="map" style="width: 720px; height: 500px"></div>
+    <script>
+      //@code_start
+      $(function(){
+        var map,
+            markerIndex = 0,
+            markersCoords = {};
+
+        map = new jvm.WorldMap({
+            map: 'us_lcc_en',
+            markerStyle: {
+              initial: {
+                fill: 'red'
+              }
+            },
+            container: $('#map'),
+            onMarkerLabelShow: function(e, label, code){
+              map.label.text(markersCoords[code].lat.toFixed(2)+', '+markersCoords[code].lng.toFixed(2));
+            },
+            onMarkerClick: function(e, code){
+              map.removeMarkers([code]);
+              map.label.hide();
+            }
+        });
+
+        map.container.click(function(e){
+            var latLng = map.pointToLatLng(e.offsetX, e.offsetY),
+                targetCls = $(e.target).attr('class');
+
+            if (latLng && (!targetCls || (targetCls && $(e.target).attr('class').indexOf('jvectormap-marker') === -1))) {
+              markersCoords[markerIndex] = latLng;
+              map.addMarker(markerIndex, {latLng: [latLng.lat, latLng.lng]});
+              markerIndex += 1;
+            }
+        });
+      });
+      //@code_end
+    </script>
+  </figure>
+  <p>Full code of an example:</p>
+  <pre class="syntax"><code class="language-javascript"><%= import_code('@code') %></code></pre>
+</article>
