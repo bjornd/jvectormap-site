@@ -261,6 +261,11 @@ px      68    160    252    */
 	
 	#slider-holder{ padding-bottom: 22px;}
 	
+	.demo-map{
+      width: 100%;
+    }
+    
+	
 	.home-slider { 
 		width: 320px; 
 		padding: 0px;
@@ -556,6 +561,10 @@ px      68    160    252    344    436    */
 	 /* home slider */
 	
 	.home-slider { width: 480px; }
+	
+	.demo-map{
+      width: 100%;
+    }
 	
 	#slider-holder #headline{
 		margin-left: 0px;
