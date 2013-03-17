@@ -1,13 +1,15 @@
 ---
-title: Ukraine
+title: Russia Regions
 submenu: true
 map_params:
-  data_file: gadm/UKR_adm_s/UKR_adm1.shp
-  country_name_index: 4
+  data_file: 10m-russia-regions-fixed/10m-russia-regions-fixed.shp
+  country_name_index: 0
   width: 900
-  codes_file: ua.tsv
+  codes_file: ru-regions.tsv
+  simplify_tolerance: 2996
   buffer_distance: -0.2
-  name: ua
+  name: ru_regions
+  longitude0: 11.5
 map_params_variants:
   - projection: mill
   - projection: merc

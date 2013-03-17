@@ -1,15 +1,15 @@
 ---
-title: Japan
+title: Japan Regions
 submenu: true
 map_params:
-  data_file: ne_10m_admin_1_states_provinces_shp/ne_10m_admin_1_states_provinces_shp.shp
-  country_name_index: 12
+  data_file: 10m-japan-regions-fixed/10m-japan-regions-fixed.shp
+  country_name_index: 0
   width: 900
-  where: 'iso_a2 = "JP" AND name NOT IN ("JPN-11 (  remainder)", "JPN-99 (  minor island)")'
-  codes_file: jp.tsv
+  codes_file: jp-regions.tsv
   simplify_tolerance: 500
   buffer_distance: -0.3
-  name: jp
+  name: jp_regions
+  longitude0: 11.5
   minimal_area: 10000000
 map_params_variants:
   - projection: mill

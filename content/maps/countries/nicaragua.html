@@ -1,16 +1,15 @@
 ---
-title: Japan
+title: Nicaragua
 submenu: true
 map_params:
-  data_file: ne_10m_admin_1_states_provinces_shp/ne_10m_admin_1_states_provinces_shp.shp
-  country_name_index: 12
+  data_file: gadm/NIC_adm/NIC_adm1.shp
+  country_name_index: 4
   width: 900
-  where: 'iso_a2 = "JP" AND name NOT IN ("JPN-11 (  remainder)", "JPN-99 (  minor island)")'
-  codes_file: jp.tsv
-  simplify_tolerance: 500
+  where: 'TYPE_1 != "Water Body"'
+  codes_file: ni.tsv
+  simplify_tolerance: 100
   buffer_distance: -0.3
-  name: jp
-  minimal_area: 10000000
+  name: ni
 map_params_variants:
   - projection: mill
   - projection: merc
@@ -19,4 +18,4 @@ data_params:
   license: public domain
   license_link: http://www.naturalearthdata.com/about/terms-of-use/
 ---
-<%= render 'map', height: 600 %>
+<%= render 'map' %>
