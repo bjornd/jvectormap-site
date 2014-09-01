@@ -1,12 +1,13 @@
 # All files in the 'lib' directory will be loaded
 # before nanoc starts compiling.
 
+require 'json'
+
 def map_preprocessing(item)
   item[:map_params_variants] ||= [Hash.new]
   params = item[:map_params]
   params[:projection] ||= 'mill'
   params[:language] ||= 'en'
-  data_file = @config[:maps_path]+'/'+params.delete(:data_file)
 
   item[:js_assets] = []
 
@@ -18,22 +19,23 @@ def map_preprocessing(item)
     if variant_params[:codes_file]
       variant_params[:codes_file] = @config[:maps_path] + '/codes/' + variant_params[:codes_file]
     end
-    variant_params.each { |key, value| converter_params << '--'+key.to_s+" '"+value.to_s+"'" }
+    puts item[:title]
+    variant_params[:input_file] =  @config[:maps_path]+'/'+variant_params[:input_file]
     if @config[:maps_default_encoding] && !variant_params[:input_file_encoding]
-      converter_params << '--input_file_encoding ' + @config[:maps_default_encoding]
+      variant_params[:input_file_encoding] = @config[:maps_default_encoding]
     end
 
-    map_id = Digest::MD5.hexdigest(data_file+converter_params.join)
+    map_id = Digest::MD5.hexdigest(variant_params.to_json)
     map_name = 'jquery-jvectormap-'+variant_params[:name]+'-'+variant_params[:projection]+'-'+variant_params[:language]
     output_file_path = 'tmp/'+map_id+'.js'
+    variant_params['output_file'] = output_file_path
+    converter_params = variant_params.to_json
 
     if !File.exists? output_file_path
       converter_command =
+          'echo \''+converter_params+'\' | '+
           'python '+
-          'external/jvectormap/converter/converter.py '+
-          data_file+' '+
-          output_file_path+' '+
-          converter_params.join(' ')
+          'external/jvectormap/converter/converter.py '
       system(converter_command)
     end
 

@@ -2,13 +2,14 @@
 title: Australia
 submenu: true
 map_params:
-  data_file: 10m-admin-1-states-provinces-lakes-shp/ne_10m_admin_1_states_provinces_lakes_shp.shp
-  country_name_index: 4
+  input_file: ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
+  name_field: name
+  code_field: code_hasc
   width: 900
-  where: 'ISO = "AUS" AND NAME_1 != "Jervis Bay Territory"'
-  codes_file: au.tsv
+  where: 'iso_a2 = "AU"'
   simplify_tolerance: 2000
   name: au
+  emulate_longitude0: false
 map_params_variants:
   - projection: mill
   - projection: merc

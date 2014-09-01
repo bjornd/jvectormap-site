@@ -2,12 +2,13 @@
 title: New York City
 submenu: true
 map_params:
-  data_file: new-york-boroughs/nybb.shp
-  country_name_index: 1
-  country_code_index: 0
+  input_file: new-york-boroughs/nybb.shp
+  name_field: BoroName
+  code_field: BoroCode
   width: 900
   simplify_tolerance: 100
   name: us-ny-newyork
+  emulate_longitude0: false
 data_params:
   source: http://www.nyc.gov/html/dcp/html/bytes/dwndistricts.shtml#bcd
   license: public domain
