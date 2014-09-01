@@ -2,14 +2,14 @@
 title: Canada
 submenu: true
 map_params:
-  data_file: 10m-admin-1-states-provinces-lakes-shp/ne_10m_admin_1_states_provinces_lakes_shp.shp
-  country_name_index: 4
+  input_file: ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
+  name_field: name
+  code_field: code_hasc
   width: 900
-  where: 'ISO = "CAN"'
-  codes_file: ca.tsv
-  simplify_tolerance: 3000
+  where: 'iso_a2 = "CA"'
+  simplify_tolerance: 1000
   name: ca
-  input_file_encoding: iso-8859-1
+  emulate_longitude0: false
 map_params_variants:
   -
     projection: lcc

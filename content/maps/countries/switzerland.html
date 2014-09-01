@@ -2,13 +2,14 @@
 title: Switzerland
 submenu: true
 map_params:
-  data_file: 10m-switzerland-fixed/10m-switzerland-fixed.shp
-  country_name_index: 0
+  input_file: ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
+  name_field: name
+  code_field: code_hasc
   width: 900
-  codes_file: ch.tsv
-  simplify_tolerance: 100
+  where: 'iso_a2 = "CH"'
+  simplify_tolerance: 1000
   name: ch
-  input_file_encoding: UTF-8
+  emulate_longitude0: false
 map_params_variants:
   - projection: mill
   - projection: merc

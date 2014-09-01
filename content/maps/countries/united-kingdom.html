@@ -2,12 +2,14 @@
 title: United Kingdom
 submenu: true
 map_params:
-  data_file: 10m-uk-regions-fixed/10m-uk-regions-fixed.shp
-  country_name_index: 0
+  input_file: ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
+  name_field: name
+  code_field: code_hasc
   width: 900
-  codes_file: uk.tsv
-  simplify_tolerance: 500
-  name: uk
+  where: 'iso_a2 = "GB"'
+  simplify_tolerance: 1000
+  name: GB
+  emulate_longitude0: false
 map_params_variants:
   - projection: mill
   - projection: merc

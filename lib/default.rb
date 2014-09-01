@@ -19,7 +19,6 @@ def map_preprocessing(item)
     if variant_params[:codes_file]
       variant_params[:codes_file] = @config[:maps_path] + '/codes/' + variant_params[:codes_file]
     end
-    puts item[:title]
     variant_params[:input_file] =  @config[:maps_path]+'/'+variant_params[:input_file]
     if @config[:maps_default_encoding] && !variant_params[:input_file_encoding]
       variant_params[:input_file_encoding] = @config[:maps_default_encoding]
@@ -58,7 +57,7 @@ def generate_doc
   FileUtils.mkpath('tmp/doc') if !File.exists?('tmp/doc')
   tmpDir = 'tmp/doc/'+hash+'/'
   if !File.exists?(tmpDir)
-    `external/jsdoc/jsdoc -t ../jsdoc_template/ -d #{tmpDir} external/jvectormap/lib/`
+    `external/jsdoc/jsdoc -t ../jsdoc_template/ -d #{tmpDir} external/jvectormap/src/`
   end
 
   Dir.foreach(tmpDir) do |fname|

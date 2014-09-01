@@ -3,14 +3,15 @@ title: Whole World
 order: 1
 submenu: true
 map_params:
-  data_file: 110m-admin-0-countries/ne_110m_admin_0_countries.shp
-  country_code_index: 26
-  country_name_index: 11
+  input_file: ne_110m_admin_0_countries_lakes/ne_110m_admin_0_countries_lakes.shp
+  code_field: iso_a2
+  name_field: name
   width: 900
-  where: 'ISO_A2 != "AQ"'
+  where: 'iso_a2 != "AQ"'
   simplify_tolerance: 1000
   buffer_distance: -0.3
   longitude0: 11.5
+  emulate_longitude0: false
   name: world
 map_params_variants:
   - projection: mill
