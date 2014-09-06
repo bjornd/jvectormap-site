@@ -4,11 +4,23 @@ submenu: true
 map_params:
   input_file: ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
   name_field: name
-  code_field: code_hasc
-  width: 900
+  code_field: adm1_code
   where: 'iso_a2 = "PT"'
   name: pt
   emulate_longitude0: false
+  insets:
+    -
+      codes:
+        - 'PRT-735'
+      width: 400
+      left: -420
+      top: 100
+    -
+      codes:
+        - 'PRT-736'
+      width: 400
+      left: -420
+      top: 600
 map_params_variants:
   - projection: mill
   - projection: merc
