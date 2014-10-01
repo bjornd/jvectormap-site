@@ -2,12 +2,12 @@
 title: New Zealand
 submenu: true
 map_params:
-  data_file: ne_10m_admin_1_states_provinces_shp/ne_10m_admin_1_states_provinces_shp.shp
-  country_name_index: 12
-  where: 'iso_a2 = "NZ" AND name NOT IN ("NZA-00 (N.Z. SubAntarctic Is. aggregation)", "NZC-00 (Chatham Is. aggregation)", "ABW-00 (Aruba aggregation)", "NZL-11 (South I. remainder)", "TKL-11 (Tokelau aggregation)")'
-  width: 900
-  codes_file: nz.tsv
-  simplify_tolerance: 100
+  input_file: ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
+  name_field: name
+  code_field: adm1_code
+  where: 'iso_a2 = "NZ"'
+  longitude0: 10
+  minimal_area: 400000000
   name: nz
 map_params_variants:
   - projection: mill

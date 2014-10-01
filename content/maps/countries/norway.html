@@ -2,13 +2,18 @@
 title: Norway
 submenu: true
 map_params:
-  data_file: 10m-norway-fixed/10m-norway-fixed.shp
-  country_name_index: 0
-  width: 900
-  codes_file: no.tsv
-  insets: '[{"codes": ["NO-21"], "width": 200, "left": 0, "top": 0}]'
-  simplify_tolerance: 1000
+  input_file: ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
+  name_field: name
+  code_field: adm1_code
+  where: 'iso_a2 = "NO" AND type_en IS NOT NULL'
   name: 'no'
+  insets:
+    -
+      codes:
+        - 'NOR-901'
+      width: 240
+      left: 250
+      top: 0
 map_params_variants:
   - projection: mill
   - projection: merc

@@ -2,12 +2,11 @@
 title: Philippines
 submenu: true
 map_params:
-  data_file: 10m-philippines-regions-fixed/10m-philippines-regions-fixed.shp
-  country_name_index: 0
-  width: 900
-  codes_file: ph-regions.tsv
-  simplify_tolerance: 100
-  name: ph_regions
+  input_file: ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
+  name_field: name
+  code_field: adm1_code
+  where: 'iso_a2 = "PH" AND type_en IS NOT NULL'
+  name: ph
 map_params_variants:
   - projection: mill
   - projection: merc

@@ -3,13 +3,11 @@ title: Europe
 order: 1
 submenu: true
 map_params:
-  data_file: 50m-admin-0-countries/ne_50m_admin_0_countries.shp
-  country_code_index: 26
-  country_name_index: 11
-  width: 900
-  where: 'ISO_A3 != "GRL"'
+  input_file: ne_50m_admin_0_countries_lakes/ne_50m_admin_0_countries_lakes.shp
+  code_field: iso_a2
+  name_field: name
+  where: 'iso_a3 != "GRL"'
   viewport: '-26 72.5 40.5 28'
-  simplify_tolerance: 1000
   longitude0: 11.5
   name: europe
 map_params_variants:
