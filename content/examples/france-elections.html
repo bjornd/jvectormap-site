@@ -32,7 +32,7 @@ js_assets:
       //@code_start
       $(function(){
         $.getJSON('/data/france-elections.json', function(data){
-          new jvm.WorldMap({
+          new jvm.Map({
             map: 'fr_merc_en',
             container: $('#map2007'),
             series: {
@@ -47,7 +47,7 @@ js_assets:
             }
           });
 
-          new jvm.WorldMap({
+          new jvm.Map({
             map: 'fr_merc_en',
             container: $('#map2012'),
             series: {
