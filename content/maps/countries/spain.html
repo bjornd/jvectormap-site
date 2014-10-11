@@ -4,17 +4,9 @@ submenu: true
 map_params:
   input_file: ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
   name_field: name
-  code_field: adm1_code
-  where: 'iso_a2 = "ES"'
+  code_field: code_hasc
+  where: 'iso_a2 = "ES" AND code_hasc != "ES.CN"'
   name: es
-  insets:
-    -
-      codes:
-        - ESP-5829
-        - ESP-5842
-      width: 200
-      left: -120
-      top: 550
 map_params_variants:
   - projection: mill
   - projection: merc
