@@ -67,7 +67,7 @@ def generate_doc
     @items << Nanoc3::Item.new(
       itemText,
       {title: itemTile, submenu: true},
-      "/documentation/javascript-api-v1/"+File.basename(tmpDir + fname, '.html')+"/"
+      "/documentation/javascript-api/"+File.basename(tmpDir + fname, '.html')+"/"
     )
   end
 end
