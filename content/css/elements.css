@@ -439,3 +439,69 @@ code {
     .jvm-legend-item-ump {
       background: #4169E1;
     }
+
+.pane-single {
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+  .pane-single h3 {
+    font-size: 120%;
+  }
+
+    .pane-single table tr {
+      border-bottom: 1px solid #ccc;
+    }
+
+    .pane-single table tr:last-child {
+      border: none;
+    }
+
+    .pane-single table td {
+      padding: 4px 15px 4px 0;
+    }
+
+    .pane-single table td:first-child {
+      padding-left: 2px;
+    }
+
+    .pane-single table td:last-child {
+      padding-right: 2px;
+    }
+
+#page-content .pricing-block ul {
+  margin: 0;
+}
+
+  .pricing-block li {
+    list-style: none;
+    float: left;
+    width: 28%;
+    margin: 0 1%;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 10px;
+    height: 220px;
+    position: relative;
+  }
+
+    .pricing-block li h3 {
+      text-align: center;
+      font-size: 16px;
+    }
+
+    .pricing-block li .price {
+      text-align: center;
+      font-size: 24px;
+      color: #d63400;
+      margin-bottom: 15px;
+    }
+
+    .pricing-block .link-button {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+    }

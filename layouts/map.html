@@ -37,15 +37,30 @@
 <pre class="syntax"><code class="language-javascript">
 $('#map').vectorMap({map: '<%= map_params[:name] %>'});
 </code></pre>
-      <% if @item[:data_params] %>
-        <p>
-          This map is based on data available at <a href="<%= @item[:data_params][:source] %>"><%= @item[:data_params][:source] %></a>.
-          <% if @item[:data_params][:license] == 'public domain' %>
-            Data is in <a href="<%= @item[:data_params][:license_link] %>">public domain</a>.
-          <% else %>
-            Data is licensed under the terms of <a href="<%= @item[:data_params][:license_link] %>"><%= @item[:data_params][:license] %></a>.
-          <% end %>
-        <p>
+    </div>
+  <% end %>
+</div>
+<div class="pane-single">
+  <h3>Codes</h3>
+  <table>
+    <% @item[:regions].each_with_index do |region, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= region[:code] %></td>
+        <td><%= region[:name] %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<div class="pane-single">
+  <h3>Data source</h3>
+  <% if @item[:data_params] %>
+    <div>
+      This map is based on data available at <a href="<%= @item[:data_params][:source] %>"><%= @item[:data_params][:source] %></a>.
+      <% if @item[:data_params][:license] == 'public domain' %>
+        Data is in <a href="<%= @item[:data_params][:license_link] %>">public domain</a>.
+      <% else %>
+        Data is licensed under the terms of <a href="<%= @item[:data_params][:license_link] %>"><%= @item[:data_params][:license] %></a>.
       <% end %>
     </div>
   <% end %>

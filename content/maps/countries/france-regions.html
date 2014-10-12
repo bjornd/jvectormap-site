@@ -1,19 +1,19 @@
 ---
-title: Norway
+title: France - Regions
 submenu: true
 map_params:
-  input_file: ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
-  name_field: name
-  code_field: iso_3166_2
-  where: 'iso_a2 = "NO" AND iso_3166_2 IS NOT NULL'
-  name: 'no'
+  input_file: ne_10m_admin_1_states_provinces_lakes_1.4.0/ne_10m_admin_1_states_provinces_lakes_shp.shp
+  name_field: NAME_1
+  code_field: HASC_1
+  where: 'ISO = "FRA" AND HASC_1 IS NOT NULL'
+  name: fr_regions
   insets:
     -
       codes:
-        - 'NO-21'
-      width: 240
-      left: 250
-      top: 0
+        - 'FR-GF'
+      width: 100
+      left: 10
+      top: 500
 map_params_variants:
   - projection: mill
   - projection: merc

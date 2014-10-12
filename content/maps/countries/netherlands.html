@@ -4,8 +4,8 @@ submenu: true
 map_params:
   input_file: ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp
   name_field: name
-  code_field: adm1_code
-  where: 'iso_a2 = "NL" AND type_en != "Special Municipality"'
+  code_field: iso_3166_2
+  where: 'iso_a2 = "NL" AND iso_3166_2 != "NL-BQ1" AND iso_3166_2 != "NL-BQ2" AND iso_3166_2 != "NL-BQ3"'
   name: nl
 map_params_variants:
   - projection: mill
