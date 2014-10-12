@@ -49,6 +49,13 @@ def map_preprocessing(item)
     item[:map_params_variants][index][:name] = variant_params[:name]+'_'+variant_params[:projection]+'_'+variant_params[:language]
 
     item[:js_assets] << '/js/'+map_name+'.js'
+
+    if index == 0
+      map_content = File.read(output_file_path)
+      item[:regions] = JSON.parse(map_content[map_content.index('{') .. map_content.rindex('}')])['paths'].to_a.map do |region|
+        {code: region[0], name: region[1]['name']}
+      end
+    end
   end
 end
 

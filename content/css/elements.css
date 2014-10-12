@@ -439,3 +439,34 @@ code {
     .jvm-legend-item-ump {
       background: #4169E1;
     }
+
+.pane-single {
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+  .pane-single h3 {
+    font-size: 120%;
+  }
+
+    .pane-single table tr {
+      border-bottom: 1px solid #ccc;
+    }
+
+    .pane-single table tr:last-child {
+      border: none;
+    }
+
+    .pane-single table td {
+      padding: 4px 15px 4px 0;
+    }
+
+    .pane-single table td:first-child {
+      padding-left: 2px;
+    }
+
+    .pane-single table td:last-child {
+      padding-right: 2px;
+    }
