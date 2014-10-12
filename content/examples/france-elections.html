@@ -3,7 +3,7 @@ title: France elections
 order: 5
 submenu: true
 js_assets:
-  - /js/jquery-jvectormap-fr-merc-en.js
+  - /js/jquery-jvectormap-fr_regions-merc-en.js
 ---
 <article class="format-standard">
   <figure>
@@ -33,7 +33,7 @@ js_assets:
       $(function(){
         $.getJSON('/data/france-elections.json', function(data){
           new jvm.Map({
-            map: 'fr_merc_en',
+            map: 'fr_regions_merc_en',
             container: $('#map2007'),
             series: {
               regions: [{
@@ -48,7 +48,7 @@ js_assets:
           });
 
           new jvm.Map({
-            map: 'fr_merc_en',
+            map: 'fr_regions_merc_en',
             container: $('#map2012'),
             series: {
               regions: [{

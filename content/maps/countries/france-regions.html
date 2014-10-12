@@ -1,0 +1,25 @@
+---
+title: France - Regions
+submenu: true
+map_params:
+  input_file: ne_10m_admin_1_states_provinces_lakes_1.4.0/ne_10m_admin_1_states_provinces_lakes_shp.shp
+  name_field: NAME_1
+  code_field: HASC_1
+  where: 'ISO = "FRA" AND HASC_1 IS NOT NULL'
+  name: fr_regions
+  insets:
+    -
+      codes:
+        - 'FR-GF'
+      width: 100
+      left: 10
+      top: 500
+map_params_variants:
+  - projection: mill
+  - projection: merc
+data_params:
+  source: http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/
+  license: public domain
+  license_link: http://www.naturalearthdata.com/about/terms-of-use/
+---
+<%= render 'map' %>
