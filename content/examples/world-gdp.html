@@ -21,7 +21,7 @@ js_assets:
               normalizeFunction: 'polynomial'
             }]
           },
-          onLabelShow: function(e, el, code){
+          onRegionTipShow: function(e, el, code){
             el.html(el.html()+' (GDP - '+gdpData[code]+')');
           }
         });

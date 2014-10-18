@@ -45,14 +45,14 @@ js_assets:
                 max: jvm.max(statesValues)
               }]
             },
-            onMarkerLabelShow: function(event, label, index){
+            onMarkerTipShow: function(event, label, index){
               label.html(
                 '<b>'+data.metro.names[index]+'</b><br/>'+
                 '<b>Population: </b>'+data.metro.population[val][index]+'</br>'+
                 '<b>Unemployment rate: </b>'+data.metro.unemployment[val][index]+'%'
               );
             },
-            onRegionLabelShow: function(event, label, code){
+            onRegionTipShow: function(event, label, code){
               label.html(
                 '<b>'+label.html()+'</b></br>'+
                 '<b>Unemployment rate: </b>'+data.states[val][code]+'%'
