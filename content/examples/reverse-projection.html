@@ -24,12 +24,12 @@ js_assets:
               }
             },
             container: $('#map'),
-            onMarkerLabelShow: function(e, label, code){
-              map.label.text(markersCoords[code].lat.toFixed(2)+', '+markersCoords[code].lng.toFixed(2));
+            onMarkerTipShow: function(e, label, code){
+              map.tip.text(markersCoords[code].lat.toFixed(2)+', '+markersCoords[code].lng.toFixed(2));
             },
             onMarkerClick: function(e, code){
               map.removeMarkers([code]);
-              map.label.hide();
+              map.tip.hide();
             }
         });
 

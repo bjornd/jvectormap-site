@@ -2,6 +2,7 @@
 # before nanoc starts compiling.
 
 require 'json'
+require 'cgi'
 
 def map_preprocessing(item)
   item[:map_params_variants] ||= [Hash.new]
@@ -120,7 +121,7 @@ def import_code(link)
   to_label = '//'+link+'_end'
   from = @item.raw_content.index(from_label)+from_label.length
   to = @item.raw_content.index(to_label)-1
-  result = @item.raw_content[from..to]
+  result = CGI.escapeHTML(@item.raw_content[from..to])
   indent_length = result.match(/^\n +/m)[0].length-1
   return result.gsub(/\n {#{indent_length}}/, "\n")[1..-1]
 end

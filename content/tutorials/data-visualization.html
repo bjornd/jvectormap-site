@@ -87,12 +87,12 @@ $('.map').vectorMap({
   <p>You can read more about these and other parameters in the <a href="/documentation/javascript-api/jvm-worldmap/">documentation</a>.</p>
   <p>Now let's make make the labels which are shown when mouse cursor is over region or label more readable. To achieve this we need to set callbacks for the hover events and modify labels inside of them:</p>
   <pre class="syntax"><code class="language-javascript">
-onMarkerLabelShow: function(event, label, index){
+onMarkerTipShow: function(event, label, index){
   label.html(
     &#x27;&lt;b&gt;&#x27;+data.metro.names[index]+&#x27;&lt;/b&gt;&lt;br/&gt;&#x27;+&#x27;&lt;b&gt;Population:&lt;/b&gt;&#x27;+data.metro.population[val][index]+&#x27;&lt;/br&gt;&#x27;+&#x27;&lt;b&gt;Unemployment rate: &lt;/b&gt;&#x27;+data.metro.unemployment[val][index]+&#x27;%&#x27;
   );
 },
-onRegionLabelShow: function(event, label, code){
+onRegionTipShow: function(event, label, code){
   label.html(
     &#x27;&lt;b&gt;&#x27;+label.html()+&#x27;&lt;/b&gt;&lt;/br&gt;&#x27;+&#x27;&lt;b&gt;Unemployment rate: &lt;/b&gt;&#x27;+data.states[val][code]+&#x27;%&#x27;
   );
