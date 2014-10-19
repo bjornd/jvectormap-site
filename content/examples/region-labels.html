@@ -1,0 +1,58 @@
+---
+title: Region labels
+order: 9
+submenu: true
+js_assets:
+  - /js/jquery-jvectormap-us-aea-en.js
+---
+<article class="format-standard">
+  <p>The following example demostrates using of static labels to render state code on th USA map. By default labels are rendered in the center of region. You can change this behavior by using <code>offset</code> parameter. Label style could be customized with <code>regionLabelStyle</code> parameter.</p>
+  <figure>
+    <div id="map" style="width: 720px; height: 460px"></div>
+    <script>
+      //@code_start
+      $(function(){
+        new jvm.Map({
+          map: 'us_aea_en',
+          container: $('#map'),
+          regionLabelStyle: {
+            initial: {
+              fill: '#B90E32'
+            },
+            hover: {
+              fill: 'black'
+            }
+          },
+          labels: {
+            regions: {
+              render: function(code){
+                var doNotShow = ['US-RI', 'US-DC', 'US-DE', 'US-MD'];
+
+                if (doNotShow.indexOf(code) === -1) {
+                  return code.split('-')[1];
+                }
+              },
+              offsets: function(code){
+                return {
+                  'CA': [-10, 10],
+                  'ID': [0, 40],
+                  'OK': [25, 0],
+                  'LA': [-20, 0],
+                  'FL': [45, 0],
+                  'KY': [10, 5],
+                  'VA': [15, 5],
+                  'MI': [30, 30],
+                  'AK': [50, -25],
+                  'HI': [25, 50]
+                }[code.split('-')[1]];
+              }
+            }
+          }
+        });
+      });
+      //@code_end
+    </script>
+  </figure>
+  <p>Full code of an example:</p>
+  <pre class="syntax"><code class="language-javascript"><%= import_code('@code') %></code></pre>
+</article>
