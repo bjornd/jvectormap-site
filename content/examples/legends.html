@@ -1,0 +1,119 @@
+---
+title: Map legends
+order: 10
+submenu: true
+js_assets:
+  - /js/jquery-jvectormap-us-aea-en.js
+---
+<article class="format-standard">
+  <p>The following example demostrates using of map legends which could be automatically created by jVectorMap based on values available for specific scale. Please check <a href="/documentation/javascript-api/jvm-legend/">jvm.Legend</a> documentation for all available parameters. Also note that you could easily customize how legends look using regular CSS properties.</p>
+  <figure>
+    <div id="map" style="width: 720px; height: 460px"></div>
+    <script>
+      //@code_start
+      $(function(){
+        new jvm.Map({
+          container: $('#map'),
+          map: 'us_aea_en',
+          markers: [
+            [61.18, -149.53],
+            [21.18, -157.49],
+            [40.66, -73.56],
+            [41.52, -87.37],
+            [35.22, -80.84],
+            [31.52, -87.37]
+          ],
+          series: {
+            markers: [{
+              attribute: 'fill',
+              scale: ['#C8EEFF', '#0071A4'],
+              normalizeFunction: 'polynomial',
+              values: [408, 512, 550, 781],
+              legend: {
+                vertical: true
+              }
+            },{
+              attribute: 'image',
+              scale: {
+                bank: '/img/icon-bank.png',
+                factory: '/img/icon-factory.png'
+              },
+              values: {
+                '4': 'bank',
+                '5': 'factory'
+              },
+              legend: {
+                horizontal: true,
+                cssClass: 'jvectormap-legend-icons',
+                title: 'Business type'
+              }
+            }],
+            regions: [{
+              scale: {
+                red: '#ff0000',
+                green: '#00ff00'
+              },
+              attribute: 'fill',
+              values: {
+                "US-KS": 'red',
+                "US-MO": 'red',
+                "US-IA": 'green',
+                "US-NE": 'green'
+              },
+              legend: {
+                horizontal: true,
+                title: 'Color'
+              }
+            },{
+              scale: {
+                redGreen: '/img/bg-red-green.png',
+                yellowBlue: '/img/bg-yellow-blue.png'
+              },
+              values: {
+                "US-TX": 'redGreen',
+                "US-CA": 'yellowBlue'
+              },
+              attribute: 'fill',
+              legend: {
+                horizontal: true,
+                cssClass: 'jvectormap-legend-bg',
+                title: 'Pattern',
+                labelRender: function(v){
+                  return {
+                    redGreen: 'low',
+                    yellowBlue: 'high'
+                  }[v];
+                }
+              }
+            }]
+          }
+        });
+      });
+      //@code_end
+    </script>
+    <style>
+      /*@css_start*/
+      .jvectormap-legend-title {
+        font-size: 12px;
+      }
+
+      .jvectormap-legend .jvectormap-legend-tick-sample {
+        height: 26px;
+      }
+
+      .jvectormap-legend-icons {
+        background: white;
+        border: black 1px solid;
+      }
+
+      .jvectormap-legend-icons {
+        color: black;
+      }
+      /*@css_end*/
+    </style>
+  </figure>
+  <p>Full code of an example:</p>
+  <pre class="syntax"><code class="language-javascript"><%= import_code('@code') %></code></pre>
+  <p>Additional CSS which could be used to style legends:</p>
+  <pre class="syntax"><code class="language-css"><%= import_code('@css') %></code></pre>
+</article>
