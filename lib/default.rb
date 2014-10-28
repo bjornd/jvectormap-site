@@ -69,7 +69,7 @@ def generate_doc
   end
 
   Dir.foreach(tmpDir) do |fname|
-    next if !['jvm-dataseries.html', 'jvm-map.html', 'jvm-proj.html', 'jvm-marker.html', 'jvm-region.html'].index(fname)
+    next if !['jvm-dataseries.html', 'jvm-map.html', 'jvm-multimap.html', 'jvm-proj.html', 'jvm-legend.html'].index(fname)
     itemTile, itemText = File.open(tmpDir + fname, "rb").read.split("\n", 2)
 
     @items << Nanoc3::Item.new(
@@ -119,6 +119,10 @@ end
 def import_code(link)
   from_label = '//'+link+'_start'
   to_label = '//'+link+'_end'
+  if !@item.raw_content.index(from_label)
+    from_label = '/*'+link+'_start*/'
+    to_label = '/*'+link+'_end*/'
+  end
   from = @item.raw_content.index(from_label)+from_label.length
   to = @item.raw_content.index(to_label)-1
   result = CGI.escapeHTML(@item.raw_content[from..to])
