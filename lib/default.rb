@@ -101,6 +101,7 @@ def build_jvectormap
   )
 
   FileUtils.mkpath('tmp/jvectormap-zip') if !File.exists?('tmp/jvectormap-zip')
+  FileUtils.remove(Dir.glob('tmp/jvectormap-zip/*'))
   FileUtils.copy_file(tmpFile, "tmp/jvectormap-zip/#{js_file_name}.js")
   FileUtils.copy_file('external/jvectormap/jquery-jvectormap.css', "tmp/jvectormap-zip/#{css_file_name}.css")
   `cd tmp/jvectormap-zip; zip jquery-jvectormap-#{@config[:jvectormap_version]}.zip *.css *.js`
