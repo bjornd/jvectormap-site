@@ -4,9 +4,13 @@ order: 3
 ---
 <article class="format-standard">
 
-  <h3>Version 2.0.1</h2>
+  <h3>Version <%= @config[:jvectormap_version] %></h2>
   <p>You can download zip-archive including only the most important files</p>
-  <p><a class="link-button" href="/binary/jquery-jvectormap-2.0.1.zip">Download jVectorMap 2.0.1</a></p>
+  <p>
+    <a class="link-button" href="/binary/jquery-jvectormap-<%= @config[:jvectormap_version] %>.zip">
+      Download jVectorMap <%= @config[:jvectormap_version] %>
+    </a>
+  </p>
   <p>or zip-archive including full sources</p>
   <p><a class="link-button" href="https://github.com/bjornd/jvectormap/zipball/master">Download full project</a></p>
   <p>Clone git repository:</p>
