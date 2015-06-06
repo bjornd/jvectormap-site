@@ -1,0 +1,24 @@
+---
+title: France - Regions (2016)
+submenu: true
+map_params:
+  input_file: france-regions-2016/france-regions-2016.shp
+  name_field: NAME_1
+  code_field: ISO_2
+  name: fr_regions_2019
+  insets:
+    -
+      codes:
+        - 'FR-GF'
+      width: 100
+      left: 10
+      top: 500
+map_params_variants:
+  - projection: mill
+  - projection: merc
+data_params:
+  source: http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/
+  license: public domain
+  license_link: http://www.naturalearthdata.com/about/terms-of-use/
+---
+<%= render 'map' %>
