@@ -3,6 +3,53 @@
   "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
   "filter": "iso_a2 = \"CO\" AND iso_3166_2 IS NOT NULL"
 },{
+  "name": "join_data",
+  "data": [
+    ["1156", "CO-AMA"],
+    ["1157", "CO-ANT"],
+    ["1148", "CO-ARA"],
+    ["1144", "CO-ATL"],
+    ["1136", "CO-BOL"],
+    ["172", "CO-BOY"],
+    ["1158", "CO-CAL"],
+    ["1134", "CO-CAQ"],
+    ["1140", "CO-CAS"],
+    ["1150", "CO-CAU"],
+    ["626", "CO-CES"],
+    ["1145", "CO-COR"],
+    ["1091", "CO-CUN"],
+    ["1159", "CO-CHO"],
+    ["1135", "CO-DC"],
+    ["1152", "CO-GUA"],
+    ["1151", "CO-GUV"],
+    ["1141", "CO-HUI"],
+    ["1161", "CO-LAG"],
+    ["1146", "CO-MAG"],
+    ["1153", "CO-MET"],
+    ["1084", "CO-NAR"],
+    ["1149", "CO-NSA"],
+    ["1142", "CO-PUT"],
+    ["1137", "CO-QUI"],
+    ["1138", "CO-RIS"],
+    ["1162", "CO-SAP"],
+    ["1160", "CO-SAN"],
+    ["1147", "CO-SUC"],
+    ["1139", "CO-TOL"],
+    ["1143", "CO-VAC"],
+    ["1154", "CO-VAU"],
+    ["1155", "CO-VID"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
   "name": "write_data",
   "format": "jvectormap",
   "params": {
