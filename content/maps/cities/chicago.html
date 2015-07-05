@@ -1,11 +1,9 @@
 ---
 title: Chicago
 submenu: true
-map_params:
-  input_file: chicago-community-areas/CommAreas.shp
-  name_field: COMMUNITY
-  code_field: AREA_NUM_1
-  name: us-il-chicago
+map_params_variants:
+  - projection: mill
+  - projection: merc
 data_params:
   source: https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Community-Areas-current-/cauq-8yn6
   license: public domain

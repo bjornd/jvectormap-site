@@ -1,0 +1,32 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"DK\" AND iso_3166_2 IS NOT NULL"
+},{
+  "name": "join_data",
+  "data": [
+    ["6326", "DK-82"],
+    ["3564", "DK-83"],
+    ["3568", "DK-81"],
+    ["6325", "DK-84"],
+    ["3563", "DK-85"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "dk"
+  }
+}]

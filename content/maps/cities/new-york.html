@@ -1,11 +1,9 @@
 ---
 title: New York City
 submenu: true
-map_params:
-  input_file: new-york-boroughs/nybb.shp
-  name_field: BoroName
-  code_field: BoroCode
-  name: us-ny-newyork
+map_params_variants:
+  - projection: mill
+  - projection: merc
 data_params:
   source: http://www.nyc.gov/html/dcp/html/bytes/dwndistricts.shtml#bcd
   license: public domain

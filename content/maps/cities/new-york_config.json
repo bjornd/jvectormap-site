@@ -1,0 +1,12 @@
+[{
+  "name": "read_data",
+  "file_name": "new-york-boroughs/nybb.shp"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "BoroCode",
+    "name_field": "BoroName",
+    "name": "us-ny-newyork"
+  }
+}]

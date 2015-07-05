@@ -1,0 +1,42 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"NL\" AND type_en != \"Special Municipality\""
+},{
+  "name": "join_data",
+  "data": [
+    ["3558", "NL-NB"],
+    ["3559", "NL-UT"],
+    ["3560", "NL-ZH"],
+    ["3557", "NL-NH"],
+    ["6653", "NL-BQ2"],
+    ["6654", "NL-BQ3"],
+    ["3602", "NL-BQ1"],
+    ["914", "NL-DR"],
+    ["913", "NL-FR"],
+    ["915", "NL-GE"],
+    ["918", "NL-GR"],
+    ["916", "NL-LI"],
+    ["917", "NL-OV"],
+    ["1511", "NL-FL"],
+    ["1508", "NL-ZE"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "nl"
+  }
+}]

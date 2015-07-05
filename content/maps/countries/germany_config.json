@@ -1,0 +1,43 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"DE\""
+},{
+  "name": "join_data",
+  "data": [
+    ["1516", "DE-BW"],
+    ["2333", "DE-BY"],
+    ["2334", "DE-BE"],
+    ["3562", "DE-BB"],
+    ["1518", "DE-HB"],
+    ["1520", "DE-HH"],
+    ["1517", "DE-HE"],
+    ["3312", "DE-MV"],
+    ["6321", "DE-NI"],
+    ["1515", "DE-NW"],
+    ["2331", "DE-RP"],
+    ["2332", "DE-SL"],
+    ["2336", "DE-SN"],
+    ["2335", "DE-ST"],
+    ["942",  "DE-SH"],
+    ["1519", "DE-TH"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "de"
+  }
+}]

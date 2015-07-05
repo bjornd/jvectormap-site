@@ -1,0 +1,36 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"AT\""
+},{
+  "name": "join_data",
+  "data": [
+    ["2273", "AT-8"],
+    ["2274", "AT-1"],
+    ["2275", "AT-6"],
+    ["2276", "AT-2"],
+    ["2277", "AT-4"],
+    ["2278", "AT-5"],
+    ["2280", "AT-7"],
+    ["2281", "AT-3"],
+    ["2282", "AT-9"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "at"
+  }
+}]
