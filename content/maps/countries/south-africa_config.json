@@ -1,0 +1,36 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"ZA\""
+},{
+  "name": "join_data",
+  "data": [
+    ["955", "ZA-NC"],
+    ["956", "ZA-WC"],
+    ["957", "ZA-NW"],
+    ["958", "ZA-FS"],
+    ["959", "ZA-GT"],
+    ["960", "ZA-MP"],
+    ["961", "ZA-LP"],
+    ["962", "ZA-NL"],
+    ["1612", "ZA-EC"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "za"
+  }
+}]

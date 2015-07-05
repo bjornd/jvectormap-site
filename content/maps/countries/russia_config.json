@@ -1,0 +1,13 @@
+[{
+  "name": "read_data",
+  "file_name": "russia/russia.shp",
+  "longitude0": 11.5
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "ru"
+  }
+}]

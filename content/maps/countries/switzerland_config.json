@@ -1,0 +1,53 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"CH\" AND iso_3166_2 IS NOT NULL"
+},{
+  "name": "join_data",
+  "data": [
+    ["5", "CH-AG"],
+    ["9", "CH-AR"],
+    ["3311", "CH-AI"],
+    ["3306", "CH-BL"],
+    ["3308", "CH-BS"],
+    ["3307", "CH-BE"],
+    ["3304", "CH-FR"],
+    ["2", "CH-GE"],
+    ["12", "CH-GL"],
+    ["13", "CH-GR"],
+    ["3", "CH-JU"],
+    ["6", "CH-LU"],
+    ["4", "CH-NE"],
+    ["7", "CH-NW"],
+    ["3310", "CH-OW"],
+    ["10", "CH-SG"],
+    ["14", "CH-SH"],
+    ["16", "CH-SZ"],
+    ["3309", "CH-SO"],
+    ["17", "CH-TG"],
+    ["11", "CH-TI"],
+    ["18", "CH-UR"],
+    ["8", "CH-VS"],
+    ["3305", "CH-VD"],
+    ["20", "CH-ZG"],
+    ["19", "CH-ZH"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "ch"
+  }
+}]

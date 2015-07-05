@@ -1,0 +1,79 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"ES\" AND iso_3166_2 != \"ES-TF\" AND iso_3166_2 != \"ES-GC\""
+},{
+  "name": "join_data",
+  "data": [
+    ["1367", "ES-VI"],
+    ["7268", "ES-AB"],
+    ["7264", "ES-A"],
+    ["7276", "ES-AL"],
+    ["1363", "ES-O"],
+    ["7250", "ES-AV"],
+    ["1365", "ES-BA"],
+    ["380", "ES-PM"],
+    ["850", "ES-B"],
+    ["7247", "ES-BU"],
+    ["7269", "ES-CC"],
+    ["7272", "ES-CA"],
+    ["394", "ES-S"],
+    ["7263", "ES-CS"],
+    ["1306", "ES-CE"],
+    ["393", "ES-CR"],
+    ["392", "ES-CO"],
+    ["7267", "ES-CU"],
+    ["7261", "ES-GI"],
+    ["7275", "ES-GR"],
+    ["7266", "ES-GU"],
+    ["7257", "ES-SS"],
+    ["7271", "ES-H"],
+    ["7258", "ES-HU"],
+    ["7274", "ES-J"],
+    ["1364", "ES-C"],
+    ["1366", "ES-LO"],
+    ["7277", "ES-GC"],
+    ["7255", "ES-LE"],
+    ["7260", "ES-L"],
+    ["7244", "ES-LU"],
+    ["396", "ES-M"],
+    ["7273", "ES-MA"],
+    ["1305", "ES-ML"],
+    ["1324", "ES-MU"],
+    ["3492", "ES-NA"],
+    ["7246", "ES-OR"],
+    ["7254", "ES-P"],
+    ["7245", "ES-PO"],
+    ["7251", "ES-SA"],
+    ["3626", "ES-TF"],
+    ["7249", "ES-SG"],
+    ["7270", "ES-SE"],
+    ["7248", "ES-SO"],
+    ["7262", "ES-T"],
+    ["7259", "ES-TE"],
+    ["7265", "ES-TO"],
+    ["3493", "ES-V"],
+    ["7253", "ES-VA"],
+    ["7256", "ES-BI"],
+    ["7252", "ES-ZA"],
+    ["3491", "ES-Z"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "es"
+  }
+}]

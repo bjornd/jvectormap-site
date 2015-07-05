@@ -1,0 +1,53 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"NO\" AND iso_3166_2 IS NOT NULL"
+},{
+  "name": "join_data",
+  "data": [
+      ["1060", "NO-20"],
+      ["506",  "NO-18"],
+      ["924", "NO-19"],
+      ["935", "NO-21"],
+      ["1575", "NO-15"],
+      ["1577", "NO-16"],
+      ["1601", "NO-09"],
+      ["921", "NO-12"],
+      ["920", "NO-11"],
+      ["922", "NO-14"],
+      ["926", "NO-10"],
+      ["927", "NO-02"],
+      ["928", "NO-06"],
+      ["929", "NO-04"],
+      ["930", "NO-05"],
+      ["931", "NO-03"],
+      ["932", "NO-08"],
+      ["933", "NO-07"],
+      ["919", "NO-01"],
+      ["923", "NO-17"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "no",
+    "insets": [{
+        "codes": ["NO-21"],
+        "width": 240,
+        "left": 250,
+        "top": 0
+    }]
+  }
+}]

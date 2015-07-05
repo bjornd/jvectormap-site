@@ -1,0 +1,18 @@
+[{
+  "name": "read_data",
+  "file_name": "france-regions-2016/france-regions-2016.shp"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "ISO_2",
+    "name_field": "NAME_1",
+    "name": "fr_regions_2016",
+    "insets": [{
+        "codes": ["FR-GF"],
+        "width": 100,
+        "left": 10,
+        "top": 500
+    }]
+  }
+}]

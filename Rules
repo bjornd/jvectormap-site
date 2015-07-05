@@ -14,7 +14,7 @@
 #   because “*” matches zero or more characters.
 
 preprocess do
-  items.each { |i| map_preprocessing(i) if i[:map_params] }
+  items.each { |i| map_preprocessing(i) if i[:map_params] || i[:map_params_variants] }
   build_jvectormap
   generate_doc
 end
@@ -37,6 +37,10 @@ end
 
 compile '/binary/*' do
   # don’t filter or layout
+end
+
+compile '/maps/*_config' do
+  # don’t filter or layout map configs
 end
 
 

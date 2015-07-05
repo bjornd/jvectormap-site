@@ -1,0 +1,51 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"AR\""
+},{
+  "name": "join_data",
+  "data": [
+      ["963", "AR-Z"],
+      ["937", "AR-V"],
+      ["964", "AR-J"],
+      ["965", "AR-U"],
+      ["966", "AR-M"],
+      ["967", "AR-Q"],
+      ["943", "AR-B"],
+      ["968", "AR-L"],
+      ["969", "AR-R"],
+      ["970", "AR-D"],
+      ["971", "AR-X"],
+      ["972", "AR-K"],
+      ["973", "AR-Y"],
+      ["974", "AR-F"],
+      ["975", "AR-A"],
+      ["976", "AR-G"],
+      ["977", "AR-T"],
+      ["978", "AR-H"],
+      ["979", "AR-P"],
+      ["980", "AR-W"],
+      ["981", "AR-E"],
+      ["982", "AR-S"],
+      ["983", "AR-N"],
+      ["6954", "AR-C"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "ar"
+  }
+}]

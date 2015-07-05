@@ -1,0 +1,17 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_50m_admin_0_countries_lakes/ne_50m_admin_0_countries_lakes.shp",
+  "filter": "continent = \"Europe\"",
+  "longitude0": 11.5
+},{
+  "name": "intersect_rect",
+  "rect": [-26, 72.5, 40.5, 28]
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_a2",
+    "name_field": "name",
+    "name": "europe"
+  }
+}]

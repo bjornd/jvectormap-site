@@ -19,6 +19,7 @@ module MenuHelper
 
   def get_children(item, depth = 1)
     item.children.dup
+      .select { |item| !item.binary? }
       .sort! { |a, b| a[:order] <=> b[:order] }
       .map do |i|
         children = get_children(i, depth+1)

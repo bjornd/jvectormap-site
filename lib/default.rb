@@ -6,36 +6,32 @@ require 'cgi'
 
 def map_preprocessing(item)
   item[:map_params_variants] ||= [Hash.new]
-  params = item[:map_params]
-  params[:projection] ||= 'mill'
-  params[:language] ||= 'en'
+  proc_config = item.raw_filename.sub('.html', '_config.json')
+  params = JSON.parse(File.read(proc_config), :symbolize_names => true)
 
   item[:js_assets] = []
 
   item[:map_params_variants].each_index do |index|
-    item[:map_params_variants][index] = item[:map_params].merge(item[:map_params_variants][index])
-    variant_params = item[:map_params_variants][index]
+    variant_params = params.clone
+    variant_params[0] = variant_params[0].merge( item[:map_params_variants][index] )
+    item[:map_params_variants][index][:projection] = variant_params[0][:projection]
+    item[:map_params_variants][index][:proc_config] = variant_params
 
-    converter_params = []
-    if variant_params[:codes_file]
-      variant_params[:codes_file] = @config[:maps_path] + '/codes/' + variant_params[:codes_file]
-    end
-    variant_params[:input_file] =  @config[:maps_path]+'/'+variant_params[:input_file]
-    if @config[:maps_default_encoding] && !variant_params[:input_file_encoding]
-      variant_params[:input_file_encoding] = @config[:maps_default_encoding]
-    end
+    variant_params[0][:file_name] = @config[:maps_path]+'/'+variant_params[0][:file_name]
+    #if @config[:maps_default_encoding] && !variant_params[-1][:params][:input_file_encoding]
+    #  variant_params[-1][:params][:input_file_encoding] = @config[:maps_default_encoding]
+    #end
 
     map_id = Digest::MD5.hexdigest(variant_params.to_json)
-    map_name = 'jquery-jvectormap-'+variant_params[:name]+'-'+variant_params[:projection]+'-'+variant_params[:language]
+    map_name = 'jquery-jvectormap-'+variant_params[-1][:params][:name]+'-'+variant_params[0][:projection]
     output_file_path = 'tmp/'+map_id+'.js'
-    variant_params['output_file'] = output_file_path
-    converter_params = variant_params.to_json
+    variant_params[-1]['file_name'] = output_file_path
 
     if !File.exists? output_file_path
       converter_command =
-          'echo \''+converter_params+'\' | '+
+          'echo \''+variant_params.to_json+'\' | '+
           'python '+
-          'external/jvectormap/converter/converter.py '
+          'external/jvectormap/converter/processor.py '
       system(converter_command)
     end
 
@@ -47,7 +43,7 @@ def map_preprocessing(item)
 
     item[:map_params_variants][index][:download_link] = '/js/'+map_name+'.js'
     item[:map_params_variants][index][:file_size] = File.size output_file_path
-    item[:map_params_variants][index][:name] = variant_params[:name]+'_'+variant_params[:projection]+'_'+variant_params[:language]
+    item[:map_params_variants][index][:name] = variant_params[-1][:params][:name]+'_'+variant_params[0][:projection]
 
     item[:js_assets] << '/js/'+map_name+'.js'
 

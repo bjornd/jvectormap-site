@@ -1,0 +1,52 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"VE\" AND iso_3166_2 IS NOT NULL"
+},{
+  "name": "join_data",
+  "data": [
+    ["209", "VE-Z"],
+    ["211", "VE-B"],
+    ["197", "VE-C"],
+    ["212", "VE-D"],
+    ["198", "VE-E"],
+    ["210", "VE-F"],
+    ["205", "VE-G"],
+    ["204", "VE-H"],
+    ["166", "VE-Y"],
+    ["192", "VE-W"],
+    ["214", "VE-A"],
+    ["196", "VE-I"],
+    ["215", "VE-J"],
+    ["206", "VE-K"],
+    ["199", "VE-L"],
+    ["216", "VE-M"],
+    ["170", "VE-N"],
+    ["177", "VE-O"],
+    ["207", "VE-P"],
+    ["174", "VE-R"],
+    ["200", "VE-S"],
+    ["201", "VE-T"],
+    ["213", "VE-X"],
+    ["208", "VE-U"],
+    ["203", "VE-V"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "ve"
+  }
+}]

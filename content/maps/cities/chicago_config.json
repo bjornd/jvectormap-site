@@ -1,0 +1,12 @@
+[{
+  "name": "read_data",
+  "file_name": "chicago-community-areas/CommAreas.shp"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "AREA_NUM_1",
+    "name_field": "COMMUNITY",
+    "name": "us-il-chicago"
+  }
+}]

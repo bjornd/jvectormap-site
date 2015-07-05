@@ -1,0 +1,19 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes_1.4.0/ne_10m_admin_1_states_provinces_lakes_shp.shp",
+  "filter": "ISO = \"FRA\" AND HASC_1 IS NOT NULL"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "HASC_1",
+    "name_field": "NAME_1",
+    "name": "fr_regions",
+    "insets": [{
+        "codes": ["FR-GF"],
+        "width": 100,
+        "left": 10,
+        "top": 500
+    }]
+  }
+}]
