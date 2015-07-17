@@ -1,0 +1,14 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_50m_admin_0_countries_lakes/ne_50m_admin_0_countries_lakes.shp",
+  "filter": "continent = \"Oceania\"",
+  "longitude0": 180
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_a2",
+    "name_field": "name",
+    "name": "oceania"
+  }
+}]
