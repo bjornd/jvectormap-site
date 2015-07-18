@@ -55,7 +55,7 @@ $('#map').vectorMap({map: '<%= map_params[:name] %>'});
 <div class="pane-single">
   <h3>Processor config</h3>
 <pre class="syntax"><code class="language-javascript">
-<%= JSON.pretty_generate( @item[:map_params_variants][0][:proc_config] ) %>
+<%= @item[:map_params_variants][0][:proc_config] %>
 </code></pre>
 </div>
 <div class="pane-single">
