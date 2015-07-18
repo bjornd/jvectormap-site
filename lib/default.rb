@@ -6,8 +6,8 @@ require 'cgi'
 
 def map_preprocessing(item)
   item[:map_params_variants] ||= [Hash.new]
-  proc_config = item.raw_filename.sub('.html', '_config.json')
-  params = JSON.parse(File.read(proc_config), :symbolize_names => true)
+  proc_config = File.read(item.raw_filename.sub('.html', '_config.json'))
+  params = JSON.parse(proc_config, :symbolize_names => true)
 
   item[:js_assets] = []
 
@@ -15,7 +15,7 @@ def map_preprocessing(item)
     variant_params = params.clone
     variant_params[0] = variant_params[0].merge( item[:map_params_variants][index] )
     item[:map_params_variants][index][:projection] = variant_params[0][:projection]
-    item[:map_params_variants][index][:proc_config] = variant_params
+    item[:map_params_variants][index][:proc_config] = proc_config
 
     variant_params[0][:file_name] = @config[:maps_path]+'/'+variant_params[0][:file_name]
     #if @config[:maps_default_encoding] && !variant_params[-1][:params][:input_file_encoding]
