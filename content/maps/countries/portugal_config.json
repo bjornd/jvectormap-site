@@ -43,15 +43,16 @@
     "code_field": "iso_3166_2",
     "name_field": "name",
     "name": "pt",
+    "left": 400,
     "insets": [{
       "codes": ["PT-20"],
       "width": 400,
-      "left": -420,
+      "left": 0,
       "top": 100
     },{
       "codes": ["PT-30"],
       "width": 400,
-      "left": -420,
+      "left": 0,
       "top": 600
     }]
   }
