@@ -1,7 +1,7 @@
 [{
   "name": "read_data",
   "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
-  "filter": "iso_a2 = \"FR\" AND type_en != \"Overseas department\""
+  "filter": "iso_a2 = \"FR\""
 },{
   "name": "join_data",
   "data": [
@@ -100,7 +100,12 @@
     ["6773", "FR-86"],
     ["6787", "FR-88"],
     ["6793", "FR-89"],
-    ["6776", "FR-78"]
+    ["6776", "FR-78"],
+    ["3665", "FR-GP"],
+    ["1701", "FR-GF"],
+    ["1809", "FR-MQ"],
+    ["3647", "FR-RE"],
+    ["3649", "FR-YT"]
   ],
   "fields": [{
       "name": "OBJECTID_1",
@@ -118,6 +123,32 @@
   "params": {
     "code_field": "iso_3166_2",
     "name_field": "name",
-    "name": "fr"
+    "name": "fr",
+    "insets": [{
+      "codes": ["FR-GF"],
+      "width": 100,
+      "left": 0,
+      "top": 600
+    },{
+      "codes": ["FR-GP"],
+      "width": 50,
+      "left": 0,
+      "top": 440
+    },{
+      "codes": ["FR-MQ"],
+      "width": 50,
+      "left": 0,
+      "top": 510
+    },{
+      "codes": ["FR-RE"],
+      "width": 50,
+      "left": 740,
+      "top": 700
+    },{
+      "codes": ["FR-YT"],
+      "width": 40,
+      "left": 640,
+      "top": 690
+    }]
   }
 }]

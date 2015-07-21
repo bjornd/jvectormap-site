@@ -1,19 +1,42 @@
 [{
   "name": "read_data",
-  "file_name": "ne_10m_admin_1_states_provinces_lakes_1.4.0/ne_10m_admin_1_states_provinces_lakes_shp.shp",
-  "filter": "ISO = \"FRA\" AND HASC_1 IS NOT NULL"
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"FR\""
+},{
+  "name": "union",
+  "by": "region_cod"
 },{
   "name": "write_data",
   "format": "jvectormap",
   "params": {
-    "code_field": "HASC_1",
-    "name_field": "NAME_1",
+    "code_field": "region_cod",
+    "name_field": "region",
     "name": "fr_regions",
     "insets": [{
-        "codes": ["FR-GF"],
-        "width": 100,
-        "left": 10,
-        "top": 500
+      "codes": ["FR-GF"],
+      "width": 100,
+      "left": 0,
+      "top": 600
+    },{
+      "codes": ["FR-GP"],
+      "width": 50,
+      "left": 0,
+      "top": 440
+    },{
+      "codes": ["FR-MQ"],
+      "width": 50,
+      "left": 0,
+      "top": 510
+    },{
+      "codes": ["FR-RE"],
+      "width": 50,
+      "left": 740,
+      "top": 700
+    },{
+      "codes": ["FR-YT"],
+      "width": 40,
+      "left": 640,
+      "top": 690
     }]
   }
 }]

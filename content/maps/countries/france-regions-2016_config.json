@@ -1,18 +1,104 @@
 [{
   "name": "read_data",
-  "file_name": "france-regions-2016/france-regions-2016.shp"
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"FR\""
+},{
+  "name": "join_data",
+  "data": [
+      ["FR-D", "FR-X1"],
+      ["FR-I", "FR-X1"],
+      ["FR-B", "FR-X2"],
+      ["FR-L", "FR-X2"],
+      ["FR-T", "FR-X2"],
+      ["FR-P", "FR-X3"],
+      ["FR-Q", "FR-X3"],
+      ["FR-A", "FR-X4"],
+      ["FR-G", "FR-X4"],
+      ["FR-M", "FR-X4"],
+      ["FR-K", "FR-X5"],
+      ["FR-N", "FR-X5"],
+      ["FR-O", "FR-X6"],
+      ["FR-S", "FR-X6"],
+      ["FR-C", "FR-X7"],
+      ["FR-V", "FR-X7"],
+      ["FR-E", "FR-E"],
+      ["FR-F", "FR-F"],
+      ["FR-H", "FR-H"],
+      ["FR-J", "FR-J"],
+      ["FR-R", "FR-R"],
+      ["FR-U", "FR-U"],
+      ["FR-GF", "FR-GF"],
+      ["FR-GP", "FR-GP"],
+      ["FR-MQ", "FR-MQ"],
+      ["FR-RE", "FR-RE"],
+      ["FR-YT", "FR-YT"]
+  ],
+  "fields": [{
+      "name": "region_cod",
+      "type": 4,
+      "width": 10
+  },{
+      "name": "iso_new",
+      "type": 4,
+      "width": 5
+  }],
+  "on": "region_cod"
+},{
+  "name": "union",
+  "by": "iso_new"
+},{
+  "name": "join_data",
+  "data": [
+    ["FR-X1", "Bourgogne-Franche-Comté"],
+    ["FR-X2", "Aquitaine-Limousin-Poitou-Charentes"],
+    ["FR-X3", "Normandy"],
+    ["FR-X4", "Alsace-Champagne-Ardenne-Lorraine"],
+    ["FR-X5", "Languedoc-Roussillon-Midi-Pyrénées"],
+    ["FR-X6", "Nord-Pas-de-Calais-Picardie"],
+    ["FR-X7", "Auvergne-Rhône-Alpes"]
+  ],
+  "fields": [{
+    "name": "iso_new",
+    "type": 4,
+    "width": 5
+  },{
+    "name": "region",
+    "type": 4,
+    "width": 100
+  }],
+  "on": "iso_new"
 },{
   "name": "write_data",
   "format": "jvectormap",
   "params": {
-    "code_field": "ISO_2",
-    "name_field": "NAME_1",
+    "code_field": "iso_new",
+    "name_field": "region",
     "name": "fr_regions_2016",
     "insets": [{
-        "codes": ["FR-GF"],
-        "width": 100,
-        "left": 10,
-        "top": 500
+      "codes": ["FR-GF"],
+      "width": 100,
+      "left": 0,
+      "top": 600
+    },{
+      "codes": ["FR-GP"],
+      "width": 50,
+      "left": 0,
+      "top": 440
+    },{
+      "codes": ["FR-MQ"],
+      "width": 50,
+      "left": 0,
+      "top": 510
+    },{
+      "codes": ["FR-RE"],
+      "width": 50,
+      "left": 740,
+      "top": 700
+    },{
+      "codes": ["FR-YT"],
+      "width": 40,
+      "left": 640,
+      "top": 690
     }]
   }
 }]
