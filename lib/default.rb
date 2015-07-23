@@ -14,6 +14,7 @@ def map_preprocessing(item)
   item[:map_params_variants].each_index do |index|
     variant_params = params.clone
     variant_params[0] = variant_params[0].merge( item[:map_params_variants][index] )
+    variant_params[-1][:params] = variant_params[-1][:params].merge( item[:map_params_variants][index] )
     item[:map_params_variants][index][:projection] = variant_params[0][:projection]
     item[:map_params_variants][index][:proc_config] = proc_config
 
