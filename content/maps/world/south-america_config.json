@@ -3,6 +3,23 @@
   "file_name": "ne_50m_admin_0_countries_lakes/ne_50m_admin_0_countries_lakes.shp",
   "filter": "continent = \"South America\""
 },{
+  "name": "join_data",
+  "data": [
+    ["KOS", "XK"],
+    ["SOL", "XS"],
+    ["CYN", "XC"]
+  ],
+  "fields": [{
+    "name": "sov_a3",
+    "type": 4,
+    "width": 10
+  },{
+    "name": "iso_a2",
+    "type": 4,
+    "width": 10
+  }],
+  "on": "sov_a3"
+},{
   "name": "write_data",
   "format": "jvectormap",
   "params": {

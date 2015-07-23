@@ -4,6 +4,23 @@
   "filter": "iso_a2 != \"AQ\"",
   "longitude0": 11.5
 },{
+  "name": "join_data",
+  "data": [
+    ["KOS", "XK"],
+    ["SOL", "XS"],
+    ["CYN", "XC"]
+  ],
+  "fields": [{
+    "name": "sov_a3",
+    "type": 4,
+    "width": 10
+  },{
+    "name": "iso_a2",
+    "type": 4,
+    "width": 10
+  }],
+  "on": "sov_a3"
+},{
   "name": "write_data",
   "format": "jvectormap",
   "params": {
