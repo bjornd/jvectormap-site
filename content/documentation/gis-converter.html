@@ -4,73 +4,156 @@ order: 3
 submenu: true
 ---
 <article class="format-standard">
+  <h3>Why to convert?</h3>
+  <p>In order to improve performance, especially on mobile platforms, jVectorMap uses special format for maps. This format was developed to avoid reprojection and conversion of map data on each page load and at the same time to preserve ability to render geo-coded data on vector maps.</p>
   <h3>Requirements</h3>
-  <p>In order to run the converter you need python version 2.7 or later and the following python packages:</p>
-  <ul>
-    <li><a href="http://pypi.python.org/pypi/GDAL/">GDAL<a></li>
-    <li><a href="http://pypi.python.org/pypi/Shapely/1.2.16">Shapely</a></li>
-  </ul>
-  <h3>General usage</h3>
-    <p>Converter synopsis is <code>python converter.py input_file.json</code>, where <code>input_file.json</code> is a configuration file in JSON format.</p>
-    <p>Available options are:</p>
+    <p>In order to run the converter you need python version 2.7 or later and the following python packages:</p>
     <ul>
-      <li><code>input_file</code><br>
-        The input file, usually an <code>*.shp</code> or other vector GIS format supported by GDAL.</li>
-      <li><code>output_file</code><br>
-        The resulting jVectorMap file.</li>
-      <li><code>code_field</code> (int, 0)<br>
-        Field name that will be used as <em>code</em> to uniquely identify a jVectorMap region. You can list all fields of GIS file with tools like <code>ogrinfo</code>. Beware that the field <strong>must</strong> be unique for all features, otherwise the map will have missing regions. </li>
-      <li><code>name_field</code> (int, 1)<br>
-        Field name that will be used as <em>label</em> for a jVectorMap region. You can find this field name with tools like <code>ogrinfo</code>.</li>
-      <li><code>where</code> (str, "")<br>
-        Optional selection criteria, e.g. "ISO = 'DEU'" for selecting only data for Germany.</li>
-      <li><code>width</code> (float, 900)<br>
-        Specify the default width of the map.</li>
-      <li><code>insets</code> (str)<br>
-        Allows to specify map insets. Each inset needs to contain an array <code>codes</code>, which defines the features to use. See more information in jVectorMap <a href="/documentation/map-format-reference/">file format description</a>.</li>
-      <li><code>minimal_area</code> (float, 0)<br>
-        Area in square meters. This option allows to filter out polygons or the whole regions whose size is smaller than this value.</li>
-      <li><code>buffer_distance</code> (float, -0.4)<br>
-        Distance in pixels. This option allows to make a visual borders between regions by cutting out their edges.</li>
-      <li><code>simplify_tolerance</code> (float, 0.2)<br>
-        To what degree the vector paths may be simplified. Greater values result in less information/details but smaller file size. If this option is not specified or zero, simplification is not being applied.</li>
-      <li><code>viewport</code> (str)<br>
-        Use specified rectangle for area clipping. The format is <code>--viewport "&lt;lng1&gt; &lt;lat1&gt; &lt;lng2&gt; &lt;lat2&gt;"</code>, e.g. <code>--viewport "9.6 48.1 11.3 51.4"</code>.</li>
-      <li><code>longitude0</code> (str, "0")<br>
-        The longitude of the horizontal center of a coordinate system (also called <em>central meridian</em>).</li>
-      <li><code>projection</code> (str, "mill")<br>
-        The <a href="http://en.wikipedia.org/wiki/Map_projection">map projection</a> to use. Projection names are compatible to those of <a href="http://svn.osgeo.org/metacrs/proj/trunk/proj/src/pj_list.h">PROJ.4</a>. Currently implemented projections are
-        <code>merc</code> (Mercator), <code>mill</code> (Miller Cylindrical), <code>aea</code> (Albers Equal Area), <code>lcc</code> (Lambert Conformal Conic)
-      </li>
-      <li><code>name</code> (str, "world")<br>
-        Name of the map, e.g. "de". This value will be stored in JSON for informational purpose.</li>
-      <li><code>language</code> (str, "en")<br>
-        Two-letter language code, e.g. "it". This value will be stored in JSON for informational purpose.</li>
-      <li><code>input_file_encoding</code> (str, "iso-8859-1")<br>
-        In which encoding the input data is stored, e.g. "utf-8".</li>
-      <li><code>precision</code> (int, 2)<br>
-        Number of decimal digits after the point. Higher values are recommended if you need a high resolution map.</li>
+      <li><a href="http://pypi.python.org/pypi/GDAL/">GDAL<a></li>
+      <li><a href="http://pypi.python.org/pypi/Shapely/1.2.16">Shapely</a></li>
     </ul>
-    <h3>Generating maps (examples)</h3>
-    <pre class="syntax"><code class="language-bash">
-$ python converter.py world.json
-    </code></pre>
-    <p>Where world.json is</p>
-    <pre class="syntax"><code class="language-bash">
-{
-  "input_file": "/Users/kirilllebedev/Maps/ne_110m_admin_0_countries_lakes/ne_110m_admin_0_countries_lakes.shp",
-  "output_file": "tests/assets/jquery-jvectormap-world-mill-en.js",
-  "name_field": "name",
-  "code_field": "iso_a2",
-  "where": "iso_a2 != 'AQ'",
-  "longitude0": 11.5,
-  "name": "world",
-  "projection": "mill"
-}
-    </code></pre>
-    <p></p>
-    <p></p>
-    <h3>Where to download public map data</h3>
+  <h3>General usage</h3>
+    <p>Converter synopsis is <code>python processor.py input_file.json</code>, where <code>input_file.json</code> is a configuration file in JSON format containing a set commands. In case no file is specified converter will expect to get input from STDIN.</p>
+    <p>All the maps on this site were produced by processor.py, you can find the configuration file for each map under section "Processor config" on <a href="/maps/world/world/">map's page</a>. So if you want to make some slight modifications to some map form the site just copy and paste existing config, change it and consume to converter.</p>
+    <p>Here is an example of basic converter configuration file:</p>
+<pre class="syntax"><code class="language-javascript">
+[{
+  "name": "read_data",
+  "file_name": "new-york-boroughs/nybb.shp"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "BoroCode",
+    "name_field": "BoroName",
+    "name": "us-ny-newyork"
+  }
+}]
+</code></pre>
+    <p>This simple config tells converter to read geometries from ShapeFile and then write them to jVectorMap format without any modifications. You can add some additional commands between <code>read_data</code> and <code>write_data</code> to modify geometries and/or their related values. For example here is configuration which produces continents map:</p>
+<pre class="syntax"><code class="language-javascript">
+[{
+  "name": "read_data",
+  "file_name": "ne_110m_admin_0_countries_lakes/ne_110m_admin_0_countries_lakes.shp",
+  "filter": "continent != \"Antarctica\" AND continent != \"Seven seas (open ocean)\"",
+  "longitude0": 11.5
+},{
+  "name": "join_data",
+  "data": [
+      ["Africa", "AF"],
+      ["Asia", "AS"],
+      ["Europe", "EU"],
+      ["North America", "NA"],
+      ["South America", "SA"],
+      ["Oceania", "OC"]
+  ],
+  "fields": [{
+      "name": "continent",
+      "type": 4,
+      "width": 100
+  },{
+      "name": "cont_code",
+      "type": 4,
+      "width": 4
+  }],
+  "on": "continent"
+},{
+  "name": "union",
+  "by": "cont_code"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "cont_code",
+    "name_field": "continent",
+    "name": "continents"
+  }
+}]
+</code></pre>
+    <p>Command <code>join_data</code> is used to set codes for each continents, after that countries are merged by supplied codes using <code>union</code> command and then converter writes them to file in jVectorMap-compatible format.</p>
+  <h3>Available commands</h3>
+    <ul>
+      <li>
+        <code>read_data</code> - read geometries from GIS data file<br>
+        <ul>
+          <li><code>file_name</code> - the name of the file to read</li>
+          <li><code>longitude0</code> - central meridian coordinate</li>
+          <li><code>projection</code> - the <a href="http://en.wikipedia.org/wiki/Map_projection">map projection</a> to use, currently implemented projections are <code>merc</code> (Mercator), <code>mill</code> (Miller Cylindrical), <code>aea</code> (Albers Equal Area), <code>lcc</code> (Lambert Conformal Conic)</li>
+        </ul>
+      </li>
+      <li>
+        <code>write_data</code> - writes geometries to file
+        <ul>
+          <li><code>file_name</code> - the name of the file to write</li>
+          <li><code>format</code> - format of data to write, <code>jvectormap</code> for jVectorMap compatible format, no value for OGR format</li>
+          <li>
+            <code>params</code> - hash with parameters to supply to writer, the following parameters are used in case of <code>jvectormap</code> format:
+            <ul>
+              <li><code>code_field</code> - name of field to use as a region code</li>
+              <li><code>name_field</code> - name of field to use as a region name</li>
+              <li><code>name</code> - map base name</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <code>union</code> - merges geometries with the same value for one field
+        <ul>
+          <li><code>by</code> - the name of the field to merge geometries by</li>
+        </ul>
+      </li>
+      <li>
+        <code>join_data</code> - adds or rewrites properties for geoemtry based on equal values in another field, works similar to JOIN operation from SQL
+        <ul>
+          <li><code>data</code> - this could raw data to join or file name of CSv file with data to load</li>
+          <li><code>fields</code> - array describing fields, which data contains</li>
+          <li><code>on</code> - field to match to join data</li>
+        </ul>
+      </li>
+      <li>
+        <code>remove</code> - removes geometries and their properties based on logical expression
+        <ul>
+          <li><code>where</code> - expression to evaluate for each geometry</li>
+        </ul>
+      </li>
+      <li>
+        <code>remove_fields</code> - removes fields and associated properties</li>
+        <ul>
+          <li><code>fields</code> - array with field names to remove</li>
+        </ul>
+      <li>
+        <code>remove_other_fields</code> - removes all fields and associated properties except the ones provided
+        <ul>
+          <li><code>fields</code> - array with field names to preserve</li>
+        </ul>
+      </li>
+      <li>
+        <code>buffer</code> - removes (erosion) or adds (dilation) zone around every geoemtry
+        <ul>
+          <li><code>distance</code></li>
+          <li><code>resolution</code></li>
+        </ul>
+      </li>
+      <li>
+        <code>simplify_adjancent_polygons</code> - simplifies polygons taking topology into account (shared borders remain shared after operation)
+        <ul>
+          <li><code>tolerance</code> - simplification tolerance</li>
+        </ul>
+      </li>
+      <li>
+        <code>intersect_rect</code> - cuts out everything beyond boubdaries of supplied rectangle
+        <ul>
+          <li><code>rect</code> - array with four values, defining left-top and right-bottom corners of rectange</li>
+        </ul>
+      </li>
+      <li>
+        <code>remove_small_polygons</code> - removes polygons which area is less than supplied value
+        <ul>
+          <li><code>minimal_area</code></li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Data sources</h3>
     <ul>
       <li><a href="http://www.naturalearthdata.com/downloads/">Natural Earth</a></li>
       <li><a href="http://www.gadm.org/country">Global Administrative Areas</a></li>
