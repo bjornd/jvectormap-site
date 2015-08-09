@@ -1,0 +1,16 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"IT\""
+},{
+  "name": "union",
+  "by": "region_cod"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "region_cod",
+    "name_field": "region",
+    "name": "it_regions"
+  }
+}]
