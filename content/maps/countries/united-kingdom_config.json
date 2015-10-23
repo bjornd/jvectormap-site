@@ -1,0 +1,16 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_0_map_units/ne_10m_admin_0_map_units.shp",
+  "filter": "GU_A3 = \"NIR\" OR GU_A3 = \"WLS\" OR GU_A3 = \"ENG\" OR GU_A3 = \"SCT\""
+},{
+  "name": "remove_small_polygons",
+  "minimal_area": 10000000
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "GU_A3",
+    "name_field": "GEOUNIT",
+    "name": "uk_countries"
+  }
+}]
