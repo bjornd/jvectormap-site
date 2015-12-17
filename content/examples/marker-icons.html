@@ -3,7 +3,7 @@ title: Marker icons
 order: 12
 submenu: true
 js_assets:
-  - /js/jquery-jvectormap-de-merc-en.js
+  - /js/jquery-jvectormap-de-merc.js
 ---
 <article class="format-standard">
   <p>Following example demostrates using of icons instead of plain circles to represent markers. Also note static labels rendered next to each marker.</p>
@@ -68,7 +68,7 @@ js_assets:
 
         new jvm.Map({
           container: $('#map'),
-          map: 'de_merc_en',
+          map: 'de_merc',
           markers: plants.map(function(h){ return {name: h.name, latLng: h.coords} }),
           labels: {
               markers: {
