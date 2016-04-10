@@ -1,0 +1,44 @@
+[{
+  "name": "read_data",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"KR\" AND OBJECTID_1 != \"4194\""
+},{
+  "name": "join_data",
+  "data": [
+      ["2686", "KR-26"],
+      ["2682", "KR-27"],
+      ["2684", "KR-30"],
+      ["2037", "KR-42"],
+      ["2550", "KR-29"],
+      ["1999", "KR-41"],
+      ["2000", "KR-28"],
+      ["2678", "KR-49"],
+      ["2036", "KR-43"],
+      ["2688", "KR-47"],
+      ["2681", "KR-45"],
+      ["6632", "KR-50"],
+      ["2038", "KR-11"],
+      ["2683", "KR-44"],
+      ["2680", "KR-48"],
+      ["2685", "KR-46"],
+      ["2687", "KR-31"]
+  ],
+  "fields": [{
+      "name": "OBJECTID_1",
+      "type": 4,
+      "width": 9
+  },{
+      "name": "iso_3166_2",
+      "type": 4,
+      "width": 10
+  }],
+  "on": "OBJECTID_1"
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "iso_3166_2",
+    "name_field": "name",
+    "name": "kr"
+  }
+}]
