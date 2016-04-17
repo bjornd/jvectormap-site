@@ -1,0 +1,54 @@
+[{
+  "name": "read_data",
+  "projection": "mill",
+  "file_name": "ne_10m_admin_1_states_provinces_lakes/ne_10m_admin_1_states_provinces_lakes.shp",
+  "filter": "iso_a2 = \"GB\""
+},{
+  "name": "join_data",
+  "data": [
+    ["East", "UKH", "East"],
+    ["East Midlands", "UKF", "East Midlands"],
+    ["East Wales", "WLS", "Wales"],
+    ["Eastern", "SCT", "Scotalnd"],
+    ["Greater London", "UKI", "London"],
+    ["Highlands and Islands", "SCT", "Scotalnd"],
+    ["North East", "UKC", "North East"],
+    ["North Eastern", "SCT", "Scotalnd"],
+    ["North West", "UKD", "North West"],
+    ["Northern Ireland", "NIR", "Northern Ireland"],
+    ["South East", "UKJ", "South East"],
+    ["South West", "UKK", "South West"],
+    ["South Western", "SCT", "Scotalnd"],
+    ["West Midlands", "UKG", "West Midlands"],
+    ["West Wales and the Valleys", "WLS", "Wales"],
+    ["Yorkshire and the Humber", "UKE", "Yorkshire and the Humber"]
+  ],
+  "fields": [{
+    "name": "region",
+    "type": 4,
+    "width": 100
+  },{
+    "name": "region_code",
+    "type": 4,
+    "width": 10
+  },{
+    "name": "region_name",
+    "type": 4,
+    "width": 100
+  }],
+  "on": "region"
+},{
+  "name": "union",
+  "by": "region_code"
+},{
+  "name": "remove_small_polygons",
+  "minimal_area": 100000
+},{
+  "name": "write_data",
+  "format": "jvectormap",
+  "params": {
+    "code_field": "region_code",
+    "name_field": "region_name",
+    "name": "uk_regions"
+  }
+}]
