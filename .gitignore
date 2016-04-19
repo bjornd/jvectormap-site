@@ -1,5 +1,6 @@
 .DS_Store
-output
+output-development
+output-production
 tmp
 config.yaml
 crash.log

@@ -13,6 +13,8 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
+set_environment
+
 preprocess do
   items.each { |i| map_preprocessing(i) if i[:map_params] || i[:map_params_variants] }
   build_jvectormap
