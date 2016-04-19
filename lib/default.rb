@@ -4,6 +4,16 @@
 require 'json'
 require 'cgi'
 
+def set_environment
+    envs = @config[:environments] || {}
+
+    active = ENV.fetch "NANOC_ENVIRONMENT", 'development'
+    puts "\n\n|====== ENV: #{active} ======\n\n"
+    envs[active.to_sym].each do |k,v|
+        @config[k] = v
+    end
+end
+
 def map_preprocessing(item)
   item[:map_params_variants] ||= [Hash.new]
   proc_config = File.read(item.raw_filename.sub('.html', '_config.json'))
