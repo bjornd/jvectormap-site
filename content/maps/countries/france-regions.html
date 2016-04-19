@@ -2,8 +2,72 @@
 title: France - Regions
 submenu: true
 map_params_variants:
-  - projection: mill
-  - projection: merc
+  -
+    projection: mill
+    insets:
+      -
+        codes:
+          - 'FR-GF'
+        width: 100
+        left: 0
+        top: 600
+      -
+        codes:
+          - 'FR-GP'
+        width: 50
+        left: 0
+        top: 440
+      -
+        codes:
+          - 'FR-MQ'
+        width: 50
+        left: 0
+        top: 510
+      -
+        codes:
+          - 'FR-RE'
+        width: 50
+        left: 740
+        top: 700
+      -
+        codes:
+          - 'FR-YT'
+        width: 40
+        left: 640
+        top: 690
+  -
+    projection: merc
+    insets:
+      -
+        codes:
+          - 'FR-GF'
+        width: 100
+        left: 0
+        top: 700
+      -
+        codes:
+          - 'FR-GP'
+        width: 50
+        left: 0
+        top: 540
+      -
+        codes:
+          - 'FR-MQ'
+        width: 50
+        left: 0
+        top: 610
+      -
+        codes:
+          - 'FR-RE'
+        width: 50
+        left: 740
+        top: 800
+      -
+        codes:
+          - 'FR-YT'
+        width: 40
+        left: 640
+        top: 790
 data_params:
   source: http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-1-states-provinces/
   license: public domain
