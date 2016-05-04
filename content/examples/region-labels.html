@@ -3,7 +3,7 @@ title: Region labels
 order: 9
 submenu: true
 js_assets:
-  - /js/jquery-jvectormap-us-aea-en.js
+  - /js/jquery-jvectormap-us-aea.js
 ---
 <article class="format-standard">
   <p>The following example demostrates using of static labels to render state code on th USA map. By default labels are rendered in the center of region. You can change this behavior by using <code>offset</code> parameter. Label style could be customized with <code>regionLabelStyle</code> parameter.</p>
@@ -13,7 +13,7 @@ js_assets:
       //@code_start
       $(function(){
         new jvm.Map({
-          map: 'us_aea_en',
+          map: 'us_aea',
           container: $('#map'),
           regionLabelStyle: {
             initial: {

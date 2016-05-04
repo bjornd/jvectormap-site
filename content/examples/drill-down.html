@@ -3,7 +3,7 @@ title: Drill down US map
 order: 11
 submenu: true
 js_assets:
-  - /js/jquery-jvectormap-us-lcc-en.js
+  - /js/jquery-jvectormap-us-lcc.js
 ---
 <article class="format-standard">
   <p>The following example demonstrates implementation of drill down map. Click on the state shows map of this state's counties. Note that county maps are loaded on demand.</p>
@@ -16,7 +16,7 @@ js_assets:
           container: $('#map'),
           maxLevel: 1,
           main: {
-            map: 'us_lcc_en'
+            map: 'us_lcc'
           },
           mapUrlByCode: function(code, multiMap){
             return '/js/us-counties/jquery-jvectormap-data-'+

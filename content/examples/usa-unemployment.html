@@ -3,7 +3,7 @@ title: USA unemployment
 order: 3
 submenu: true
 js_assets:
-  - /js/jquery-jvectormap-us-aea-en.js
+  - /js/jquery-jvectormap-us-aea.js
   - /js/jquery-ui-1.8.22.custom.min.js
 ---
 <article class="format-standard">
@@ -21,7 +21,7 @@ js_assets:
               metroUnemplValues = Array.prototype.concat.apply([], jvm.values(data.metro.unemployment));
 
           $('#world-map-gdp').vectorMap({
-            map: 'us_aea_en',
+            map: 'us_aea',
             markers: data.metro.coords,
             series: {
               markers: [{

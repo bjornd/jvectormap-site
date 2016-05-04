@@ -1,5 +1,5 @@
 .DS_Store
-output-development
+output
 output-production
 tmp
 config.yaml

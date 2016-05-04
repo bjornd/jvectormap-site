@@ -3,7 +3,7 @@ title: Reverse projection
 order: 8
 submenu: true
 js_assets:
-  - /js/jquery-jvectormap-us-lcc-en.js
+  - /js/jquery-jvectormap-us-lcc.js
 ---
 <article class="format-standard">
   <p>This example demonstrates the ability to convert pixel coordinates on map to the repsective latitude and longitude coordinates. Click on the map adds marker to the clicked point, click on the added marker removes it.</p>
@@ -17,7 +17,7 @@ js_assets:
             markersCoords = {};
 
         map = new jvm.Map({
-            map: 'us_lcc_en',
+            map: 'us_lcc',
             markerStyle: {
               initial: {
                 fill: 'red'

@@ -3,7 +3,7 @@ title: Getting started
 order: 1
 submenu: true
 js_assets:
-  - /js/jquery-jvectormap-world-mill-en.js
+  - /js/jquery-jvectormap-world-mill.js
   - /js/gdp-data.js
 ---
 <article class="format-standard">
@@ -21,13 +21,13 @@ js_assets:
   &lt;link rel=&quot;stylesheet&quot; href=&quot;jquery-jvectormap-2.0.1.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot;/&gt;
   &lt;script src=&quot;jquery.js&quot;&gt;&lt;/script&gt;
   &lt;script src=&quot;jquery-jvectormap-2.0.1.min.js&quot;&gt;&lt;/script&gt;
-  &lt;script src=&quot;jquery-jvectormap-world-mill-en.js&quot;&gt;&lt;/script&gt;
+  &lt;script src=&quot;jquery-jvectormap-world-mill.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
   &lt;div id=&quot;world-map&quot; style=&quot;width: 600px; height: 400px&quot;&gt;&lt;/div&gt;
   &lt;script&gt;
     $(function(){
-      $('#world-map').vectorMap();
+      $('#world-map').vectorMap({map: 'world_mill'});
     });
   &lt;/script&gt;
 &lt;/body&gt;
@@ -38,7 +38,7 @@ js_assets:
     <div id="world-map" style="width: 600px; height: 400px"></div>
     <script>
       $(function(){
-        $('#world-map').vectorMap();
+        $('#world-map').vectorMap({map: 'world_mill'});
       });
     </script>
   </figure>
@@ -57,7 +57,7 @@ var gdpData = {
     <script>
       $(function(){
         $('#world-map-gdp').vectorMap({
-          map: 'world_mill_en',
+          map: 'world_mill',
           series: {
             regions: [{
               values: gdpData,
@@ -75,7 +75,7 @@ var gdpData = {
   <p>Here is the code, which was used to initialize the map above (description of every parameter could be found on the <a href="/documentation/javascript-api/">JavaScript API page</a>):</p>
   <pre class="syntax"><code class="language-javascript">
 $('#world-map-gdp').vectorMap({
-  map: 'world_mill_en',
+  map: 'world_mill',
   series: {
     regions: [{
       values: gdpData,
