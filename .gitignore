@@ -4,3 +4,4 @@ output-production
 tmp
 config.yaml
 crash.log
+.idea
